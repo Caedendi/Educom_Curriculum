@@ -2,7 +2,7 @@
 
     v de pagina 800 pixels breed is en gecentreerd wordt op je beeldscherm, binnen de 800 pixels blijft de hoofdtekst links uitgelijnd. */
 body {
-  background-color: green;
+  background-color: lightgreen;
   margin: auto; /* align center */
   width: 800px;
   text-align: left;
@@ -18,7 +18,7 @@ h1 {
 /* v de lijst die het menu voorstelt geen bullets bevat, en de items omkaderd zijn en op 1 regel achter elkaar staan.*/
 .navbar ul {
   list-style-type: none; /* no bullet list */
-  /* margin: 0; */
+  margin: 0;
   padding: 0;
   overflow: hidden; /* creates invisible overflow next to list items to prevent next elements (paragraphs etc) from appearing right behind list items */
   /* background-color: #333333;  */
@@ -40,6 +40,7 @@ h1 {
   text-decoration: none; /* no underline */
 
   border: 3px solid lightgray;
+  border-radius: 15px;
   /* margin: 25px; */
   /* outline: 10px solid blue; /* needs margins to be visible */  */
 }
