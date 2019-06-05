@@ -12,21 +12,51 @@
       <ul>
        <li><a href="index.html">HOME</a></li>
        <li><a href="about.html">ABOUT</a></li>
-       <li><a href="contact.html">CONTACT</a></li>
+       <li><a class="active" href="contact.html">CONTACT</a></li>
       </ul>
     </div>
 
     <div class="mainBody">
        <!-- JH Extra: Probeer in opdracht 1.2 het formulier te stylen zonder <br> te gebruiken, dit werkt handiger als je later voor web en mobile werkt en alleen een andere stylesheet hoeft in te laden -->
-      <form>
-        <label for="naam">Naam:</label>
-        <input type="text" name="name" placeholder="uw volledige naam">
-        <label for="email">Email:</label>
-        <input type="email" name="email" placeholder="uw e-mailadres">
-        <label for="bericht">Bericht:</label>
-        <textarea name="message" placeholder="typ hier uw bericht" rows="10" cols="50"></textarea>
-        <input type="submit">
-      </form>
+
+       <p>Om contact met mij op te nemen, gelieve het onderstaande formulier in te vullen.</p>
+
+       <div class="formfield">
+         <form>
+           <div class="formrow">
+             <div class="label">
+               <label for="naam">Naam:</label>
+             </div>
+             <div class="entry">
+               <input type="text" name="name" placeholder="uw volledige naam">
+             </div>
+           </div>
+           <div class="formrow">
+             <div class="label">
+               <label for="email">Email:</label>
+             </div>
+             <div class="entry">
+               <input type="email" name="email" placeholder="uw e-mailadres">
+             </div>
+           </div>
+           <div class="formrow">
+             <div class="label">
+               <label for="bericht">Bericht:</label>
+             </div>
+             <div class="entry">
+               <textarea name="message" placeholder="typ hier uw bericht" rows="10" cols="50"></textarea>
+             </div>
+           </div>
+           <div class="formrow">
+             <div class="label">
+               <label for="submit"></label> <!-- empty label -->
+             </div>
+             <div>
+               <input type="submit" value="Verstuur">
+             </div>
+          </div>
+         </form>
+       </div>
     </div>
 
     <footer>
