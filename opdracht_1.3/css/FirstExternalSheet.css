@@ -84,6 +84,22 @@ h1 {
   /* margin: 0px 25px; */
 }
 
+/* alters message " * Required field" */
+.formfield .required {
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0px 0px 20px 5px;
+}
+
+/* alters eventual error messages displayed above form */
+p.errormessage {
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* */
 .formrow {
   margin: 5px 0px;
 }
@@ -98,9 +114,16 @@ h1 {
   float: left;
 }
 
+/* colors asterisks next to form input fields */
+.formrow span {
+  padding: 5px 0px 0px 10px;
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 input[type=text], input[type=email], textarea {
   width: 400px;
-
 }
 
 input[type=submit] {
