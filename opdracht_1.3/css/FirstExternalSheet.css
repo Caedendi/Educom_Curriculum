@@ -138,6 +138,9 @@ input[type=submit] {
 }
 /* end forms section */
 
+.belowform {
+  font-size: 14px;
+}
 
 footer {
   background-color: Black;

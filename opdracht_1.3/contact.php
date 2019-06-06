@@ -103,16 +103,19 @@
        </div> <!-- end formfield -->
 
        <!-- Shows all entered input if input is correct -->
-       <?php
-       if (!empty($name) && !empty($email) && !empty($message)) {
-         echo $name;
-         echo "<br><br>";
-         echo $email;
-         echo "<br><br>";
-         echo $message;
-         echo "<br><br>";
-       }
-       ?>
+       <div class="belowform">
+           <?php
+           if (!empty($name) && !empty($email) && !empty($message)) {
+             echo "<br><br>";
+             echo $name;
+             echo "<br><br>";
+             echo $email;
+             echo "<br><br>";
+             echo $message;
+             echo "<br><br>";
+           }
+           ?>
+       </div>
     </div>
 
     <!-- footer area -->
