@@ -7,11 +7,16 @@
 
   <body>
     <?php
-    // define variables and set to empty values
+    /**
+     * insert main file description here asdfasedssaef
+     */
+
     $nameError = $emailError = $messageError = "";
     $name = $email = $message = "";
 
-    // tests form input data for security purposes
+    /*
+     * tests form input data for security purposes
+     */
     function test_input($data) {
       $data = trim($data);
       $data = stripslashes($data);
@@ -19,9 +24,11 @@
       return $data;
     }
 
-    // processes information provided in input fields.
-    // if field is empty, an error message is made.
-    // else it is tested for security purposes and stored
+    /**
+     * processes information provided in input fields.
+     * if field is empty, an error message is made.
+     * else it is tested for security purposes and stored
+     */
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       // processes name
