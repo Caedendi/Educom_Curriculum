@@ -4,12 +4,13 @@
   function getRequestedPage() {
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
       isset($_GET['page']) ? $page = $_GET['page'] : $page = 'home';
+      return $page;
     }
     else if ($_SERVER["REQUEST_METHOD"] == "POST") {
       isset($_POST['page']) ? $page = $_POST['page'] : $page = 'home';
+      return $page;
     }
   }
-
 
 
   // show home/contact/about inbouwen
@@ -36,9 +37,7 @@
       break;
     }
   }
-
-
-
+  
   function showBodySection($page) {
     include 'body_start.php'; showBodyStart();
     include 'navbar.php'; showMenu();

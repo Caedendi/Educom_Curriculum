@@ -1,13 +1,13 @@
 <?php
 function showMenu() {
   echo '
-  <div class="navbar">
-    <ul>
-     <li><a class="active" href="home.php">HOME</a></li>
-     <li><a href="about.html">ABOUT</a></li>
-     <li><a href="contact.php">CONTACT</a></li>
-    </ul>
-  </div>
+    <div class="navbar">
+      <ul>
+       <li><a class="active" href="index.php?page=home">HOME</a></li>
+       <li><a href="index.php?page=about">ABOUT</a></li>
+       <li><a href="index.php?page=contact">CONTACT</a></li>
+      </ul>
+    </div>
   ';
 }
 ?>
