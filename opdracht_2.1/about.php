@@ -1,23 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Opdracht 1.3 About</title>
-    <link rel="stylesheet" type="text/css" href="./css/FirstExternalSheet.css">
-  </head>
-
-  <body>
-    <h1>About</h1>
-
-    <div class="navbar">
-      <ul>
-       <li><a href="home.php">HOME</a></li>
-       <li><a class="active" href="about.html">ABOUT</a></li>
-       <li><a href="contact.php">CONTACT</a></li>
-      </ul>
-    </div>
-
+<?php
+function showAboutContent() {
+  echo '
     <div class="mainBody">
-
+      <h1 class="header">About</h1>
       <p>Mijn naam is Bart Commandeur. Ik ben 26 jaar, kom uit het Noord-Hollandse
       Hoogkarspel en woon ondertussen al 4 jaar in Utrecht. Momenteel volg ik ik een
       traineeship bij Educom tot software developer. Hiervoor heb ik lang gepoogd te
@@ -40,9 +25,6 @@
        <li>Games spelen</li>
       </ul>
     </div>
-
-    <footer>
-      <p>&copy; 2019 Bart Commandeur</p>
-    </footer>
-  </body>
-</html>
+    ';
+}
+?>
