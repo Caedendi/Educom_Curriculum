@@ -9,7 +9,7 @@ body {
   text-align: left;
 }
 
-h1.header { /* JH: Dit veranderd alle <H1> tags, je wil dit specifiek maken dat alleen de H1 tag die de header representeerd wordt aangepast (met een css class) */
+h1.header {
   color: black;
   font-size: 48px;
   text-align: center;
@@ -64,13 +64,7 @@ h1.header { /* JH: Dit veranderd alle <H1> tags, je wil dit specifiek maken dat 
   padding: 15px;
 }
 
-.mainBody p { /* JH: Als je deze twee regels in .mainBody zet, dan hoef je niet voor iedere type tag opnieuw te zetten.
-                     Indien je dat niet doet kan je ook deze en de volgende combineren tot .mainBody p, .mainBody li { ... } */
-  font-size: 12px;
-  color: DarkGray;
-}
-
-.mainBody li {
+.mainBody p, .mainBody li {
   font-size: 12px;
   color: DarkGray;
 }
@@ -78,7 +72,7 @@ h1.header { /* JH: Dit veranderd alle <H1> tags, je wil dit specifiek maken dat 
 /*
  * Forms section
  */
-.formfield { /* JH TIP: Wees consistent in je naamgeving dus .formField */
+.formField {
   border-radius: 5px;
   background-color: lightgray;
   padding: 25px;
@@ -86,7 +80,7 @@ h1.header { /* JH: Dit veranderd alle <H1> tags, je wil dit specifiek maken dat 
 }
 
 /* alters message " * Required field" */
-.formfield .required {
+.formField .required {
   color: red;
   font-size: 20px;
   font-weight: bold;
@@ -94,53 +88,53 @@ h1.header { /* JH: Dit veranderd alle <H1> tags, je wil dit specifiek maken dat 
 }
 
 /* alters eventual error messages displayed above form */
-p.errormessage { /* JH TIP: Wees consistent in je naamgeving dus p.errorMessage */
+p.errorMessage {
   color: red;
   font-size: 16px;
   font-weight: bold;
 }
 
 /* */
-.formrow { /* JH TIP: Wees consistent in je naamgeving dus .formRow */
+.formRow {
   margin: 5px 0px;
 }
 
-.formrow label {
+.formRow label {
   display: inline-block;
   float: left;
   width: 25%;
 }
 
-.formrow input, .formrow textarea {
+.formRow input, .formRow textarea {
   float: left;
 }
 
 /* colors asterisks next to form input fields */
-.formrow span { /* JH: Je kan de span toch ook een class 'required' geven, in plaats van hier alle <span> tags in .formrow rood te kleuren */
+.formRow span { /* JH: Je kan de span toch ook een class 'required' geven, in plaats van hier alle <span> tags in .formrow rood te kleuren */
   padding: 5px 0px 0px 10px;
   color: red;
   font-size: 20px;
   font-weight: bold;
 }
 
-input[type=text], input[type=email], textarea { /* JH TIP: Doordat je hier heel specifiek type = email etc doet, zal een nieuw type weer een ander breedte hebben.
-                                                           Het is beter om alle inputs width = 400px te geven en dan en input[type=submin] weer terug te zetten op width: auto */
+input, textarea {
   width: 400px;
 }
 
 input[type=submit] {
+  width: auto;
   margin: 0% 25%;
   float: left;
 }
 
-.formrow:after {
+.formRow:after {
   content: "";
   display: table;
   clear: left;
 }
 /* end forms section */
 
-.belowform { /* JH TIP: Wees consistent in je naamgeving dus .belowForm */  /* JH: Naamgeving is wat verwarrend, het is de 'thanks' message */
+.belowForm { /* JH: Naamgeving is wat verwarrend, het is de 'thanks' message */
   font-size: 14px;
 }
 
