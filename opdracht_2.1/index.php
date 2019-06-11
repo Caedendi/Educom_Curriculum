@@ -38,7 +38,7 @@
 
   function showBodySection($page) {
     include 'body_start.php'; showBodyStart();
-    include 'navbar.php'; showMenu();
+    include 'navbar.php'; showMenu($page);
     showMainContent($page);
   }
 
