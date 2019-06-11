@@ -1,56 +1,61 @@
 <?php
-  $page = "";
+  $page = 'home';
   echo 'hello world';
 
-  function showStartHtml() {
-    include 'start_html.php';
+
+  function getRequestedPage() {
+    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+      isset 'page' in $_GET ? $page = $_GET['page'] : $page = 'home';
+    }
+    else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      isset 'page' in $_POST ? $page = $_POST['page'] : $page = 'home';
+    }
+
   }
 
-  function showBodyStart() {
-    include 'body_start.php';
+
+
+  // show home/contact/about inbouwen
+  function showMainContent($page) {
+    switch ($page) {
+    case 'home':
+      include 'home.php';
+      showHomeContent();
+      break;
+    case 'about':
+      include 'about.php';
+      showAboutContent();
+      break;
+    case 'contact':
+      include 'contact.php';
+      showContactContent();
+      break;
+    default:
+      //show error
+      echo 'ERROR IN showMainContent()';
+      break;
+    }
   }
 
-  function showMenu() {
-    include 'navbar.php';
+
+
+  function showBodySection($page) {
+    include 'body_start.php'; showBodyStart();
+    include 'navbar.php'; showMenu();
+    showMainContent($page);
   }
 
-  function showHeader() {
-    include 'header.php';
+  function showResponsePage($page) {
+    include 'html_start.php'; showStartHtml();
+    include 'headSection.php'; showHeadSection();
+    showBodySection($page);
+    include 'footer.php'; showFooter();
+    include 'body_end.php'; showBodyEnd();
+    include 'html_end.php'; showHtmlEnd();
   }
 
-  function showFooter() {
-    include 'footer.php';
-  }
-
-  function showBodyEnd() {
-    include 'body_end.php';
-  }
-
-  // function showMainContent() {
-  //   include 'asdf';
-  // }
-
-  function showBodySection() {
-    showBodyStart();
-    showMenu();
-    // showMainContent();
-    showBodyEnd();
-  }
-
-  function showResponsePage() {
-    showStartHtml();
-    showHeader();
-    showBodySection();
-    showFooter();
-  }
-
-  showResponsePage();
-
-
-
-
-
-
+  $page = getRequestedPage();
+  showResponsePage($page);
 
 
 ?>

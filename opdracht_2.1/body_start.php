@@ -1,5 +1,7 @@
 <?php
-echo '
-  <body>
-'
+function showBodyStart() {
+  echo '
+    <body>
+  ';
+}
 ?>

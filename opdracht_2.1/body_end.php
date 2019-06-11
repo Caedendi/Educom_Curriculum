@@ -1,6 +1,7 @@
 <?php
-echo "
-  </body>
-</html>
-"
+function showBodyEnd() {
+  echo "
+    </body>
+  ";
+}
 ?>

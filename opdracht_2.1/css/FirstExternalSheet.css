@@ -9,7 +9,7 @@ body {
   text-align: left;
 }
 
-h1 {
+h1.header { /* JH: Dit veranderd alle <H1> tags, je wil dit specifiek maken dat alleen de H1 tag die de header representeerd wordt aangepast (met een css class) */
   color: black;
   font-size: 48px;
   text-align: center;
@@ -64,7 +64,8 @@ h1 {
   padding: 15px;
 }
 
-.mainBody p {
+.mainBody p { /* JH: Als je deze twee regels in .mainBody zet, dan hoef je niet voor iedere type tag opnieuw te zetten.
+                     Indien je dat niet doet kan je ook deze en de volgende combineren tot .mainBody p, .mainBody li { ... } */
   font-size: 12px;
   color: DarkGray;
 }
@@ -77,7 +78,7 @@ h1 {
 /*
  * Forms section
  */
-.formfield {
+.formfield { /* JH TIP: Wees consistent in je naamgeving dus .formField */
   border-radius: 5px;
   background-color: lightgray;
   padding: 25px;
@@ -93,14 +94,14 @@ h1 {
 }
 
 /* alters eventual error messages displayed above form */
-p.errormessage {
+p.errormessage { /* JH TIP: Wees consistent in je naamgeving dus p.errorMessage */
   color: red;
   font-size: 16px;
   font-weight: bold;
 }
 
 /* */
-.formrow {
+.formrow { /* JH TIP: Wees consistent in je naamgeving dus .formRow */
   margin: 5px 0px;
 }
 
@@ -115,14 +116,15 @@ p.errormessage {
 }
 
 /* colors asterisks next to form input fields */
-.formrow span {
+.formrow span { /* JH: Je kan de span toch ook een class 'required' geven, in plaats van hier alle <span> tags in .formrow rood te kleuren */
   padding: 5px 0px 0px 10px;
   color: red;
   font-size: 20px;
   font-weight: bold;
 }
 
-input[type=text], input[type=email], textarea {
+input[type=text], input[type=email], textarea { /* JH TIP: Doordat je hier heel specifiek type = email etc doet, zal een nieuw type weer een ander breedte hebben.
+                                                           Het is beter om alle inputs width = 400px te geven en dan en input[type=submin] weer terug te zetten op width: auto */
   width: 400px;
 }
 
@@ -138,7 +140,7 @@ input[type=submit] {
 }
 /* end forms section */
 
-.belowform {
+.belowform { /* JH TIP: Wees consistent in je naamgeving dus .belowForm */  /* JH: Naamgeving is wat verwarrend, het is de 'thanks' message */
   font-size: 14px;
 }
 
