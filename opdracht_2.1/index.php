@@ -38,8 +38,7 @@
   function showBodySection($page) {
     include 'body_start.php'; showBodyStart();
     include 'navbar.php'; showMenu($page);
-
-    // header voor elke pagina inbouwen
+    include 'header.php'; showHeader($page);
     showMainContent($page);
     include 'footer.php'; showFooter();
     include 'body_end.php'; showBodyEnd();

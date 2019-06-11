@@ -2,7 +2,6 @@
 function showAboutContent() {
   echo '
     <div class="mainBody">
-      <h1 class="header">About</h1>
       <p>Mijn naam is Bart Commandeur. Ik ben 26 jaar, kom uit het Noord-Hollandse
       Hoogkarspel en woon ondertussen al 4 jaar in Utrecht. Momenteel volg ik ik een
       traineeship bij Educom tot software developer. Hiervoor heb ik lang gepoogd te
