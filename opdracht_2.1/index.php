@@ -12,8 +12,6 @@
     }
   }
 
-
-  // show home/contact/about inbouwen
   function showMainContent($page) {
     switch ($page) {
     case 'home':
@@ -37,7 +35,7 @@
       break;
     }
   }
-  
+
   function showBodySection($page) {
     include 'body_start.php'; showBodyStart();
     include 'navbar.php'; showMenu();
