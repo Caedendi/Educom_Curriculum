@@ -22,7 +22,8 @@ h1.header {
   list-style-type: none; /* no bullet list */
   margin: 0;
   padding: 0;
-  overflow: hidden; /* creates invisible overflow next to list items to prevent next elements (paragraphs etc) from appearing right behind list items */
+  overflow: hidden; /* creates invisible overflow next to list items to prevent next
+                       elements (paragraphs etc) from appearing right behind list items */
 }
 
 .navbar li {
@@ -110,7 +111,7 @@ p.errorMessage {
 }
 
 /* colors asterisks next to form input fields */
-.formRow span { /* JH: Je kan de span toch ook een class 'required' geven, in plaats van hier alle <span> tags in .formrow rood te kleuren */
+span.required {
   padding: 5px 0px 0px 10px;
   color: red;
   font-size: 20px;
@@ -134,6 +135,7 @@ input[type=submit] {
 }
 /* end forms section */
 
+/* section below formfield that shows submitted values and thanks message */
 .belowForm { /* JH: Naamgeving is wat verwarrend, het is de 'thanks' message */
   font-size: 14px;
 }

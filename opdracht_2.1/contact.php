@@ -74,22 +74,22 @@ echo '
           <input type="hidden" name="page" value="contact"> <!-- to redirect back to contact page instead of home -->
           <!-- name -->
           <div class="formRow">
-            <label for="naam">Naam:</label>
-            <input type="text" name="name" placeholder="uw volledige naam" value="'.$name.'">
-            <span> * '.$nameError.'</span>
+            <label for="name">Naam:</label>
+            <input type="text" name="name" id="name" placeholder="uw volledige naam" value="'.$name.'">
+            <span class="required"> * '.$nameError.'</span>
           </div>
           <!-- email -->
           <div class="formRow">
             <label for="email">Email:</label>
-            <input type="email" name="email" placeholder="uw e-mailadres" value="'.$email.'">
-            <span> * '.$emailError.'</span>
+            <input type="email" name="email" id="email" placeholder="uw e-mailadres" value="'.$email.'">
+            <span class="required"> * '.$emailError.'</span>
           </div>
           <!-- message -->
           <div class="formRow">
-            <label for="bericht">Bericht:</label>
-            <textarea name="message" placeholder="typ hier uw bericht" rows="10" cols="50">';
-              if(isset($_POST["message"])) { echo $_POST["message"]; } echo '</textarea> <!-- remember text inside text area -->
-              <span> * '.$messageError.'</span>
+            <label for="message">Bericht:</label>
+            <textarea name="message" id="message" placeholder="typ hier uw bericht" rows="10" cols="50">';
+              if(isset($message)) { echo $message; } echo '</textarea> <!-- remember text inside text area -->
+              <span class="required"> * '.$messageError.'</span>
           </div>
           <!-- submit button -->
           <div class="formRow">
@@ -104,12 +104,15 @@ echo '
         ';
         if (!empty($name) && !empty($email) && !empty($message)) {
           echo "<br><br>";
-          echo $name;
-          echo "<br><br>";
-          echo $email;
-          echo "<br><br>";
-          echo $message;
-          echo "<br><br>";
+          echo "Bedankt voor uw bericht. Er zal zo snel mogelijk contact met u worden opgenomen.";
+          echo "<br><br><br>";
+          echo "Uw verstuurde gegevens: <br><br>";
+          echo "Naam: " . $name;
+          echo "<br>";
+          echo "E-mail: " . $email;
+          echo "<br>";
+          echo "Bericht: ". $message;
+          echo "<br>";
         }
         echo '
       </div>
