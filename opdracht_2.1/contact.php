@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Opdracht 1.3 Contact</title>
-    <link rel="stylesheet" type="text/css" href="./css/FirstExternalSheet.css">
-  </head>
+<?php
+function showContactContent() {
+  echo '
 
-  <body>
-    <?php
+
     // define variables and set to empty values
     $nameError = $emailError = $messageError = "";
     $name = $email = $message = "";
@@ -39,35 +35,28 @@
       }
 
       // processes message
-      if (empty($_POST["message"])) {
+      if (empty($_POST[\'message\'])) {
         $messageError = "Please type your message";
       } else {
         $message = test_input($_POST["message"]);
       }
     }
-    ?>
 
-    <!-- header -->
-    <h1>Contact</h1>
 
-    <!-- navigation bar -->
-    <div class="navbar">
-      <ul>
-       <li><a href="home.php">HOME</a></li>
-       <li><a href="about.html">ABOUT</a></li>
-       <li><a class="active" href="contact.php">CONTACT</a></li>
-      </ul>
-    </div>
 
     <!-- main site area -->
     <div class="mainBody">
+
+      <!-- header -->
+      <h1 class="header">Contact</h1>
+
       <p>Om contact met mij op te nemen, gelieve het onderstaande formulier in te vullen.</p>
 
       <!-- formfield -->
-      <div class="formfield">
+      <div class="formField">
         <p class="required">* Required field</p>
         <!-- displays error messages above form input fields if applicable -->
-        <p class="errormessage">
+        <p class="errorMessage">
           <?php
           if (!empty($nameError)) { echo $nameError, "<br>"; }
           if (!empty($emailError)) { echo $emailError, "<br>"; }
@@ -76,26 +65,26 @@
         </p>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
           <!-- name -->
-          <div class="formrow">
+          <div class="formRow">
             <label for="naam">Naam:</label>
             <input type="text" name="name" placeholder="uw volledige naam" value="<?php echo $name;?>">
             <span> * </span>
           </div>
           <!-- email -->
-          <div class="formrow">
+          <div class="formRow">
             <label for="email">Email:</label>
             <input type="email" name="email" placeholder="uw e-mailadres" value="<?php echo $email;?>">
             <span> * </span>
           </div>
           <!-- message -->
-          <div class="formrow">
+          <div class="formRow">
             <label for="bericht">Bericht:</label>
             <textarea name="message" placeholder="typ hier uw bericht" rows="10" cols="50"><?php
-              if(isset($_POST['message'])) { echo $_POST['message']; } ?></textarea> <!-- remember text inside text area -->
+              if(isset($_POST[\'message\'])) { echo $_POST[\'message\']; } ?></textarea> <!-- remember text inside text area -->
               <span> * </span>
           </div>
           <!-- submit button -->
-          <div class="formrow">
+          <div class="formRow">
             <label for="submit"></label> <!-- empty label -->
             <input type="submit" value="Verstuur">
           </div>
@@ -103,7 +92,7 @@
       </div> <!-- end formfield -->
 
       <!-- Shows all entered input if input is correct -->
-      <div class="belowform">
+      <div class="belowForm">
         <?php
         if (!empty($name) && !empty($email) && !empty($message)) {
           echo "<br><br>";
@@ -118,9 +107,8 @@
       </div>
     </div>
 
-    <!-- footer area -->
-    <footer>
-      <p>&copy; 2019 Bart Commandeur</p>
-    </footer>
+
   </body>
-</html>
+  ';
+}
+?>
