@@ -1,16 +1,13 @@
 <?php
-  $page = 'home';
-  echo 'hello world';
-
+  $page = '';
 
   function getRequestedPage() {
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-      isset 'page' in $_GET ? $page = $_GET['page'] : $page = 'home';
+      isset($_GET['page']) ? $page = $_GET['page'] : $page = 'home';
     }
     else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      isset 'page' in $_POST ? $page = $_POST['page'] : $page = 'home';
+      isset($_POST['page']) ? $page = $_POST['page'] : $page = 'home';
     }
-
   }
 
 
@@ -33,6 +30,9 @@
     default:
       //show error
       echo 'ERROR IN showMainContent()';
+
+      include 'home.php';
+      showHomeContent();
       break;
     }
   }
@@ -47,7 +47,9 @@
 
   function showResponsePage($page) {
     include 'html_start.php'; showStartHtml();
-    include 'headSection.php'; showHeadSection();
+
+    // header voor elke pagina inbouwen
+    include 'head_section.php'; showHeadSection();
     showBodySection($page);
     include 'footer.php'; showFooter();
     include 'body_end.php'; showBodyEnd();

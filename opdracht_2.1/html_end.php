@@ -1,7 +1,7 @@
 <?php
-function showEndHtml() {
-  echo "
+function showHtmlEnd() {
+  echo '
     </html>
-  ";
+  ';
 }
 ?>
