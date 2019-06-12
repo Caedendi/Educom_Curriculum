@@ -136,6 +136,7 @@ input[type=submit] {
 /* end forms section */
 
 /* section below formfield that shows submitted values and thanks message */
+p.thanksMessage {
   color: black;
   font-size: 18px;
 }
