@@ -136,7 +136,7 @@ input[type=submit] {
 /* end forms section */
 
 /* section below formfield that shows submitted values and thanks message */
-.belowForm { /* JH: Naamgeving is wat verwarrend, het is de 'thanks' message */
+.afterForm { /* JH: Naamgeving is wat verwarrend, het is de 'thanks' message */
   font-size: 14px;
 }
 
