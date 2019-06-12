@@ -1,47 +1,22 @@
 <?php
-  $page = '';
 
+  //==============================================
+  // MAIN APP
+  //==============================================
+  $page = getRequestedPage();
+  showResponsePage($page);
+  //==============================================
+  // FUNCTIONS
+  //==============================================
   function getRequestedPage() {
-    if ($_SERVER["REQUEST_METHOD"] == "GET") {
-      isset($_GET['page']) ? $page = $_GET['page'] : $page = 'home';
+    $requestType = $_SERVER["REQUEST_METHOD"];
+    if ($requestType == "POST") {
+      $requestedPage = getPostVar('page', 'home');
     }
-    else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      isset($_POST['page']) ? $page = $_POST['page'] : $page = 'home';
+    else {
+      $requestedPage = getUrlVar('page', 'home');
     }
-    return $page;
-  }
-
-  function showMainContent($page) {
-    switch ($page) {
-    case 'home':
-      include 'home.php';
-      showHomeContent();
-      break;
-    case 'about':
-      include 'about.php';
-      showAboutContent();
-      break;
-    case 'contact':
-      include 'contact.php';
-      showContactContent();
-      break;
-    default:
-      //show error
-      echo 'ERROR IN showMainContent()';
-
-      include 'home.php';
-      showHomeContent();
-      break;
-    }
-  }
-
-  function showBodySection($page) {
-    include 'body_start.php'; showBodyStart();
-    include 'navbar.php'; showMenu($page);
-    include 'header.php'; showHeader($page);
-    showMainContent($page);
-    include 'footer.php'; showFooter();
-    include 'body_end.php'; showBodyEnd();
+    return $requestedPage;
   }
 
   function showResponsePage($page) {
@@ -51,8 +26,42 @@
     include 'html_end.php'; showHtmlEnd();
   }
 
-  $page = getRequestedPage();
-  showResponsePage($page);
+  function getPostVar($key, $default='') {
+    $value = filter_input(INPUT_POST, $key);
+    return isset($value) ? $value : $default;
+  }
 
+  function getUrlVar($key, $default='') {
+    $value = filter_input(INPUT_GET, $key);
+    return isset($value) ? $value : $default;
+  }
 
+  function showBodySection($page) {
+    include 'body_start.php'; showBodyStart();
+    include 'header.php'; showHeader($page);
+    include 'navbar.php'; showMenu($page);
+    showMainContent($page);
+    include 'footer.php'; showFooter();
+    include 'body_end.php'; showBodyEnd();
+  }
+
+  function showMainContent($page) {
+    switch ($page) {
+      case 'home':
+        include 'home.php';
+        showHomeContent();
+        break;
+      case 'about':
+        include 'about.php';
+        showAboutContent();
+        break;
+      case 'contact':
+        include 'contact.php';
+        showContactContent();
+        break;
+      default:
+        echo "Page [".$page."] not found.";
+        break;
+    }
+  }
 ?>
