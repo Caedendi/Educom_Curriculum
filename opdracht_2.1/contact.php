@@ -1,11 +1,22 @@
 <?php
 
-function validateContactForm() {
-  $name = getPostVar('name');
-  $email = getPostVar('email');
-  $message = getPostVar('message');
-  $valid = (!empty($name) && !empty($email) && !empty($message));
-  return $valid;
+function showContactContent() {
+  $requestType = $_SERVER["REQUEST_METHOD"];
+  if ($requestType == "POST") { // show either thanks message (when submitted info is valid) or partly filled formfield when invalid
+    $name = test_input(getPostVar('name'));
+    $email = test_input(getPostVar('email'));
+    $message = test_input(getPostVar('message'));
+    $valid = validateContactForm();
+    if($valid) { // show thanks + submitted info
+      showThanks($name, $email, $message);
+    }
+    else { // else show contact form (partly filled)
+      showFormField(false, $name, $email, $message);
+    }
+  }
+  else { // if GET
+    showFormField(); // show contact form (empty)
+  }
 }
 
 // tests form input data for security purposes
@@ -16,24 +27,25 @@ function test_input($data) {
   return $data;
 }
 
-function showContactContent() {
-  $requestType = $_SERVER["REQUEST_METHOD"];
-  if ($requestType == "POST") {
-    $name = test_input(getPostVar('name'));
-    $email = test_input(getPostVar('email'));
-    $message = test_input(getPostVar('message'));
-    $valid = validateContactForm();
-    if($valid) {
-      showThanks($name, $email, $message);
-    }
-    else { // else show contact form (partly filled)
-      showFormField(false, $name, $email, $message);
-    }
-  }
-  else { // if GET
-    // show contact form (empty)
-    showFormField();
-  }
+function validateContactForm() {
+  $name = getPostVar('name');
+  $email = getPostVar('email');
+  $message = getPostVar('message');
+  $valid = (!empty($name) && !empty($email) && !empty($message));
+  return $valid;
+}
+
+function showThanks($name, $email, $message) {
+  echo '
+    <!-- Shows all entered input if input is correct -->
+    <div class="mainBody">
+      <p class="thanksMessage">Bedankt voor uw bericht. Er zal zo spoedig mogelijk contact met u worden opgenomen.</p>
+      <p class="thanksMessage">Uw verstuurde gegevens:<br>
+        Naam: ' . $name . '<br>
+        E-mail: ' . $email . '<br>
+        Bericht: ' . $message . '
+    </div>
+    ';
 }
 
 function showFormField($newForm=true, $name='', $email='', $message='') {
@@ -85,18 +97,5 @@ function showFormField($newForm=true, $name='', $email='', $message='') {
       </div> <!-- end formfield -->
     </div> <!-- end mainBody -->
   ';
-}
-
-function showThanks($name, $email, $message) {
-  echo '
-    <!-- Shows all entered input if input is correct -->
-    <div class="mainBody">
-      <p class="thanksMessage">Bedankt voor uw bericht. Er zal zo spoedig mogelijk contact met u worden opgenomen.</p>
-      <p class="thanksMessage">Uw verstuurde gegevens:<br>
-        Naam: ' . $name . '<br>
-        E-mail: ' . $email . '<br>
-        Bericht: ' . $message . '
-    </div>
-    ';
 }
 ?>
