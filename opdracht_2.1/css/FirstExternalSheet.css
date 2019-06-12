@@ -136,8 +136,9 @@ input[type=submit] {
 /* end forms section */
 
 /* section below formfield that shows submitted values and thanks message */
-.afterForm { /* JH: Naamgeving is wat verwarrend, het is de 'thanks' message */
-  font-size: 14px;
+.thanksMessage p {
+  color: red;
+  font-size: 20px;
 }
 
 footer {
