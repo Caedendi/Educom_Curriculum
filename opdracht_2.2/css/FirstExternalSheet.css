@@ -28,7 +28,7 @@ h1.header {
 
 .navbar li {
   float: left; /* elementen horizontaal naast elkaar */
-  width: 20%;
+  width: 16.67%;
 }
 
 .navbar li a {

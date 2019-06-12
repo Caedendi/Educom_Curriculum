@@ -18,8 +18,17 @@ function showMenu($page) {
         <li><a ';
         if($page=="register") { echo 'class="active" '; }
         echo 'href="index.php?page=register">REGISTER</a></li>
+        <li><a ';
+        if($page=="logout") { echo 'class="active" '; }
+        echo 'href="index.php?page=logout">LOGOUT</a></li>
       </ul>
     </div>
   ';
 }
+
+// button logout krijgt tekst: Logout [naam]
+// logout alleen laten zien wanneer ingelogd
+// login/register alleen laten zien wanneer niet ingelogd
+
+
 ?>

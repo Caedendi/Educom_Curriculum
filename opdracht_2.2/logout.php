@@ -1,21 +1,24 @@
 <?php
-function showLoginContent() {
+function showLogoutContent() {
   echo '
     <div class="mainBody">
-      <p>Login page.</p>
+      <p>Logout page.</p>
     </div>
     ';
+
+    // remove all session variables
+    session_unset();
+
+    // destroy the session
+    session_destroy();
 }
 ?>
 
 
 
 
-<!--
-Wanneer er geen ingelogde gebruiker is bevat het menu 2 extra opties: Login en Register.
-  Optie 'Login' toont een scherm met Email-adres en password input.
 
+<!--
 Wanneer login gepost, wordt email en password vergeleken met waardes uit bestand users\users.txt (zie formaat hieronder),
   wanneer aanwezig wordt de bijbehorende naam getoond in de menu-optie "Logout [NAAM]" en wordt de getoonde pagina de 'home' pagina,
-  anders foutmelding en opnieuw.
 -->

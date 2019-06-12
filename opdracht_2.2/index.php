@@ -3,7 +3,9 @@
   //==============================================
   // MAIN APP
   //==============================================
+  session_start();
   $page = getRequestedPage();
+  validateRequest();
   showResponsePage($page);
   //==============================================
   // FUNCTIONS
@@ -17,6 +19,10 @@
       $requestedPage = getUrlVar('page', 'home');
     }
     return $requestedPage;
+  }
+
+  function validateRequest() {
+
   }
 
   function showResponsePage($page) {
