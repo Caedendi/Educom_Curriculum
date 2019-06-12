@@ -17,44 +17,32 @@ function test_input($data) {
 }
 
 function showContactContent() {
-  $name = $email = $message = "";
-  $nameError = $emailError = $messageError = "";
-
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") {
+    $name = test_input(getPostVar('name'));
+    $email = test_input(getPostVar('email'));
+    $message = test_input(getPostVar('message'));
     $valid = validateContactForm();
     if($valid) {
-      $name = test_input(getPostVar('name'));
-      $email = test_input(getPostVar('email'));
-      $message = test_input(getPostVar('message'));
       showThanks($name, $email, $message);
     }
     else { // else show contact form (partly filled)
-      $name = test_input(getPostVar('name'));
-      if (empty($name)) {
-        $nameError = "Please provide a valid name";
-      }
-
-      $email = test_input(getPostVar('email'));
-      if (empty($email)) {
-        $emailError = "Please provide a valid email address";
-      }
-
-      $message = test_input(getPostVar('message'));
-      if (empty($message)) {
-        $messageError = "Please type your message";
-      }
-      showFormField($name, $email, $message);
+      showFormField(false, $name, $email, $message);
     }
   }
   else { // if GET
     // show contact form (empty)
-    showFormField($name, $email, $message);
+    showFormField();
   }
 }
 
-function showFormField($name, $email, $message) {
-  global $nameError, $emailError, $messageError;
+function showFormField($newForm=true, $name='', $email='', $message='') {
+  $nameError = $emailError = $messageError = "";
+  if(!$newForm) {
+    if (empty($name)) { $nameError = "Please provide a valid name"; }
+    if (empty($email)) { $emailError = "Please provide a valid email address"; }
+    if (empty($message)) { $messageError = "Please type your message"; }
+  }
   echo '
     <div class="mainBody"
       <p>Om contact met mij op te nemen, gelieve het onderstaande formulier in te vullen.</p>
