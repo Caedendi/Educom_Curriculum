@@ -39,8 +39,8 @@ function showContactContent() {
 function showFormField($newForm=true, $name='', $email='', $message='') {
   $nameError = $emailError = $messageError = "";
   if(!$newForm) {
-    if (empty($name)) { $nameError = "Please provide a valid name"; }
-    if (empty($email)) { $emailError = "Please provide a valid email address"; }
+    if (empty($name)) { $nameError = "Name required"; }
+    if (empty($email)) { $emailError = "Email address required"; }
     if (empty($message)) { $messageError = "Please type your message"; }
   }
   echo '
@@ -90,14 +90,12 @@ function showFormField($newForm=true, $name='', $email='', $message='') {
 function showThanks($name, $email, $message) {
   echo '
     <!-- Shows all entered input if input is correct -->
-    <div class="mainBody"
-      <div class="thanksMessage">
-        <p>Bedankt voor uw bericht. Er zal zo snel mogelijk contact met u worden opgenomen.</p>
-        <p>Uw verstuurde gegevens:</p>
-        <p>Naam: ' . $name . '</p>
-        <p>E-mail: ' . $email . '</p>
-        <p>Bericht: ' . $message . '</p>
-      </div>
+    <div class="mainBody">
+      <p class="thanksMessage">Bedankt voor uw bericht. Er zal zo spoedig mogelijk contact met u worden opgenomen.</p>
+      <p class="thanksMessage">Uw verstuurde gegevens:<br>
+        Naam: ' . $name . '<br>
+        E-mail: ' . $email . '<br>
+        Bericht: ' . $message . '
     </div>
     ';
 }
