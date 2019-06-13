@@ -11,7 +11,7 @@
 
 
 
-function showLoginContent() {
+function showLoginContent($data) {
   $data = array('email' => "", 'password' => "");
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") { // show either success message (when submitted info is valid) or partly filled formfield when invalid
@@ -31,12 +31,6 @@ function showLoginContent() {
   else { // if GET
     showLoginField($data); // show login field (empty)
   }
-}
-
-function validateLogin($data) {
-  if(empty($data['email']) || empty($data['password'])) { return false; }
-  ///// to do ///// verify existing account with file check
-  else return true;
 }
 
 function showLoginSuccessful($data) {

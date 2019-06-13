@@ -11,7 +11,7 @@
 
 
 
-function showRegisterContent() {
+function showRegisterContent($data) {
   $data = array('name' => "", 'email' => "", 'password' => "", 'passwordRepeat' => "");
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") { // show either success message (when submitted info is valid) or partly filled formfield when invalid
@@ -36,21 +36,6 @@ function showRegisterContent() {
     // unset($value);
     showRegisterField($data); // show register field (empty)
   }
-}
-
-function validateRegister($data) { //$name, $email, $password, $passwordRepeat) {
-
-  foreach ($data as $value) {
-    if(empty($value)) {
-      return false;
-    }
-  }
-  unset($value);
-  if ($data['password'] !== $data['passwordRepeat']) { return false; }
-  return true;
-
-  // $valid = (!empty($data['name']) && !empty($data['email']) && !empty($data['password']) && $data['password'] == $data['passwordRepeat']);
-  // return $valid;
 }
 
 function showRegisterSuccessful($data) {
