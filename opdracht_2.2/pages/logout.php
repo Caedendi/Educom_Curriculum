@@ -6,11 +6,19 @@ function showLogoutContent() {
     </div>
     ';
 
-    // remove all session variables
-    session_unset();
 
-    // destroy the session
-    session_destroy();
+}
+
+function logoutUser() {
+
+
+
+  
+  // remove all session variables
+  session_unset();
+
+  // destroy the session
+  session_destroy();
 }
 ?>
 
