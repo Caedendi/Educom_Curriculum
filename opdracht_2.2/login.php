@@ -12,49 +12,50 @@
 
 
 function showLoginContent() {
+  $data = array('email' => "", 'password' => "");
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") { // show either success message (when submitted info is valid) or partly filled formfield when invalid
     $email = test_input(getPostVar('email'));
     $password = test_input(getPostVar('password'));
-    $valid = validateLogin();
+    $data = array('email' => $email, 'password' => $password);
+    $valid = validateLogin($data);
     if($valid) { // show thanks + submitted info
-      showLoginSuccessful($email, $password); ///////////////////////////////
+      showLoginSuccessful($data); ///////////////////////////////
       ///// to do ///// log user in
       ///// to do ///// show homepage
     }
     else { // else show login field (partly filled)
-      showLoginField(false, $email, $password);
+      showLoginField($data, false);
     }
   }
   else { // if GET
-    showLoginField(); // show login field (empty)
+    showLoginField($data); // show login field (empty)
   }
 }
 
-function validateLogin() {
-  $email = getPostVar('email');
-  $password = getPostVar('password');
-  $valid = (!empty($email) && !empty($password));
-  return $valid;
+function validateLogin($data) {
+  if(empty($data['email']) || empty($data['password'])) { return false; }
+  ///// to do ///// verify existing account with file check
+  else return true;
 }
 
-function showLoginSuccessful($email, $password) {
+function showLoginSuccessful($data) {
   echo '
     <!-- Shows all entered input if input is correct -->
     <div class="mainBody">
       <p class="thanksMessage">Met succes ingelogd.</p>
       <p class="thanksMessage">Uw emailadres:<br>
-        E-mail: ' . $email . '<br>
-        Password: ' . $password . '
+        E-mail: ' . $data['email'] . '<br>
+        Password: ' . $data['password'] . '
     </div>
     ';
 }
 
-function showLoginField($newLogin=true, $email='', $password='') {
+function showLoginField($data, $newLogin=true) {
   $emailError = $passwordError = "";
   if(!$newLogin) {
-    if (empty($email)) { $emailError = "Email address required"; }
-    if (empty($password)) { $passwordError = "Password required"; }
+    if (empty($data['email'])) { $emailError = "Email address required"; }
+    if (empty($data['password'])) { $passwordError = "Password required"; }
   }
   echo '
     <div class="mainBody"
@@ -72,7 +73,7 @@ function showLoginField($newLogin=true, $email='', $password='') {
           <!-- name -->
           <div class="formRow">
             <label for="email">Emailadres:</label>
-            <input class="login" type="text" name="email" id="email" placeholder="uw emailadres" value="'.$email.'">
+            <input class="login" type="email" name="email" id="email" placeholder="uw emailadres" value="'.$data['email'].'">
             <span class="required"> * '.$emailError.'</span>
           </div>
           <!-- email -->

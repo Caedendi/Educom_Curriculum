@@ -1,5 +1,6 @@
 <?php
 
+
 // Optie 'Register' toont een scherm met Naam, Email-adres, Password input en herhaal Password input.
 //
 // Wanneer registratie gepost, wordt email vergeleken met waardes uit bestand users\users.txt,
@@ -9,54 +10,72 @@
 
 
 
+
 function showRegisterContent() {
+  $data = array('name' => "", 'email' => "", 'password' => "", 'passwordRepeat' => "");
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") { // show either success message (when submitted info is valid) or partly filled formfield when invalid
     $name = test_input(getPostVar('name'));
     $email = test_input(getPostVar('email'));
     $password = test_input(getPostVar('password'));
     $passwordRepeat = test_input(getPostVar('passwordRepeat'));
-    $valid = validateRegister($name, $email, $password, $passwordRepeat);
+    $data = array('name' => $name, 'email' => $email, 'password' => $password, 'passwordRepeat' => $passwordRepeat);
+    $valid = validateRegister($data); // $name, $email, $password, $passwordRepeat);
     if($valid) { // show thanks + submitted info
-      showRegisterSuccessful($name, $email, $password); ///////////////////////////////
+      showRegisterSuccessful($data); // $name, $email, $password); ///////////////////////////////
     }
     else { // else show login field (partly filled)
-      showRegisterField(false, $name, $email, $password, $passwordRepeat);
+      showRegisterField($data, false); // $name, $email, $password, $passwordRepeat);
     }
   }
   else { // if GET
-    showRegisterField(); // show register field (empty)
+
+    // foreach ($data as &$value) {
+    //   $value = "";
+    // }
+    // unset($value);
+    showRegisterField($data); // show register field (empty)
   }
 }
 
-function validateRegister($name, $email, $password, $passwordRepeat) {
-  $valid = (!empty($name) && !empty($email) && !empty($password) && $password == $passwordRepeat);
-  return $valid;
+function validateRegister($data) { //$name, $email, $password, $passwordRepeat) {
+
+  foreach ($data as $value) {
+    if(empty($value)) {
+      return false;
+    }
+  }
+  unset($value);
+  if ($data['password'] !== $data['passwordRepeat']) { return false; }
+  return true;
+
+  // $valid = (!empty($data['name']) && !empty($data['email']) && !empty($data['password']) && $data['password'] == $data['passwordRepeat']);
+  // return $valid;
 }
 
-function showRegisterSuccessful($name, $email, $password) {
+function showRegisterSuccessful($data) {
   echo '
     <!-- Shows all entered input if input is correct -->
     <div class="mainBody">
       <p class="thanksMessage">Met succes geregistreerd.</p>
       <p class="thanksMessage">Uw naam:<br>
+        Naam: ' . $data['name'] . '<br>
       <p class="thanksMessage">Uw emailadres:<br>
+        E-mail: ' . $data['email'] . '<br>
       <p class="thanksMessage">Uw wachtwoord:<br>
-        Naam: ' . $name . '<br>
-        E-mail: ' . $email . '<br>
-        Password: ' . $password . '
+        Password: ' . $data['password'] . '
     </div>
     ';
 }
 
-function showRegisterField($newLogin=true, $name='', $email='', $password='', $passwordRepeat='') {
+function showRegisterField($data, $newLogin=true) { //$name='', $email='', $password='', $passwordRepeat='') {
   $nameError = $emailError = $passwordError = $passwordRepeatError = "";
   if(!$newLogin) {
-    if (empty($name)) { $nameError = "Name required"; }
-    if (empty($email)) { $emailError = "Email address required"; }
-    if (empty($password)) { $passwordError = "Password required"; }
-    if (empty($passwordRepeat)) { $passwordRepeatError = "Verify password again"; }
-    if ($password !== $passwordRepeat) { $passwordRepeatError = "Passwords do not match"; }
+    if (empty($data['name'])) { $nameError = "Name required"; }
+    if (empty($data['email'])) { $emailError = "Email address required"; }
+    if (empty($data['password'])) { $passwordError = "Password required"; }
+    if (empty($data['passwordRepeat'])) { $passwordRepeatError = "Verify password"; }
+    if ($data['password'] !== $data['passwordRepeat']) { $passwordRepeatError = "Passwords do not match"; }
   }
   echo '
     <div class="mainBody"
@@ -70,16 +89,16 @@ function showRegisterField($newLogin=true, $name='', $email='', $password='', $p
           echo '
           </p>
         <form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">
-          <input class="register" type="hidden" name="page" value="login"> <!-- to redirect back to contact page instead of home -->
+          <input class="register" type="hidden" name="page" value="register"> <!-- to redirect back to contact page instead of home -->
           <!-- name -->
           <div class="formRow">
             <label for="name">Naam:</label>
-            <input class="register" type="text" name="name" id="name" placeholder="uw naam" value="'.$name.'">
+            <input class="register" type="text" name="name" id="name" placeholder="uw naam" value="'.$data['name'].'">
             <span class="required"> * '.$nameError.'</span>
           </div>
           <div class="formRow">
             <label for="email">Emailadres:</label>
-            <input class="register" type="text" name="email" id="email" placeholder="uw emailadres" value="'.$email.'">
+            <input class="register" type="text" name="email" id="email" placeholder="uw emailadres" value="'.$data['email'].'">
             <span class="required"> * '.$emailError.'</span>
           </div>
           <!-- email -->
