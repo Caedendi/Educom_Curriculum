@@ -4,31 +4,71 @@
 //==============================================
 session_start();
 $page = getRequestedPage();
-validateRequest();
-showResponsePage($page);
+$data = validateRequest($page);
+showResponsePage($data);
 //==============================================
 // FUNCTIONS
 //==============================================
 function getRequestedPage() {
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") {
-    $requestedPage = getPostVar('page', 'home');
-  }
+    $requestedPage = getPostVar('page', 'home'); }
   else {
-    $requestedPage = getUrlVar('page', 'home');
-  }
+    $requestedPage = getUrlVar('page', 'home'); }
   return $requestedPage;
 }
 
-function validateRequest() {
-
+function validateRequest($page) {
+  $data = array('page' => $page);
+  return $data;
 }
 
-function showResponsePage($page) {
+function showResponsePage($data) {
   include 'html_start.php'; showStartHtml();
   include 'head_section.php'; showHeadSection();
-  showBodySection($page);
+  showBodySection($data);
   include 'html_end.php'; showHtmlEnd();
+}
+
+function showBodySection($data) {
+  include 'body_start.php'; showBodyStart();
+  include 'header.php'; showHeader($data['page']);
+  include 'navbar.php'; showMenu($data['page']);
+  showMainContent($data);
+  include 'footer.php'; showFooter();
+  include 'body_end.php'; showBodyEnd();
+}
+
+function showMainContent($data) {
+  switch ($data['page']) {
+    case 'home':
+      include './pages/home.php';
+      showHomeContent();
+      break;
+    case 'about':
+      include './pages/about.php';
+      showAboutContent();
+      break;
+    case 'contact':
+      include './pages/contact.php';
+      showContactContent($data);
+      break;
+    case 'login':
+      include './pages/login.php';
+      showLoginContent($data);
+      break;
+    case 'register':
+      include './pages/register.php';
+      showRegisterContent($data);
+      break;
+    case 'logout':
+      include './pages/logout.php';
+      showLogoutContent($data);
+      break;
+    default:
+      echo "Page [".$page."] not found.";
+      break;
+  }
 }
 
 function getPostVar($key, $default='') {
@@ -41,48 +81,11 @@ function getUrlVar($key, $default='') {
   return isset($value) ? $value : $default;
 }
 
-function showBodySection($page) {
-  include 'body_start.php'; showBodyStart();
-  include 'header.php'; showHeader($page);
-  include 'navbar.php'; showMenu($page);
-  showMainContent($page);
-  include 'footer.php'; showFooter();
-  include 'body_end.php'; showBodyEnd();
-}
-
-function showMainContent($page) {
-  switch ($page) {
-    case 'home':
-      include 'home.php';
-      showHomeContent();
-      break;
-    case 'about':
-      include 'about.php';
-      showAboutContent();
-      break;
-    case 'contact':
-      include 'contact.php';
-      showContactContent();
-      break;
-    case 'login':
-      include 'login.php';
-      showLoginContent();
-      break;
-    case 'register':
-      include 'register.php';
-      showRegisterContent();
-      break;
-    default:
-      echo "Page [".$page."] not found.";
-      break;
-  }
-}
-
 // tests form input data for security purposes
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
+function test_input($value) {
+  $value = trim($value);
+  $value = stripslashes($value);
+  $value = htmlspecialchars($value);
+  return $value;
 }
 ?>
