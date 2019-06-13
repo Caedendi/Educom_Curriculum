@@ -19,14 +19,6 @@ function showContactContent() {
   }
 }
 
-// tests form input data for security purposes
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-
 function validateContactForm() {
   $name = getPostVar('name');
   $email = getPostVar('email');
@@ -57,34 +49,32 @@ function showFormField($newForm=true, $name='', $email='', $message='') {
   }
   echo '
     <div class="mainBody"
-      <p>Om contact met mij op te nemen, gelieve het onderstaande formulier in te vullen.</p>
-
       <!-- formfield -->
       <div class="formField">
         <p class="required">* Required field</p>
         <!-- displays error messages above form input fields if applicable -->
-        <p class="errorMessage">
-          ';
-        echo '
-        </p>
+          <p class="errorMessage">
+            ';
+          echo '
+          </p>
         <form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">
-          <input type="hidden" name="page" value="contact"> <!-- to redirect back to contact page instead of home -->
+          <input class ="contact" type="hidden" name="page" value="contact"> <!-- to redirect back to contact page instead of home -->
           <!-- name -->
           <div class="formRow">
             <label for="name">Naam:</label>
-            <input type="text" name="name" id="name" placeholder="uw volledige naam" value="'.$name.'">
+            <input class="contact"type="text" name="name" id="name" placeholder="uw volledige naam" value="'.$name.'">
             <span class="required"> * '.$nameError.'</span>
           </div>
           <!-- email -->
           <div class="formRow">
             <label for="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder="uw e-mailadres" value="'.$email.'">
+            <input class="contact" type="email" name="email" id="email" placeholder="uw e-mailadres" value="'.$email.'">
             <span class="required"> * '.$emailError.'</span>
           </div>
           <!-- message -->
           <div class="formRow">
             <label for="message">Bericht:</label>
-            <textarea name="message" id="message" placeholder="typ hier uw bericht" rows="10" cols="50">';
+            <textarea class="contact" name="message" id="message" placeholder="typ hier uw bericht" rows="10" cols="50">';
               if(isset($message)) { echo $message; } echo '</textarea> <!-- remember text inside text area -->
               <span class="required"> * '.$messageError.'</span>
           </div>
