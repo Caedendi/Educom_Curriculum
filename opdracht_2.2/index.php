@@ -19,6 +19,23 @@ function getRequestedPage() {
 }
 
 function validateRequest($page) {
+  // to do
+
+  /*
+  if ($requestType == "POST") {
+    if ($page == "contact") {
+    validateContact();
+    }
+    else if ($page == "login") {
+      validateLogin();
+    }
+    else if ($page == "register")
+      validateRegister();
+  }
+  */
+
+
+
   $data = array('page' => $page);
   return $data;
 }
