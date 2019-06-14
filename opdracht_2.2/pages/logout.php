@@ -1,10 +1,8 @@
 <?php
 function showLogoutContent() {
   echo '
-    <div class="mainBody">
-      <p>Logout page.</p>
-    </div>
-    ';
+    <p>Logout page.</p>
+  ';
 
 
 }
@@ -13,7 +11,7 @@ function logoutUser() {
 
 
 
-  
+
   // remove all session variables
   session_unset();
 

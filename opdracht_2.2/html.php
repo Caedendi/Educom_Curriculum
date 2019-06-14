@@ -21,6 +21,18 @@ function showBodyStart() {
   ';
 }
 
+function showMainBodyStart() {
+  echo '
+    <div class="mainBody">
+  ';
+}
+
+function showMainBodyEnd() {
+  echo '
+    </div> ' /* mainBody */ . '
+  ';
+}
+
 function showBodyEnd() {
   echo '
     </body>

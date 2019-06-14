@@ -58,6 +58,7 @@ function showBodySection($data) {
 }
 
 function showMainContent($data) {
+  showMainBodyStart();
   switch ($data['page']) {
     case 'home':
       include './pages/home.php';
@@ -87,6 +88,7 @@ function showMainContent($data) {
       echo "Page [".$page."] not found.";
       break;
   }
+  showMainBodyEnd();
 }
 
 function getPostVar($key, $default='') {
