@@ -1,5 +1,12 @@
 <?php
 //==============================================
+// INCLUDES
+//==============================================
+include 'html.php';
+include 'header.php';
+include 'navbar.php';
+include 'footer.php'; 
+//==============================================
 // MAIN APP
 //==============================================
 session_start();
@@ -41,7 +48,6 @@ function validateRequest($page) {
 }
 
 function showResponsePage($data) {
-  include 'html.php';
   showStartHtml();
   showHeadSection();
   showBodySection($data);
@@ -50,10 +56,10 @@ function showResponsePage($data) {
 
 function showBodySection($data) {
   showBodyStart();
-  include 'header.php'; showHeader($data['page']);
-  include 'navbar.php'; showMenu($data['page']);
+  showHeader($data['page']);
+  showMenu($data['page']);
   showMainContent($data);
-  include 'footer.php'; showFooter();
+  showFooter();
   showBodyEnd();
 }
 
