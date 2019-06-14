@@ -12,9 +12,9 @@ showResponsePage($data);
 function getRequestedPage() {
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") {
-    $requestedPage = getPostVar('page', 'home'); }
+    $requestedPage = test_input(getPostVar('page', 'home')); }
   else {
-    $requestedPage = getUrlVar('page', 'home'); }
+    $requestedPage = test_input(getUrlVar('page', 'home')); }
   return $requestedPage;
 }
 
