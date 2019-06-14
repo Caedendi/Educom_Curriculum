@@ -31,6 +31,24 @@ function showLoginContent($data) {
   else { // if GET
     showLoginField($data); // show login field (empty)
   }
+
+  //
+  // testfield
+  //
+  echo '
+    <div>
+      <p>';
+        $testInput = array('email' => "hoi@hoi.nl", 'password' => "hoi");
+        include './users/userdata_management.php';
+        $validateResult = validateLogin($testInput);
+        echo '
+      </p>
+    </div>
+
+  ';
+  //
+  // end testfield
+  //
 }
 
 function showLoginSuccessful($data) {
