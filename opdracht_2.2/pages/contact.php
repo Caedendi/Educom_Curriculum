@@ -1,31 +1,54 @@
 <?php
 
 function showContactContent() {
-  $data = array('name' => "", 'email' => "", 'message' => "");
+  $data = array(
+    'name' => "",
+    'email' => "",
+    'message' => "",
+    'valid' => false,
+    'nameError' => "",
+    'emailError' => "",
+    'messageError' => ""
+  );
   $requestType = $_SERVER["REQUEST_METHOD"];
-  if ($requestType == "POST") { // show either thanks message (when submitted info is valid) or partly filled formfield when invalid
-    $name = test_input(getPostVar('name'));
-    $email = test_input(getPostVar('email'));
-    $message = test_input(getPostVar('message'));
-    $data = array('name' => $name, 'email' => $email, 'message' => $message);
-    $valid = validateContactForm($data);
-    if($valid) { // show thanks + submitted info
-      showThanks($data);
-    }
-    else { // else show contact form (partly filled)
-      showFormField($data, false);
-    }
+  // POST: show either thanks message (when submitted info is valid) or partly filled formfield when invalid
+  if ($requestType == "POST") { //
+    $data = validateContactForm($data);
+    if ($data['valid']) { // show thanks message + submitted info
+      showThanks($data); }
+    else { // show contact form (partly filled & error messages)
+      showFormField($data); }
   }
-  else { // if GET
-    showFormField($data); // show contact form (empty)
+  // GET: // show contact form (empty)
+  else if ($requestType == "GET") {
+    showFormField($data);
   }
+  /*
+  ik weet dat de code hier dubbelop is, maar naar mijn idee is de logica
+  zo beter afgebakend.
+  */
 }
 
 function validateContactForm($data) {
-  foreach ($data as $value) {
-    if(empty($value)) { return false; }
-  }
-  return true;
+  // get all post values. for all values:
+  // * test input
+  // * if empty, create error message
+  // * else store value
+  $name = test_input(getPostVar('name'));
+  $email = test_input(getPostVar('email'));
+  $message = test_input(getPostVar('message'));
+  if (empty($name)) { $data['nameError'] = "Name required"; }
+  else { $data['name'] = $name; }
+  if (empty($email)) { $data['emailError'] = "Email address required"; }
+  else { $data['email'] = $email; }
+  if (empty($message)) { $data['messageError'] = "Please type your message"; }
+  else { $data['message'] = $message; }
+
+  // if none are empty, data is valid
+  if (!empty($data['name']) && !empty($data['email']) && !empty($data['message'])) {
+    $data['valid'] = true; }
+  else { $data['valid'] = false; }
+  return $data;
 }
 
 function showThanks($data) {
@@ -39,13 +62,7 @@ function showThanks($data) {
   ';
 }
 
-function showFormField($data, $newForm=true) {
-  $nameError = $emailError = $messageError = "";
-  if(!$newForm) {
-    if (empty($data['name'])) { $nameError = "Name required"; }
-    if (empty($data['email'])) { $emailError = "Email address required"; }
-    if (empty($data['message'])) { $messageError = "Please type your message"; }
-  }
+function showFormField($data) {
   echo '
     <!-- formfield -->
     <div class="formField">
@@ -61,20 +78,19 @@ function showFormField($data, $newForm=true) {
         <div class="formRow">
           <label for="name">Naam:</label>
           <input class="contact"type="text" name="name" id="name" placeholder="uw volledige naam" value="'.$data['name'].'">
-          <span class="required"> * '.$nameError.'</span>
+          <span class="required"> * '.$data['nameError'] .'</span>
         </div>
         <!-- email -->
         <div class="formRow">
           <label for="email">Email:</label>
           <input class="contact" type="email" name="email" id="email" placeholder="uw e-mailadres" value="'.$data['email'].'">
-          <span class="required"> * '.$emailError.'</span>
+          <span class="required"> * '.$data['emailError'] .'</span>
         </div>
         <!-- message -->
         <div class="formRow">
           <label for="message">Bericht:</label>
-          <textarea class="contact" name="message" id="message" placeholder="typ hier uw bericht" rows="10" cols="50">';
-            if(isset($data['message'])) { echo $data['message']; } echo '</textarea> <!-- remember text inside text area -->
-            <span class="required"> * '.$messageError.'</span>
+          <textarea class="contact" name="message" id="message" placeholder="typ hier uw bericht" rows="10" cols="50">' . $data['message'] . '</textarea> <!-- remember text inside text area -->
+            <span class="required"> * '.$data['messageError'] .'</span>
         </div>
         <!-- submit button -->
         <div class="formRow">
