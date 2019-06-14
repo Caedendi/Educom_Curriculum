@@ -10,6 +10,7 @@ function findUserByEmail($email) {
   fgets($userDataFile); // skip first line
   while(!feof($userDataFile)) {
     $currentUser = explode("|", fgets($userDataFile));
+    // print_r($currentUser); echo '<br>';
     if($currentUser[0] == $email) {
       $userData = array('name' => $currentUser[1], 'email' => $currentUser[0], 'password' => $currentUser[2]);
       break;

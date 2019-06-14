@@ -14,11 +14,27 @@ function storeUser($name, $email, $password) {
 }
 
 
+
+
+
+
 function validateLogin($data) {
-  if(empty($data)) { return false; }
-  if(empty($data['email']) || empty($data['password'])) { return false; }
-  ///// to do ///// verify existing account with file check
-  else return true;
+  // print_r($data); echo '<br>'; // prints input data
+  if(empty($data)) {
+    return false; }
+  if(empty($data['email']) || empty($data['password'])) {
+    return false; }
+  include 'userdata_source.php';
+  $searchResult = findUserByEmail($data['email']);
+  if(empty($searchResult)) {
+    echo 'user email not found';
+    return false; }
+  else if($searchResult['password'] != $data['password']) {
+    echo 'incorrect pass<br>';
+    return false;
+  }
+  echo 'success!';
+  return true;
 }
 
 function validateRegister($data) {
