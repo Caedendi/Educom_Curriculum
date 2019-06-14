@@ -1,10 +1,7 @@
 to do:
 
-header.php XSS
-$page door test_input() halen
+test_input() hernoemen naar testInput()
 
-contact.php commentaar verwerken
+session login maken
 
-navbar commentaar verwerken
-
-index.php commentaar verwerken
+validateRequest() bouwen
