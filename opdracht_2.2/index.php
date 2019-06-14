@@ -41,19 +41,20 @@ function validateRequest($page) {
 }
 
 function showResponsePage($data) {
-  include 'html_start.php'; showStartHtml();
-  include 'head_section.php'; showHeadSection();
+  include 'html.php';
+  showStartHtml();
+  showHeadSection();
   showBodySection($data);
-  include 'html_end.php'; showHtmlEnd();
+  showHtmlEnd();
 }
 
 function showBodySection($data) {
-  include 'body_start.php'; showBodyStart();
+  showBodyStart();
   include 'header.php'; showHeader($data['page']);
   include 'navbar.php'; showMenu($data['page']);
   showMainContent($data);
   include 'footer.php'; showFooter();
-  include 'body_end.php'; showBodyEnd();
+  showBodyEnd();
 }
 
 function showMainContent($data) {
