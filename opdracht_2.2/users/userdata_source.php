@@ -1,12 +1,13 @@
 <?php
 
-
+// implemented
+//
 // scans /users.txt for existing email (input).
 // found? return data (array w/ name, email, password).
 // not found? return empty variable.
 function findUserByEmail($email) {
   $userData = "";
-  $userDataFile = fopen(__DIR__ . "/users.txt", "r") or die("Can not open users.txt");
+  $userDataFile = fopen(__DIR__ . "/users.txt", "r") or die("findUserByEmail() can not open users.txt");
   fgets($userDataFile); // skip first line
   while(!feof($userDataFile)) {
     $currentUser = explode("|", fgets($userDataFile));
@@ -20,10 +21,15 @@ function findUserByEmail($email) {
   return $userData;
 }
 
+// to do
+//
+// saves input user data to file.
+// does not check if email already exists.
 function saveUser($name, $email, $password) {
-
+  $userDataFile = fopen(__DIR__ . "/users.txt", "r") or die("saveUser() can not open users.txt");
 }
 
+// to do
 function deleteUser($email) {
 
 }

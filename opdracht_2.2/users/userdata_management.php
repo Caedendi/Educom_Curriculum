@@ -1,23 +1,7 @@
 <?php
 
 
-function authoriseUser($email, $password) {
-
-}
-
-function isEmailKnown($email) {
-
-}
-
-function storeUser($name, $email, $password) {
-
-}
-
-
-
-
-
-
+// implemented
 function validateLogin($data) {
   // print_r($data); echo '<br>'; // prints input data
   if(empty($data)) {
@@ -30,13 +14,14 @@ function validateLogin($data) {
     echo 'user email not found';
     return false; }
   else if($searchResult['password'] != $data['password']) {
-    echo 'incorrect pass<br>';
+    echo 'incorrect password<br>';
     return false;
   }
   echo 'success!';
   return true;
 }
 
+// to do
 function validateRegister($data) {
   if(empty($data)) {  return false; }
   foreach ($data as $value) {
@@ -48,5 +33,25 @@ function validateRegister($data) {
   if ($data['password'] !== $data['passwordRepeat']) { return false; }
   return true;
 }
+
+// to do
+function storeUser($name, $email, $password) {
+
+}
+
+// implemented
+function isEmailKnown($email) {
+  include 'userdata_source.php';
+  $searchResult = findUserByEmail($data['email']);
+  if(empty($searchResult)) {
+    echo 'user email not found';
+    return false; }
+  else return true;
+}
+
+
+
+
+
 
 ?>
