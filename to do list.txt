@@ -1,0 +1,10 @@
+to do:
+
+header.php XSS
+$page door test_input() halen
+
+contact.php commentaar verwerken
+
+navbar commentaar verwerken
+
+index.php commentaar verwerken
