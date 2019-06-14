@@ -26,13 +26,10 @@ function findUserByEmail($email) {
 // saves input user data to file.
 // does not check if email already exists.
 function saveUser($name, $email, $password) {
-  $userDataFile = fopen(__DIR__ . "/users.txt", "r") or die("saveUser() can not open users.txt");
-
-
-
-
-
-
+  $userDataFile = fopen(__DIR__ . "/users.txt", "a") or die("saveUser() can not open users.txt");
+  $newUser = PHP_EOL . $email . "|" . $name . "|" . $password;
+  fwrite($userDataFile, $newUser);
+  fclose($userDataFile);
 }
 
 // to do

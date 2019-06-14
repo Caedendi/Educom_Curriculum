@@ -1,5 +1,5 @@
 <?php
-
+include 'userdata_source.php';
 
 // implemented
 //
@@ -13,7 +13,7 @@ function validateLogin($data) {
     return false; }
   if(empty($data['email']) || empty($data['password'])) {
     return false; }
-  include 'userdata_source.php';
+  // include 'userdata_source.php';
   $searchResult = findUserByEmail($data['email']);
   if(empty($searchResult)) {
     echo 'user email not found';
@@ -33,34 +33,30 @@ function validateLogin($data) {
 function validateRegister($data) {
   if(empty($data)) {
     return false; }
-  foreach ($data as $value) {
-    if(empty($value)) {
-      return false;
-    }
-  }
-  unset($value);
-  if ($data['password'] !== $data['passwordRepeat']) { return false; }
+  if(empty($data['name']) || empty($data['email']) || empty($data['password']) || empty($data['email'])) {
+    return false; }
+  if ($data['password'] !== $data['passwordRepeat']) {
+    return false; }
+  // include 'userdata_source.php';
+  if(isEmailKnown($data['email'])) {
+    return false; }
+  storeUser($data['name'], $data['email'], $data['password']);
   return true;
 }
 
 // to do
 function storeUser($name, $email, $password) {
-
+  if(!empty(findUserByEmail($email))) { return; }
+  saveUser($name, $email, $password);
 }
 
 // implemented
 function isEmailKnown($email) {
-  include 'userdata_source.php';
-  $searchResult = findUserByEmail($data['email']);
+  // include 'userdata_source.php';
+  $searchResult = findUserByEmail($email);
   if(empty($searchResult)) {
-    echo 'user email not found';
+    // echo 'user email not found';
     return false; }
   else return true;
 }
-
-
-
-
-
-
 ?>

@@ -20,6 +20,7 @@ function showRegisterContent($data) {
     $password = test_input(getPostVar('password'));
     $passwordRepeat = test_input(getPostVar('passwordRepeat'));
     $data = array('name' => $name, 'email' => $email, 'password' => $password, 'passwordRepeat' => $passwordRepeat);
+    include './users/userdata_management.php';
     $valid = validateRegister($data); // $name, $email, $password, $passwordRepeat);
     if($valid) { // show thanks + submitted info
       showRegisterSuccessful($data); // $name, $email, $password); ///////////////////////////////

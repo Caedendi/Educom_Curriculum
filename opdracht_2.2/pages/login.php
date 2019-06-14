@@ -18,6 +18,7 @@ function showLoginContent($data) {
     $email = test_input(getPostVar('email'));
     $password = test_input(getPostVar('password'));
     $data = array('email' => $email, 'password' => $password);
+    include './users/userdata_management.php';
     $valid = validateLogin($data);
     if($valid) { // show thanks + submitted info
       showLoginSuccessful($data); ///////////////////////////////
@@ -31,24 +32,6 @@ function showLoginContent($data) {
   else { // if GET
     showLoginField($data); // show login field (empty)
   }
-
-  //
-  // testfield
-  //
-  echo '
-    <div>
-      <p>';
-        $testInput = array('email' => "hoi@hoi.nl", 'password' => "hoi");
-        include './users/userdata_management.php';
-        $validateResult = validateLogin($testInput);
-        echo '
-      </p>
-    </div>
-
-  ';
-  //
-  // end testfield
-  //
 }
 
 function showLoginSuccessful($data) {
