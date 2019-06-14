@@ -22,7 +22,9 @@ function showBodyStart() {
 }
 
 function showBodyEnd() {
+  echo '
     </body>
+  ';
 }
 
 function showHtmlEnd() {
