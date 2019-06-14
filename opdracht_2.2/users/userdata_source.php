@@ -27,6 +27,12 @@ function findUserByEmail($email) {
 // does not check if email already exists.
 function saveUser($name, $email, $password) {
   $userDataFile = fopen(__DIR__ . "/users.txt", "r") or die("saveUser() can not open users.txt");
+
+
+
+
+
+
 }
 
 // to do

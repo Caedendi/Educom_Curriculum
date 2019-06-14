@@ -2,6 +2,11 @@
 
 
 // implemented
+//
+// to do
+//
+// show filled login form (when false) or
+// show home page (when success)
 function validateLogin($data) {
   // print_r($data); echo '<br>'; // prints input data
   if(empty($data)) {
@@ -22,8 +27,12 @@ function validateLogin($data) {
 }
 
 // to do
+//
+// show filled in register form (when false) or
+// login and show home page (when success)
 function validateRegister($data) {
-  if(empty($data)) {  return false; }
+  if(empty($data)) {
+    return false; }
   foreach ($data as $value) {
     if(empty($value)) {
       return false;
