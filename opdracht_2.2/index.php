@@ -5,7 +5,7 @@
 include 'html.php';
 include 'header.php';
 include 'navbar.php';
-include 'footer.php'; 
+include 'footer.php';
 //==============================================
 // MAIN APP
 //==============================================
@@ -20,7 +20,7 @@ function getRequestedPage() {
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") {
     $requestedPage = test_input(getPostVar('page', 'home')); }
-  else {
+  else if ($requestType == "GET") {
     $requestedPage = test_input(getUrlVar('page', 'home')); }
   return $requestedPage;
 }
