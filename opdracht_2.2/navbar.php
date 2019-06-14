@@ -26,6 +26,19 @@ function showMenu($page) {
   ';
 }
 
+/* JH: Het valt je misschien op dat er veel herhaling zit in bovenstaande code,
+       Misschien kan je een functie showMenuItem($link, $label, $page) (en eventueel een showMenuStart() en showMenuEnd()) maken
+       die je kan gebruiken als:
+
+       function showMenu($page) {
+          showMenuStart();
+          showMenuItem('home', 'HOME', $page);
+          showMenuItem('about', 'ABOUT', $page);
+          showMenuItem('contact', 'CONTACT', $page);
+          showMenuEnd();
+       }
+*/
+
 // button logout krijgt tekst: Logout [naam]
 // logout alleen laten zien wanneer ingelogd
 // login/register alleen laten zien wanneer niet ingelogd
