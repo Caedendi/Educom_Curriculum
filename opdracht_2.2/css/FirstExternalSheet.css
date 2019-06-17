@@ -26,9 +26,19 @@ h1.header {
                        elements (paragraphs etc) from appearing right behind list items */
 }
 
-.navbar li {
+.navbar li.regularPage {
   float: left; /* elementen horizontaal naast elkaar */
   width: 16.66%;
+}
+
+.navbar li.login {
+  float: right; /* elementen horizontaal naast elkaar */
+  width: 16.66%;
+}
+
+.navbar li.logout {
+  float: right; /* elementen horizontaal naast elkaar */
+  width: 33.32%;
 }
 
 .navbar li a {
