@@ -7,6 +7,7 @@ include 'header.php';
 include 'navbar.php';
 include 'footer.php';
 include './users/userdata_management.php';
+include './users/userdata_source.php';
 //==============================================
 // MAIN APP
 //==============================================
@@ -36,8 +37,12 @@ function validateRequest($page) {
     if ($data['page'] == "login") {
       $data['email'] = testInput(getPostVar('email'));
       $data['password'] = testInput(getPostVar('password'));
-      $valid = validateLogin($data);
-      if($valid) { // show thanks + submitted info
+      empty($data['email']) ? $data['emailError'] = "Email address required" : $data['emailError'] = "";
+      empty($data['password']) ? $data['passwordError'] = "Password required" : $data['passwordError'] = "";
+      $data = validateLogin($data);
+      if($data['valid']) { // set session variables name and email, redirect to homepage
+        $_SESSION['user_name'] = $data['name'];
+        $_SESSION['user'] = $data['email'];
         $data['page'] = "home";
       }
       else {
@@ -52,8 +57,13 @@ function validateRequest($page) {
       $data['email'] = testInput(getPostVar('email'));
       $data['password'] = testInput(getPostVar('password'));
       $data['passwordRepeat'] = testInput(getPostVar('passwordRepeat'));
-      $valid = validateRegister($data); // $name, $email, $password, $passwordRepeat);
-      if($valid) { // show thanks + submitted info
+      empty($data['name']) ? $data['nameError'] = "Name required" : $data['nameError'] = "";
+      empty($data['email']) ? $data['emailError'] = "Email address required" : $data['emailError'] = "";
+      empty($data['password']) ? $data['passwordError'] = "Password required" : $data['passwordError'] = "";
+      empty($data['passwordRepeat']) ? $data['passwordRepeatError'] = "Passwords do not match" : $data['passwordRepeatError'] = "";
+      $data = validateRegister($data);
+      if($data['valid']) { // store new user, show thanks + submitted info
+        storeUser($data['name'], $data['email'], $data['password']);
         $data['newLogin'] = true;
         $data['page'] = "login";
       }
@@ -65,7 +75,19 @@ function validateRequest($page) {
     // Validate contact page
     //==============================
     else if ($page == "contact") {
-
+      $data['name'] = testInput(getPostVar('name'));
+      $data['email'] = testInput(getPostVar('email'));
+      $data['message'] = testInput(getPostVar('message'));
+      empty($data['name']) ? $data['nameError'] = "Name required" : $data['nameError'] = "";
+      empty($data['email']) ? $data['emailError'] = "Email address required" : $data['emailError'] = "";
+      empty($data['message']) ? $data['messageError'] = "Please type your message" : $data['messageError'] = "";
+      $data = validateContactForm($data);
+      if ($data['valid']) { // show thanks message + submitted info
+        $data['page'] = "thanks";
+      }
+      else {
+        $data['newContactForm'] = false;
+      }
     }
   } // end if POST
   //==============================
@@ -76,16 +98,30 @@ function validateRequest($page) {
       $data['email'] = "";
       $data['password'] = "";
       $data['newLogin'] = true;
+      $data['emailError'] = "";
+      $data['passwordError'] = "";
+      $data['emailError'] = "";
+      $data['passwordError'] = "";
     }
-    if ($data['page'] == "register") {
+    else if ($data['page'] == "register") {
       $data['name'] = "";
       $data['email'] = "";
       $data['password'] = "";
       $data['passwordRepeat'] = "";
       $data['newRegister'] = true;
+      $data['nameError'] = "";
+      $data['emailError'] = "";
+      $data['passwordError'] = "";
+      $data['passwordRepeatError'] = "";
     }
-    if ($data['page'] == "contact") {
-      $data['newContact'] = true;
+    else if ($data['page'] == "contact") {
+      $data['name'] = "";
+      $data['email'] = "";
+      $data['message'] = "";
+      $data['newContactForm'] = true;
+      $data['nameError'] = "";
+      $data['emailError'] = "";
+      $data['messageError'] = "";
     }
   } // end if GET
   return $data;
@@ -121,6 +157,10 @@ function showMainContent($data) {
     case 'contact':
       include './pages/contact.php';
       showContactContent($data);
+      break;
+    case 'thanks':
+      include './pages/contact_thanks.php';
+      showThanksContent($data);
       break;
     case 'login':
       include './pages/login.php';

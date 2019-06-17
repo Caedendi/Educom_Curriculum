@@ -3,7 +3,7 @@ function showRegisterContent($data) {
   showRegisterField($data);
 }
 
-function showRegisterSuccessful($data) {
+function showRegisterSuccessful($data) { // wordt niet meer gebruikt
   echo '
     <!-- Shows all entered input if input is correct -->
     <p class="thanksMessage">Met succes geregistreerd.</p>
@@ -17,14 +17,6 @@ function showRegisterSuccessful($data) {
 }
 
 function showRegisterField($data) {
-  $nameError = $emailError = $passwordError = $passwordRepeatError = "";
-  if(!$data['newRegister']) {
-    if (empty($data['name'])) { $nameError = "Name required"; }
-    if (empty($data['email'])) { $emailError = "Email address required"; }
-    if (empty($data['password'])) { $passwordError = "Password required"; }
-    if (empty($data['passwordRepeat'])) { $passwordRepeatError = "Verify password"; }
-    if ($data['password'] !== $data['passwordRepeat']) { $passwordRepeatError = "Passwords do not match"; }
-  }
   echo '
     <!-- register field -->
     <div class="registerField">
@@ -39,23 +31,23 @@ function showRegisterField($data) {
         <div class="formRow">
           <label for="name">Naam:</label>
           <input class="register" type="text" name="name" id="name" placeholder="uw naam" value="'.$data['name'].'">
-          <span class="required"> * '.$nameError.'</span>
+          <span class="required"> * '. $data['nameError'] .'</span>
         </div>
         <div class="formRow">
           <label for="email">Emailadres:</label>
           <input class="register" type="text" name="email" id="email" placeholder="uw emailadres" value="'.$data['email'].'">
-          <span class="required"> * '.$emailError.'</span>
+          <span class="required"> * '. $data['emailError'] .'</span>
         </div>
         <!-- email -->
         <div class="formRow">
           <label for="password">Wachtwoord:</label>
           <input class="register" type="password" name="password" id="password" placeholder="uw wachtwoord">
-          <span class="required"> * '.$passwordError.'</span>
+          <span class="required"> * '. $data['passwordError'] .'</span>
         </div>
         <div class="formRow">
           <label for="passwordRepeat">Herhaal wachtwoord:</label>
           <input class="register" type="password" name="passwordRepeat" id="passwordRepeat" placeholder="herhaal wachtwoord">
-          <span class="required"> * '.$passwordRepeatError.'</span>
+          <span class="required"> * '. $data['passwordRepeatError'] .'</span>
         </div>
         <!-- submit button -->
         <div class="formRow">

@@ -9,10 +9,10 @@ function findUserByEmail($email) {
   $userData = "";
   $userDataFile = fopen(__DIR__ . "/users.txt", "r") or die("findUserByEmail() can not open users.txt");
   fgets($userDataFile); // skip first line
-  while(!feof($userDataFile)) {
+  while (!feof($userDataFile)) {
     $currentUser = explode("|", testInput(fgets($userDataFile)));
     // print_r($currentUser); echo '<br>';
-    if($currentUser[0] == $email) {
+    if ($currentUser[0] == $email) {
       // echo $email . "<br>"; // used for debugging
       $userData = array('name' => testInput($currentUser[1]), 'email' => testInput($currentUser[0]), 'password' => testInput($currentUser[2]));
       // echo "<br>" . $userData['name'] . "<br>" . $userData['email'] . "<br>" . $userData['password'] . "<br>"; // used for debugging

@@ -1,65 +1,6 @@
 <?php
-
-function showContactContent() {
-  $data = array(
-    'name' => "",
-    'email' => "",
-    'message' => "",
-    'valid' => false,
-    'nameError' => "",
-    'emailError' => "",
-    'messageError' => ""
-  );
-  $requestType = $_SERVER["REQUEST_METHOD"];
-  // POST: show either thanks message (when submitted info is valid) or partly filled formfield when invalid
-  if ($requestType == "POST") { //
-    $data = validateContactForm($data);
-    if ($data['valid']) { // show thanks message + submitted info
-      showThanks($data); }
-    else { // show contact form (partly filled & error messages)
-      showFormField($data); }
-  }
-  // GET: // show contact form (empty)
-  else if ($requestType == "GET") {
-    showFormField($data);
-  }
-  /*
-  ik weet dat de code hier dubbelop is, maar naar mijn idee is de logica
-  zo beter afgebakend.
-  */
-}
-
-function validateContactForm($data) {
-  // get all post values. for all values:
-  // * test input
-  // * if empty, create error message
-  // * else store value
-  $name = testInput(getPostVar('name'));
-  $email = testInput(getPostVar('email'));
-  $message = testInput(getPostVar('message'));
-  if (empty($name)) { $data['nameError'] = "Name required"; }
-  else { $data['name'] = $name; }
-  if (empty($email)) { $data['emailError'] = "Email address required"; }
-  else { $data['email'] = $email; }
-  if (empty($message)) { $data['messageError'] = "Please type your message"; }
-  else { $data['message'] = $message; }
-
-  // if none are empty, data is valid
-  if (!empty($data['name']) && !empty($data['email']) && !empty($data['message'])) {
-    $data['valid'] = true; }
-  else { $data['valid'] = false; }
-  return $data;
-}
-
-function showThanks($data) {
-  echo '
-    <!-- Shows all entered input if input is correct -->
-    <p class="thanksMessage">Bedankt voor uw bericht. Er zal zo spoedig mogelijk contact met u worden opgenomen.</p>
-    <p class="thanksMessage">Uw verstuurde gegevens:<br>
-      Naam: ' . $data['name'] . '<br>
-      E-mail: ' . $data['email'] . '<br>
-      Bericht: ' . $data['message'] . '
-  ';
+function showContactContent($data) {
+  showFormField($data);
 }
 
 function showFormField($data) {
@@ -78,7 +19,7 @@ function showFormField($data) {
         <div class="formRow">
           <label for="name">Naam:</label>
           <input class="contact"type="text" name="name" id="name" placeholder="uw volledige naam" value="'.$data['name'].'">
-          <span class="required"> * '.$data['nameError'] .'</span>
+          <span class="required"> * '. $data['nameError'] .'</span>
         </div>
         <!-- email -->
         <div class="formRow">

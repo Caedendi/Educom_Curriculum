@@ -4,11 +4,6 @@ function showLoginContent($data) {
 }
 
 function showLoginField($data) {
-  $emailError = $passwordError = "";
-  if(!$data['newLogin']) {
-    if (empty($data['email'])) { $emailError = "Email address required"; }
-    if (empty($data['password'])) { $passwordError = "Password required"; }
-  }
   echo '
     <!-- formfield -->
     <div class="loginField">
@@ -23,13 +18,13 @@ function showLoginField($data) {
         <div class="formRow">
           <label for="email">Emailadres:</label>
           <input class="login" type="email" name="email" id="email" placeholder="uw emailadres" value="'.$data['email'].'">
-          <span class="required"> * '.$emailError.'</span>
+          <span class="required"> * '. $data['emailError'] .'</span>
         </div>
         <!-- email -->
         <div class="formRow">
           <label for="password">Password:</label>
           <input class="login" type="password" name="password" id="password" placeholder="uw wachtwoord">
-          <span class="required"> * '.$passwordError.'</span>
+          <span class="required"> * '. $data['passwordError'] .'</span>
         </div>
         <!-- submit button -->
         <div class="formRow">
