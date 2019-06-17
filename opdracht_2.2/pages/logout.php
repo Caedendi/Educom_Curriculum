@@ -2,20 +2,8 @@
 function showLogoutContent() {
   echo '
     <p>Logout page.</p>
+    <p>You have been logged out.</p>
   ';
-
-
-}
-
-function logoutUser() {
-
-
-
-
-  // remove all session variables
-  session_unset();
-
-  // destroy the session
   session_destroy();
 }
 ?>
