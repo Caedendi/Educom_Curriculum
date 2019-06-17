@@ -6,6 +6,7 @@ include 'html.php';
 include 'header.php';
 include 'navbar.php';
 include 'footer.php';
+include './users/userdata_management.php';
 //==============================================
 // MAIN APP
 //==============================================
@@ -19,31 +20,74 @@ showResponsePage($data);
 function getRequestedPage() {
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") {
-    $requestedPage = testInput(agetPostVar('page', 'home')); }
+    $requestedPage = testInput(getPostVar('page', 'home')); }
   else if ($requestType == "GET") {
-    $requestedPage = testInput(agetUrlVar('page', 'home')); }
+    $requestedPage = testInput(getUrlVar('page', 'home')); }
   return $requestedPage;
 }
 
 function validateRequest($page) {
-  // to do
-
-  /*
-  if ($requestType == "POST") {
-    if ($page == "contact") {
-    validateContact();
-    }
-    else if ($page == "login") {
-      validateLogin();
-    }
-    else if ($page == "register")
-      validateRegister();
-  }
-  */
-
-
-
   $data = array('page' => $page);
+  $requestType = $_SERVER["REQUEST_METHOD"];
+  if ($requestType == "POST") {
+    //==============================
+    // Validate login page
+    //==============================
+    if ($data['page'] == "login") {
+      $data['email'] = testInput(getPostVar('email'));
+      $data['password'] = testInput(getPostVar('password'));
+      $valid = validateLogin($data);
+      if($valid) { // show thanks + submitted info
+        $data['page'] = "home";
+      }
+      else {
+        $data['newLogin'] = false;
+      }
+    } // end POST login
+    //==============================
+    // Validate register page
+    //==============================
+    else if ($page == "register") {
+      $data['name'] = testInput(getPostVar('name'));
+      $data['email'] = testInput(getPostVar('email'));
+      $data['password'] = testInput(getPostVar('password'));
+      $data['passwordRepeat'] = testInput(getPostVar('passwordRepeat'));
+      $valid = validateRegister($data); // $name, $email, $password, $passwordRepeat);
+      if($valid) { // show thanks + submitted info
+        $data['newLogin'] = true;
+        $data['page'] = "login";
+      }
+      else {
+        $data['newRegister'] = false;
+      }
+    } // end POST register
+    //==============================
+    // Validate contact page
+    //==============================
+    else if ($page == "contact") {
+
+    }
+  } // end if POST
+  //==============================
+  // Do GET stuff
+  //==============================
+  else if ($requestType == "GET") {
+    if ($data['page'] == "login") {
+      $data['email'] = "";
+      $data['password'] = "";
+      $data['newLogin'] = true;
+    }
+    if ($data['page'] == "register") {
+      $data['name'] = "";
+      $data['email'] = "";
+      $data['password'] = "";
+      $data['passwordRepeat'] = "";
+      $data['newRegister'] = true;
+    }
+    if ($data['page'] == "contact") {
+      $data['newContact'] = true;
+    }
+  } // end if GET
   return $data;
 }
 

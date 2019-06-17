@@ -1,42 +1,6 @@
 <?php
-
-
-// Optie 'Register' toont een scherm met Naam, Email-adres, Password input en herhaal Password input.
-//
-// Wanneer registratie gepost, wordt email vergeleken met waardes uit bestand users\users.txt,
-// Wanneer niet aanwezig dan controleren of password en herhaal password gelijk zijn.
-//     Email al aanwezig of password ongelijk aan herhaal password dan foutmelding en formulier opnieuw tonen.
-//     Email niet aanwezig, voeg de gebruiker toe aan het bestand, en wordt de getoonde pagina de 'login' pagina.
-
-
-
-
 function showRegisterContent($data) {
-  $data = array('name' => "", 'email' => "", 'password' => "", 'passwordRepeat' => "");
-  $requestType = $_SERVER["REQUEST_METHOD"];
-  if ($requestType == "POST") { // show either success message (when submitted info is valid) or partly filled formfield when invalid
-    $name = testInput(agetPostVar('name'));
-    $email = testInput(agetPostVar('email'));
-    $password = testInput(agetPostVar('password'));
-    $passwordRepeat = testInput(agetPostVar('passwordRepeat'));
-    $data = array('name' => $name, 'email' => $email, 'password' => $password, 'passwordRepeat' => $passwordRepeat);
-    include './users/userdata_management.php';
-    $valid = validateRegister($data); // $name, $email, $password, $passwordRepeat);
-    if($valid) { // show thanks + submitted info
-      showRegisterSuccessful($data); // $name, $email, $password); ///////////////////////////////
-    }
-    else { // else show login field (partly filled)
-      showRegisterField($data, false); // $name, $email, $password, $passwordRepeat);
-    }
-  }
-  else { // if GET
-
-    // foreach ($data as &$value) {
-    //   $value = "";
-    // }
-    // unset($value);
-    showRegisterField($data); // show register field (empty)
-  }
+  showRegisterField($data);
 }
 
 function showRegisterSuccessful($data) {
@@ -52,9 +16,9 @@ function showRegisterSuccessful($data) {
   ';
 }
 
-function showRegisterField($data, $newLogin=true) { //$name='', $email='', $password='', $passwordRepeat='') {
+function showRegisterField($data) {
   $nameError = $emailError = $passwordError = $passwordRepeatError = "";
-  if(!$newLogin) {
+  if(!$data['newRegister']) {
     if (empty($data['name'])) { $nameError = "Name required"; }
     if (empty($data['email'])) { $emailError = "Email address required"; }
     if (empty($data['password'])) { $passwordError = "Password required"; }
