@@ -34,9 +34,9 @@ function validateContactForm($data) {
   // * test input
   // * if empty, create error message
   // * else store value
-  $name = test_input(getPostVar('name'));
-  $email = test_input(getPostVar('email'));
-  $message = test_input(getPostVar('message'));
+  $name = testInput(agetPostVar('name'));
+  $email = testInput(agetPostVar('email'));
+  $message = testInput(agetPostVar('message'));
   if (empty($name)) { $data['nameError'] = "Name required"; }
   else { $data['name'] = $name; }
   if (empty($email)) { $data['emailError'] = "Email address required"; }

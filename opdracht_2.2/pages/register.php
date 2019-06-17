@@ -15,10 +15,10 @@ function showRegisterContent($data) {
   $data = array('name' => "", 'email' => "", 'password' => "", 'passwordRepeat' => "");
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") { // show either success message (when submitted info is valid) or partly filled formfield when invalid
-    $name = test_input(getPostVar('name'));
-    $email = test_input(getPostVar('email'));
-    $password = test_input(getPostVar('password'));
-    $passwordRepeat = test_input(getPostVar('passwordRepeat'));
+    $name = testInput(agetPostVar('name'));
+    $email = testInput(agetPostVar('email'));
+    $password = testInput(agetPostVar('password'));
+    $passwordRepeat = testInput(agetPostVar('passwordRepeat'));
     $data = array('name' => $name, 'email' => $email, 'password' => $password, 'passwordRepeat' => $passwordRepeat);
     include './users/userdata_management.php';
     $valid = validateRegister($data); // $name, $email, $password, $passwordRepeat);

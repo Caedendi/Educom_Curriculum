@@ -19,9 +19,9 @@ showResponsePage($data);
 function getRequestedPage() {
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") {
-    $requestedPage = test_input(getPostVar('page', 'home')); }
+    $requestedPage = testInput(agetPostVar('page', 'home')); }
   else if ($requestType == "GET") {
-    $requestedPage = test_input(getUrlVar('page', 'home')); }
+    $requestedPage = testInput(agetUrlVar('page', 'home')); }
   return $requestedPage;
 }
 
@@ -108,7 +108,7 @@ function getUrlVar($key, $default='') {
 }
 
 // tests form input data for security purposes
-function test_input($value) {
+function testInput($value) {
   $value = trim($value);
   $value = stripslashes($value);
   $value = htmlspecialchars($value);

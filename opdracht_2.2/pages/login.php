@@ -15,8 +15,8 @@ function showLoginContent($data) {
   $data = array('email' => "", 'password' => "");
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") { // show either success message (when submitted info is valid) or partly filled formfield when invalid
-    $email = test_input(getPostVar('email'));
-    $password = test_input(getPostVar('password'));
+    $email = testInput(agetPostVar('email'));
+    $password = testInput(agetPostVar('password'));
     $data = array('email' => $email, 'password' => $password);
     include './users/userdata_management.php';
     $valid = validateLogin($data);
