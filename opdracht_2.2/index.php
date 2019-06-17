@@ -60,7 +60,7 @@ function validateRequest($page) {
       empty($data['name']) ? $data['nameError'] = "Name required" : $data['nameError'] = "";
       empty($data['email']) ? $data['emailError'] = "Email address required" : $data['emailError'] = "";
       empty($data['password']) ? $data['passwordError'] = "Password required" : $data['passwordError'] = "";
-      empty($data['passwordRepeat']) ? $data['passwordRepeatError'] = "Passwords do not match" : $data['passwordRepeatError'] = "";
+      empty($data['passwordRepeat']) ? $data['passwordRepeatError'] = "Please repeat password" : $data['passwordRepeatError'] = "";
       $data = validateRegister($data);
       if($data['valid']) { // store new user, show thanks + submitted info
         storeUser($data['name'], $data['email'], $data['password']);

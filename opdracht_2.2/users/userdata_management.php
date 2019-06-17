@@ -7,7 +7,15 @@ function validateLogin($data) {
   if (!empty($data['email']) && !empty($data['password'])) {
     // find user data in datafile, then compare emails and passwords
     $searchResult = findUserByEmail($data['email']);
-    if ($searchResult['email'] == $data['email']
+    if (empty($searchResult) || $searchResult['password'] != $data['password']) {
+      $data['valid'] = false;
+      $data['emailError'] = "Incorrect email and/or password";
+    }
+    // else if ($searchResult['password'] != $data['password']) {
+    //   $data['loginError'] = "Incorrect email and/or password";
+    //   $data['valid'] = false;
+    // }
+    else if ($searchResult['email'] == $data['email']
       && $searchResult['password'] == $data['password']) {
     $data['valid'] = true;
     $data['name'] = $searchResult['name'];
@@ -23,6 +31,17 @@ function validateLogin($data) {
 // * email is not already registered
 // * passwords match
 function validateRegister($data) {
+  if (isEmailKnown($data['email'])) {
+    $data['nameError'] = "";
+    $data['emailError'] = "Email address already registered";
+    $data['passwordError'] = "";
+    $data['passwordRepeatError'] = "";
+  }
+  else if (!empty($data['password']) && !empty($data['passwordRepeat']) && $data['password'] != $data['passwordRepeat']) {
+    $data['passwordError'] = "Passwords do not match";
+  // else if (!empty($data['password']) && empty($data['password']) && $data['password'] != $data['passwordRepeat']) {
+  //   $data['passwordError'] = "Passwords do not match";
+  }
   if ((!empty($data['name']) && !empty($data['email']) && !empty($data['password']) && !empty($data['email']))
       && (!isEmailKnown($data['email']))
       && ($data['password'] == $data['passwordRepeat'])) {
@@ -48,6 +67,7 @@ function storeUser($name, $email, $password) {
 
 // implemented
 function isEmailKnown($email) {
+  if (empty($email)) return false;
   $searchResult = findUserByEmail($email);
   if (empty($searchResult)) {
     // echo 'user email not found';

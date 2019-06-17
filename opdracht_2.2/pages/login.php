@@ -18,7 +18,7 @@ function showLoginField($data) {
         <div class="formRow">
           <label for="email">Emailadres:</label>
           <input class="login" type="email" name="email" id="email" placeholder="uw emailadres" value="'.$data['email'].'">
-          <span class="required"> * '. $data['emailError'] .'</span>
+          <span class="required"> * '. $data['emailError'] . '</span>
         </div>
         <!-- email -->
         <div class="formRow">
