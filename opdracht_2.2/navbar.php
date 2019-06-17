@@ -17,7 +17,6 @@ function showMenu($page) {
     showMenuItem('login', "LOGIN", "login", $page);
     showMenuItem('register', "REGISTER", "login", $page);
   }
-
   showMenuEnd();
 }
 

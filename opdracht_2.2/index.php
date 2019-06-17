@@ -123,6 +123,10 @@ function validateRequest($page) {
       $data['emailError'] = "";
       $data['messageError'] = "";
     }
+    else if ($data['page'] == "logout") {
+      session_destroy();
+      $data['page'] = "home";
+    }
   } // end if GET
   return $data;
 }
@@ -170,10 +174,10 @@ function showMainContent($data) {
       include './pages/register.php';
       showRegisterContent($data);
       break;
-    case 'logout':
-      include './pages/logout.php';
-      showLogoutContent($data);
-      break;
+    // case 'logout':
+    //   include './pages/logout.php';
+    //   showLogoutContent($data);
+    //   break;
     default:
       echo "Page [".$page."] not found.";
       break;

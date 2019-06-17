@@ -35,7 +35,4 @@ function showLoginField($data) {
     </div> <!-- end loginfield -->
   ';
 }
-
-
-
 ?>
