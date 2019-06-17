@@ -16,13 +16,15 @@ function validateLogin($data) {
   // include 'userdata_source.php';
   $searchResult = findUserByEmail($data['email']);
   if(empty($searchResult)) {
-    echo 'user email not found';
+    // echo 'user email not found'; // used for debugging
     return false; }
   else if($searchResult['password'] != $data['password']) {
-    echo 'incorrect password<br>';
+    // echo 'incorrect password<br>'; // used for debugging
     return false;
   }
-  echo 'success!';
+  // echo 'success!'; // used for debugging
+  $_SESSION['user_name'] = $searchResult['name'];
+  $_SESSION['user'] = $data['email'];
   return true;
 }
 
