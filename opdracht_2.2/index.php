@@ -124,6 +124,7 @@ function validateRequest($page) {
       $data['messageError'] = "";
     }
     else if ($data['page'] == "logout") {
+      session_unset();
       session_destroy();
       $data['page'] = "home";
     }
