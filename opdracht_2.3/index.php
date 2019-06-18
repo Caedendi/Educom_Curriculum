@@ -2,6 +2,7 @@
 //==============================================
 // INCLUDES
 //==============================================
+include 'debug_config.php';
 include 'html.php';
 include 'header.php';
 include 'navbar.php';
@@ -167,9 +168,14 @@ function showMainContent($data) {
       include './pages/contact_thanks.php';
       showThanksContent($data);
       break;
-    case 'sql':
-      include './pages/sql.php';
-      showSqlContent($data);
+    case 'debug':
+      if (DEBUG_TEST_PAGE) {
+        include './pages/debug.php';
+        showSqlContent($data);
+      }
+      else {
+        echo "Page [".$data['page']."] not found.";
+      }
       break;
     case 'login':
       include './pages/login.php';
@@ -179,12 +185,8 @@ function showMainContent($data) {
       include './pages/register.php';
       showRegisterContent($data);
       break;
-    // case 'logout':
-    //   include './pages/logout.php';
-    //   showLogoutContent($data);
-    //   break;
     default:
-      echo "Page [".$page."] not found.";
+      echo "Page [".$data['page']."] not found.";
       break;
   }
   showMainBodyEnd();
