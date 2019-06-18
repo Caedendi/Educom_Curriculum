@@ -14,11 +14,15 @@ function showSqlContent($data) {
 
   echo "<br><br><br>";
 
-  $userData = findUserByEmailSql("hoi1@hoi.nl");
+  $userData = findUserByEmailSql("hoi@hoi.nl");
 
-  echo '<br>print found data<br>';
-  foreach ($userData as $key => $value) {
-    echo "$key => $value" . "<br>";
+  echo '<br>Found data:<br>';
+  if ($userData) {
+    foreach ($userData as $key => $value) {
+      echo "$key => $value" . "<br>";
+    }
+  } else {
+    echo "[hoi2] userData is empty: ". gettype($userData);
   }
 }
 ?>

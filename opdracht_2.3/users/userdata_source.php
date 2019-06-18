@@ -27,6 +27,7 @@ function connectToDatabase() {
 //
 // rewritten findUserByEmail() method that searches the database
 function findUserByEmailSql($email) {
+  $userData = "";
   $link = connectToDatabase();
   if (empty($link)) {
     echo '[hoi1] connection failed';
@@ -46,19 +47,28 @@ function findUserByEmailSql($email) {
   return $userData;
 }
 
-// not yet implemented
+// WIP
 //
 // rewritten saveUser() method to store new user to database
 function saveUserSql($name, $email, $password) {
-  //
-  // TO DO
-  //
+  $link = connectToDatabase();
+  if (empty($link)) {
+    echo '[hoi1 saveUserSql] connection failed';
+    return;
+  }
 
+  $sql = '
+    INSERT INTO users (email, password, name)
+    VALUES ('$email', '$password', '$name')
+  ';
 
-  $userDataFile = fopen(__DIR__ . "/users.txt", "a") or die("saveUser() can not open users.txt");
-  $newUser = PHP_EOL . $email . "|" . $name . "|" . $password;
-  fwrite($userDataFile, $newUser);
-  fclose($userDataFile);
+  if (mysqli_query($link, $sql)) {
+    echo "GEREGISTREERD IN DATABASE YO<br>";
+  }
+  else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($link);
+  }
+  mysqli_close($link);
 }
 
 //==============================

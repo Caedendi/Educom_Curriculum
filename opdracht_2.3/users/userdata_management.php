@@ -27,23 +27,25 @@ function validateLogin($data) {
 // * email is not already registered
 // * passwords match
 function validateRegister($data) {
-  if (isEmailKnown($data['email'])) {
+  $data['valid'] = false;
+  $isEmailKnown = isEmailKnown($data['email']);
+  // if email already registered: only show email taken error
+  if ($isEmailKnown) {
     $data['nameError'] = "";
     $data['emailError'] = "Email address already registered";
     $data['passwordError'] = "";
     $data['passwordRepeatError'] = "";
   }
+  // if email not already registered and passwords are filled but dont match: show password match error
   else if (!empty($data['password']) && !empty($data['passwordRepeat']) && $data['password'] != $data['passwordRepeat']) {
     $data['passwordError'] = "Passwords do not match";
-  // else if (!empty($data['password']) && empty($data['password']) && $data['password'] != $data['passwordRepeat']) {
-  //   $data['passwordError'] = "Passwords do not match";
   }
-  if ((!empty($data['name']) && !empty($data['email']) && !empty($data['password']) && !empty($data['email']))
-      && (!isEmailKnown($data['email']))
+  // success: all fields filled, email not already registered, passwords match
+  else if ((!empty($data['name']) && !empty($data['email']) && !empty($data['password']) && !empty($data['passwordRepeat']))
+      && (!$isEmailKnown)
       && ($data['password'] == $data['passwordRepeat'])) {
     $data['valid'] = true;
   }
-  else $data['valid'] = false;
   return $data;
 }
 
