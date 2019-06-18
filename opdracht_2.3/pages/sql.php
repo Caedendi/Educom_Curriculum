@@ -3,7 +3,13 @@ function showSqlContent($data) {
   echo '
     <p>SQL Page</p>
   ';
-  $link = mysqli_connect("localhost", "educom1", "monitor", "educom");
+
+  $server = "localhost";
+  $username = "educom1";
+  $password = "monitor";
+  $database = "educom";
+
+  $link = mysqli_connect($server, $username, $password, $database);
 
   if (!$link) {
     echo "<br>";
@@ -12,10 +18,29 @@ function showSqlContent($data) {
     echo "Debugging error: " . mysqli_connect_error() . "<br>";
     exit;
   }
-  else echo "succes!" . "<br>";
+  else echo "Verbonden" . "<br>";
   echo "Host information: " . mysqli_get_host_info($link) . "<br>";
 
+  $sql = '
+    SELECT *
+    FROM users
+    WHERE email="asdf@asdf.asdf"
+  ';
+  $result = mysqli_query($link, $sql);
+
+  if (mysqli_num_rows($result) > 0) {
+
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "id: " . $row["id"]. "<br> email: " . $row["email"]. "<br> password: " . $row["password"]. "<br> name: " . $row["name"];
+    }
+  }
+  else {
+    echo "0 results";
+  }
+
+
   mysqli_close($link);
+
 
 }
 ?>
