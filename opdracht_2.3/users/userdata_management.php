@@ -6,15 +6,11 @@
 function validateLogin($data) {
   if (!empty($data['email']) && !empty($data['password'])) {
     // find user data in datafile, then compare emails and passwords
-    $searchResult = findUserByEmail($data['email']);
+    $searchResult = findUserByEmailSql($data['email']);
     if (empty($searchResult) || $searchResult['password'] != $data['password']) {
       $data['valid'] = false;
       $data['emailError'] = "Incorrect email and/or password";
     }
-    // else if ($searchResult['password'] != $data['password']) {
-    //   $data['loginError'] = "Incorrect email and/or password";
-    //   $data['valid'] = false;
-    // }
     else if ($searchResult['email'] == $data['email']
       && $searchResult['password'] == $data['password']) {
     $data['valid'] = true;
@@ -60,15 +56,15 @@ function validateContactForm($data) {
 }
 
 function storeUser($name, $email, $password) {
-  if (empty(findUserByEmail($email))) {
-    saveUser($name, $email, $password); }
+  if (empty(findUserByEmailSql($email))) {
+    saveUserSql($name, $email, $password); }
   return;
 }
 
 // implemented
 function isEmailKnown($email) {
   if (empty($email)) return false;
-  $searchResult = findUserByEmail($email);
+  $searchResult = findUserByEmailSql($email);
   if (empty($searchResult)) {
     // echo 'user email not found';
     return false; }
