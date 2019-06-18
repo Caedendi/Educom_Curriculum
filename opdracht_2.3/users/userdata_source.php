@@ -59,7 +59,7 @@ function saveUserSql($name, $email, $password) {
 
   $sql = '
     INSERT INTO users (email, password, name)
-    VALUES ('$email', '$password', '$name')
+    VALUES ("'.$email.'", "'.$password.'", "'.$name.'")
   ';
 
   if (mysqli_query($link, $sql)) {
