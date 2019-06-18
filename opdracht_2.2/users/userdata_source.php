@@ -1,5 +1,4 @@
 <?php
-
 // implemented
 //
 // scans /users.txt for existing email (input).
@@ -11,11 +10,8 @@ function findUserByEmail($email) {
   fgets($userDataFile); // skip first line
   while (!feof($userDataFile)) {
     $currentUser = explode("|", testInput(fgets($userDataFile)));
-    // print_r($currentUser); echo '<br>';
     if ($currentUser[0] == $email) {
-      // echo $email . "<br>"; // used for debugging
       $userData = array('name' => testInput($currentUser[1]), 'email' => testInput($currentUser[0]), 'password' => testInput($currentUser[2]));
-      // echo "<br>" . $userData['name'] . "<br>" . $userData['email'] . "<br>" . $userData['password'] . "<br>"; // used for debugging
       break;
     }
   }
@@ -38,6 +34,4 @@ function saveUser($name, $email, $password) {
 function deleteUser($email) {
 
 }
-
-
 ?>
