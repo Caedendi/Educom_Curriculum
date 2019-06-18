@@ -1,9 +1,4 @@
 <?php
-
-// button logout krijgt tekst: Logout [naam]
-// logout alleen laten zien wanneer ingelogd
-// login/register alleen laten zien wanneer niet ingelogd
-
 function showMenu($page) {
   showMenuStart();
   showMenuItem('home', "HOME", "regularPage", $page);

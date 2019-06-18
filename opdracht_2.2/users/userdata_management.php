@@ -11,10 +11,6 @@ function validateLogin($data) {
       $data['valid'] = false;
       $data['emailError'] = "Incorrect email and/or password";
     }
-    // else if ($searchResult['password'] != $data['password']) {
-    //   $data['loginError'] = "Incorrect email and/or password";
-    //   $data['valid'] = false;
-    // }
     else if ($searchResult['email'] == $data['email']
       && $searchResult['password'] == $data['password']) {
     $data['valid'] = true;
@@ -39,8 +35,6 @@ function validateRegister($data) {
   }
   else if (!empty($data['password']) && !empty($data['passwordRepeat']) && $data['password'] != $data['passwordRepeat']) {
     $data['passwordError'] = "Passwords do not match";
-  // else if (!empty($data['password']) && empty($data['password']) && $data['password'] != $data['passwordRepeat']) {
-  //   $data['passwordError'] = "Passwords do not match";
   }
   if ((!empty($data['name']) && !empty($data['email']) && !empty($data['password']) && !empty($data['email']))
       && (!isEmailKnown($data['email']))
