@@ -167,6 +167,10 @@ function showMainContent($data) {
       include './pages/contact_thanks.php';
       showThanksContent($data);
       break;
+    case 'sql':
+      include './pages/sql.php';
+      showSqlContent($data);
+      break;
     case 'login':
       include './pages/login.php';
       showLoginContent($data);

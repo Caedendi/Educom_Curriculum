@@ -9,6 +9,7 @@ function showMenu($page) {
   showMenuItem('home', "HOME", "regularPage", $page);
   showMenuItem('about', "ABOUT", "regularPage", $page);
   showMenuItem('contact', "CONTACT", "regularPage", $page);
+  showMenuItem('sql', "SQL", "regularPage", $page);
   if( isset($_SESSION['user'])) {
     $firstName = substr($_SESSION['user_name'], 0, strpos($_SESSION['user_name'], " "));
     showMenuItem('logout', "LOGOUT [" . $firstName . "]", "logout", $page);
