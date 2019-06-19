@@ -27,7 +27,7 @@ function connectToDatabase() {
 //
 // rewritten findUserByEmail() method that searches the database
 function findUserByEmailSql($email) {
-  $userData = "";
+  $userData = ""; /* JH: = NULL */
   $link = connectToDatabase();
   if (empty($link)) {
     echo '[hoi1] connection failed';
@@ -70,7 +70,6 @@ function saveUserSql($name, $email, $password) {
   }
   mysqli_close($link);
 }
-
 //==============================
 // Datafile functions
 //==============================
@@ -78,12 +77,13 @@ function saveUserSql($name, $email, $password) {
 // found? return data (array w/ name, email, password).
 // not found? return empty variable.
 function findUserByEmailInDatafile($email) {
-  $userData = "";
+  $userData = ""; /* JH: = NULL */
   $userDataFile = fopen(__DIR__ . "/users.txt", "r") or die("findUserByEmailInDatafile() can not open users.txt");
   fgets($userDataFile); // skip first line
   while (!feof($userDataFile)) {
     $currentUser = explode("|", testInput(fgets($userDataFile)));
     // print_r($currentUser); echo '<br>';
+    /* JH: Dit gaat mis voor velden die een '|' symbool in hun password hebben (kijk eens naar de derde parameter van explode) */
     if ($currentUser[0] == $email) {
       // echo $email . "<br>"; // used for debugging
       $userData = array('name' => testInput($currentUser[1]), 'email' => testInput($currentUser[0]), 'password' => testInput($currentUser[2]));
@@ -110,7 +110,7 @@ function saveUserInDatafile($name, $email, $password) {
 // Not yet implemented
 //==============================
 function deleteUser($email) {
-
+ /* JH: Beter geen lege functie in een file laten staan, mensen denken dan dat ze deze kunnen gebruiken */
 }
 
 

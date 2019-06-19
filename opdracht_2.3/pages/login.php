@@ -18,13 +18,13 @@ function showLoginField($data) {
         <div class="formRow">
           <label for="email">Emailadres:</label>
           <input class="login" type="email" name="email" id="email" placeholder="uw emailadres" value="'.$data['email'].'">
-          <span class="required"> * '. $data['emailError'] . '</span>
+          <span class="required"> * '. getArrayVar($data, "emailError") . '</span>
         </div>
         <!-- email -->
         <div class="formRow">
           <label for="password">Password:</label>
           <input class="login" type="password" name="password" id="password" placeholder="uw wachtwoord">
-          <span class="required"> * '. $data['passwordError'] .'</span>
+          <span class="required"> * '. getArrayVar($data, "passwordError") .'</span>
         </div>
         <!-- submit button -->
         <div class="formRow">
@@ -34,5 +34,11 @@ function showLoginField($data) {
       </form>
     </div> <!-- end loginfield -->
   ';
+  /* JH Extra: Je ziet dat er veel herhaling is in de code hierboven. Maak een functie showFormInput($key, $labelText, $type, $placeholder, $data, $rows=4, $cols=40) en zet hier neer:
+               showFormStart($data['page']);
+               showFormInput('email', 'Emailadres:', 'email', 'uw emailadres', $data);
+               showFormInput('password', 'Wachtwoord:', 'password', 'uw wachtwoord', $data);
+               showFormEnd('Verstuur');
+  */
 }
 ?>
