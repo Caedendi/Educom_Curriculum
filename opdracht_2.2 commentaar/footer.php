@@ -1,4 +1,4 @@
-<?php /* JH: Dit soort functies kan je beter verzamelen in een file (bijv. html.php) */
+<?php /* JH: Zet deze ook in html.php */
 function showFooter() {
   echo '
   <footer>

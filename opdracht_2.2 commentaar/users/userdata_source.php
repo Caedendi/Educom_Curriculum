@@ -1,0 +1,38 @@
+<?php
+// implemented
+//
+// scans /users.txt for existing email (input).
+// found? return data (array w/ name, email, password).
+// not found? return empty variable. /* JH: Gebruikelijk is om dan NULL te retourneren */
+function findUserByEmail($email) {
+  $userData = ""; /* JH: = NULL */
+  $userDataFile = fopen(__DIR__ . "/users.txt", "r") or die("findUserByEmail() can not open users.txt");
+  fgets($userDataFile); // skip first line
+  while (!feof($userDataFile)) {
+    $currentUser = explode("|", testInput(fgets($userDataFile)));
+    /* JH: Dit gaat mis voor velden die een '|' symbool in hun password hebben (kijk eens naar de derde parameter van explode) */
+    if ($currentUser[0] == $email) {
+      $userData = array('name' => testInput($currentUser[1]), 'email' => testInput($currentUser[0]), 'password' => testInput($currentUser[2]));
+      break;
+    }
+  }
+  fclose($userDataFile);
+  return $userData;
+}
+
+// to do
+//
+// saves input user data to file.
+// does not check if email already exists.
+function saveUser($name, $email, $password) {
+  $userDataFile = fopen(__DIR__ . "/users.txt", "a") or die("saveUser() can not open users.txt");
+  $newUser = PHP_EOL /* JH: Keurig, je bent mijn eerste trainee die deze gebruikt! */ . $email . "|" . $name . "|" . $password;
+  fwrite($userDataFile, $newUser);
+  fclose($userDataFile);
+}
+
+// to do
+function deleteUser($email) {
+ /* JH: Beter geen lege functie in een file laten staan, mensen denken dan dat ze deze kunnen gebruiken */
+}
+?>

@@ -26,9 +26,19 @@ h1.header {
                        elements (paragraphs etc) from appearing right behind list items */
 }
 
-.navbar li {
+.navbar li.regularPage {
   float: left; /* elementen horizontaal naast elkaar */
-  width: 25%;
+  width: 16.66%;
+}
+
+.navbar li.login {
+  float: right; /* elementen horizontaal naast elkaar */
+  width: 16.66%;
+}
+
+.navbar li.logout {
+  float: right; /* elementen horizontaal naast elkaar */
+  width: 33.32%;
 }
 
 .navbar li a {
@@ -71,9 +81,9 @@ h1.header {
 }
 
 /*
- * Forms section
+ * Contact form section
  */
-.formField {
+.formField, .loginField, .registerField {
   border-radius: 5px;
   background-color: lightgray;
   padding: 25px;
@@ -81,7 +91,7 @@ h1.header {
 }
 
 /* alters message " * Required field" */
-.formField p.required {
+.formField p.required, .loginField p.required, .registerField p.required {
   color: red;
   font-size: 20px;
   font-weight: bold;
@@ -118,8 +128,12 @@ span.required {
   font-weight: bold;
 }
 
-input, textarea {
+input.contact, textarea.contact {
   width: 400px;
+}
+
+input.login, input.register {
+  width: 250px;
 }
 
 input[type=submit] {
