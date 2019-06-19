@@ -9,7 +9,7 @@ function showStartHtml() {
 function showHeadSection() {
   echo '
   <head>
-    <title>Opdracht 2.2.php</title>
+    <title>Opdracht 2.3.php</title>
     <link rel="stylesheet" type="text/css" href="./css/FirstExternalSheet.css">
   </head>
   ';
@@ -18,6 +18,12 @@ function showHeadSection() {
 function showBodyStart() {
   echo '
     <body>
+  ';
+}
+
+function showHeader($page) {
+  echo '
+    <h1 class="header">'. ucfirst($page) . '</h1>
   ';
 }
 
@@ -36,6 +42,16 @@ function showMainBodyEnd() {
 function showBodyEnd() {
   echo '
     </body>
+  ';
+}
+
+function showFooter() {
+  echo '
+  <footer>
+    <section>
+      <p>&copy; 2019 Bart Commandeur</p>
+    </section>
+  </footer>
   ';
 }
 

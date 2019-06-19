@@ -4,9 +4,7 @@
 //==============================================
 include 'debug_config.php';
 include 'html.php';
-include 'header.php';
 include 'navbar.php';
-include 'footer.php';
 include './users/userdata_management.php';
 include './users/userdata_source.php';
 //==============================================
@@ -36,12 +34,14 @@ function validateRequest($page) {
     // Validate login page
     //==============================
     if ($data['page'] == "login") {
+      /* JH: Onderstaande 5 regels moeten in login.php in een functie validateLoginForm() */
       $data['email'] = testInput(getPostVar('email'));
       $data['password'] = testInput(getPostVar('password'));
       empty($data['email']) ? $data['emailError'] = "Email address required" : $data['emailError'] = "";
       empty($data['password']) ? $data['passwordError'] = "Password required" : $data['passwordError'] = "";
       $data = validateLogin($data);
       if($data['valid']) { // set session variables name and email, redirect to homepage
+        /* JH TIP: Laat alle interactie met $_SESSION lopen via 1 php file, bijv. session_manager.php met functies als: loginUser($name, $email), isUserLoggedIn(), getLoggedInUserName(), logoutUser() etc */
         $_SESSION['user_name'] = $data['name'];
         $_SESSION['user'] = $data['email'];
         $data['page'] = "home";
@@ -54,6 +54,7 @@ function validateRequest($page) {
     // Validate register page
     //==============================
     else if ($page == "register") {
+      /* JH: Onderstaande 9 regels zouden in een functie validateRegisterForm() in register.php moeten komen */
       $data['name'] = testInput(getPostVar('name'));
       $data['email'] = testInput(getPostVar('email'));
       $data['password'] = testInput(getPostVar('password'));
@@ -76,6 +77,7 @@ function validateRequest($page) {
     // Validate contact page
     //==============================
     else if ($page == "contact") {
+      /* Onderstaande 6 regels zouden in de validateContactForm() in contact.php moeten komen */
       $data['name'] = testInput(getPostVar('name'));
       $data['email'] = testInput(getPostVar('email'));
       $data['message'] = testInput(getPostVar('message'));
@@ -95,7 +97,9 @@ function validateRequest($page) {
   // Do GET stuff
   //==============================
   else if ($requestType == "GET") {
+    /* JH: Maak hier ook een switch-case van */
     if ($data['page'] == "login") {
+      /* JH: Maak van onderstaande 6 regels een functie of gebruik getArrayValue */
       $data['email'] = "";
       $data['password'] = "";
       $data['newLogin'] = true;
@@ -200,6 +204,10 @@ function getPostVar($key, $default='') {
 function getUrlVar($key, $default='') {
   $value = filter_input(INPUT_GET, $key);
   return isset($value) ? $value : $default;
+}
+
+function getArrayVar($array, $key, $default='') {
+  return isset($array[$key]) ? $array[$key] : $default;
 }
 
 // tests form input data for security purposes
