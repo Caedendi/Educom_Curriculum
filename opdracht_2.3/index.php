@@ -38,14 +38,14 @@ function validateRequest($page) {
     switch ($data['page']) {
       case "login":
         $data = validateLoginForm($data);
-        if($data['valid']) {
+        if($data['valid']) { // login user, show home page
           loginUser($data['name'], $data['email']);
           $data['page'] = "home";
         }
       break;
       case "register":
         $data = validateRegisterForm($data);
-        if($data['valid']) { // store new user, show thanks + submitted info
+        if($data['valid']) { // store new user, show login page
           storeUser($data['name'], $data['email'], $data['password']);
           $data['page'] = "login";
         }
@@ -99,7 +99,7 @@ function showMainContent($data) {
     case 'contact':
       showContactContent($data);
       break;
-    case 'thanks':
+    case 'contact_thanks':
       include './pages/contact_thanks.php';
       showThanksContent($data);
       break;

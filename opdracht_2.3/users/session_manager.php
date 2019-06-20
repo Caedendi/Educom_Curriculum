@@ -1,10 +1,4 @@
 <?php
-
-/* JH TIP: Laat alle interactie met $_SESSION lopen via 1 php file, bijv.
-  session_manager.php met functies als:
-  loginUser($name, $email), isUserLoggedIn(), getLoggedInUserName(), logoutUser() etc
-*/
-
 function loginUser($name, $email) {
   $_SESSION['isLoggedIn'] = true;
   $_SESSION['userName'] = $name;

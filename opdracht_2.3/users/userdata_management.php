@@ -26,7 +26,7 @@ function authenticateUserLogin($email, $password) {
 
 function storeUser($name, $email, $password) {
   if (empty(findUserByEmailSql($email))) {
-    saveUserSql($name, $email, $password); }
+    saveUserToDatabase($name, $email, $password); }
 }
 
 // implemented
