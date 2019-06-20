@@ -14,7 +14,7 @@ function showFormStart($page) {
 function showFormInput($type, $key, $labelText, $placeholder, $data, $rows=4, $columns=40) {
   echo '
     <div class="formRow">
-      <label for="'. $key . '">' . $labelText . '</label>
+      <label for="' . $key . '">' . $labelText . '</label>
   ';
 
   switch($type) {
@@ -22,18 +22,18 @@ function showFormInput($type, $key, $labelText, $placeholder, $data, $rows=4, $c
     case 'email':
     case 'password':
       echo '
-        <input class="' . $data['page'] . '" type="' . $type . '" name="' . $key . '" id="' . $key . '" placeholder="' . $placeholder . '" value="'. $data["$key"] .'">
+        <input class="' . getArrayValue($data, 'page') . '" type="' . $type . '" name="' . $key . '" id="' . $key . '" placeholder="' . $placeholder . '" value="'. getArrayValue($data, "$key") .'">
       ';
       break;
     case 'textarea':
       echo '
-        <textarea class="' . $data['page'] . '" name="' . $key . '" id="' . $key . '" placeholder="' . $placeholder . '" rows="' . $rows . '" cols="' . $columns . '">' . getArrayVar($data, "$key") . '</textarea> <!-- remember text inside text area -->
+        <textarea class="' . getArrayValue($data, 'page') . '" name="' . $key . '" id="' . $key . '" placeholder="' . $placeholder . '" rows="' . $rows . '" cols="' . $columns . '">' . getArrayValue($data, "$key") . '</textarea>
       ';
       break;
   }
 
   echo '
-      <span class="required"> * ' . getArrayVar($data, "{$key}Error") . '</span>
+      <span class="required"> * ' . getArrayValue($data, "{$key}Error") . '</span>
     </div>
   ';
 }
