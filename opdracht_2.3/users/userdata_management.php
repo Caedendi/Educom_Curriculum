@@ -24,18 +24,9 @@ function authenticateUserLogin($email, $password) {
   else return NULL;
 }
 
-// valid when all input fields are filled
-function validateContactForm($data) {/* JH: Deze code moet worden verplaatst naar een functie validateContactForm() in contact.php */
-  if (!empty($data['name']) && !empty($data['email']) && !empty($data['message'])) {
-    $data['valid'] = true; }
-  else $data['valid'] = false;
-  return $data;
-}
-
 function storeUser($name, $email, $password) {
   if (empty(findUserByEmailSql($email))) {
     saveUserSql($name, $email, $password); }
-  return; /* JH: Return is overbodig */
 }
 
 // implemented
@@ -43,7 +34,6 @@ function isEmailKnown($email) {
   if (empty($email)) return false;
   $searchResult = findUserByEmailSql($email);
   if (empty($searchResult)) {
-    // echo 'user email not found';
     return false; }
   else return true;
 }

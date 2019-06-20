@@ -50,32 +50,22 @@ function validateRequest($page) {
           $data['page'] = "login";
         }
       break;
-      //==============================
-      // Validate contact page
-      //==============================
       case "contact":
-        /* Onderstaande 6 regels zouden in de validateContactForm() in contact.php moeten komen */
-        $data['name'] = testInput(getPostValue('name'));
-        $data['email'] = testInput(getPostValue('email'));
-        $data['message'] = testInput(getPostValue('message'));
-        empty($data['name']) ? $data['nameError'] = "Name required" : $data['nameError'] = "";
-        empty($data['email']) ? $data['emailError'] = "Email address required" : $data['emailError'] = "";
-        empty($data['message']) ? $data['messageError'] = "Please type your message" : $data['messageError'] = "";
         $data = validateContactForm($data);
         if ($data['valid']) {
           $data['page'] = "contact_thanks";
         }
       break;
-    } // end switch
-  } // end if POST
+    } // end switch POST
+  } // end POST
   else if ($requestType == "GET") {
     switch ($data['page']) {
       case "logout":
         logoutUser();
         $data['page'] = "home";
         break;
-    }
-  } // end if GET
+    } // end switch GET
+  } // end GET
   return $data; // end validateRequest()
 }
 
