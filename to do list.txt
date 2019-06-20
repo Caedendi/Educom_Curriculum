@@ -1,6 +1,8 @@
 to do:
 
-NAVBAR LOGOUT button:
-werkt wel zo lang er een spatie in de naam zit
-werkt niet als er geen spatie in de naam zit
-FIXXXX
+try/catch wanneer verbinding database niet lukt (zie foto bord uitleg)
+
+verwerken feedback 2.2:
+herschrijf validateRegister
+herschrijf validateContactForm
+
