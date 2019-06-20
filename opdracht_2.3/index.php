@@ -3,6 +3,7 @@
 // INCLUDES
 //==============================================
 include 'debug_config.php';
+include 'functions.php';
 include 'html.php';
 include 'navbar.php';
 include 'formfield.php';
@@ -123,27 +124,5 @@ function showMainContent($data) {
       break;
   }
   showMainBodyEnd();
-}
-
-function getPostValue($key, $default='') {
-  $value = filter_input(INPUT_POST, $key);
-  return isset($value) ? $value : $default;
-}
-
-function getUrlValue($key, $default='') {
-  $value = filter_input(INPUT_GET, $key);
-  return isset($value) ? $value : $default;
-}
-
-function getArrayValue($array, $key, $default='') {
-  return isset($array[$key]) ? $array[$key] : $default;
-}
-
-// tests form input data for security purposes
-function testInput($value) {
-  $value = trim($value);
-  $value = stripslashes($value);
-  $value = htmlspecialchars($value);
-  return $value;
 }
 ?>
