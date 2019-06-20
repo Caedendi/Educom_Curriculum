@@ -1,10 +1,4 @@
 <?php
-// valid when:
-//
-// * both input fields are filled
-// * emails and passwords match
-
-
 /* JH: Als je commentaar boven een functie wilt zetten, gebruik dan doc-type style commentaar met /** alsvolgt:
 /**
  * Validates the login form
@@ -13,23 +7,21 @@
  * @param array $data the array with data fields
  * @return array the modified data array
  */
-function validateLogin($data) {/* JH: Deze code moet deels worden verplaatst naar een functie validateLoginForm() in login.php
-                                       Alleen de findUserByEmail en de password check zouden hier blijven in een functie authenticateUser($email, $password) die vanuit validateLoginForm wordt aangroepen als alle velden gevuld zijn  */
-  if (!empty($data['email']) && !empty($data['password'])) {
-    // find user data in datafile, then compare emails and passwords
-    $searchResult = findUserByEmailSql($data['email']);
-    if (empty($searchResult) || $searchResult['password'] != $data['password']) {
-      $data['valid'] = false;
-      $data['emailError'] = "Incorrect email and/or password";
-    }
-    else if ($searchResult['email'] == $data['email']
-      && $searchResult['password'] == $data['password']) {
-    $data['valid'] = true;
-    $data['name'] = $searchResult['name'];
-    }
+
+ // valid when:
+ //
+ // * both input fields are filled
+ // * emails and passwords match
+function authenticateUser($email, $password) {
+  $searchResult = findUserByEmailSql($email);
+  if (empty($searchResult) || ($searchResult['password'] != $password)) {
+    return NULL;
   }
-  else $data['valid'] = false;
-  return $data;
+  else if ($searchResult['email'] == $email
+        && $searchResult['password'] == $password) {
+    return array('name' => $searchResult['name'], 'valid' => true);
+  }
+  else return NULL;
 }
 
 // valid when:

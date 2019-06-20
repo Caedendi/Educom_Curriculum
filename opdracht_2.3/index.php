@@ -8,6 +8,10 @@ include 'navbar.php';
 include 'formfield.php';
 include './users/userdata_management.php';
 include './users/userdata_source.php';
+include './users/session_manager.php';
+include './pages/login.php';
+include './pages/register.php';
+include './pages/contact.php';
 //==============================================
 // MAIN APP
 //==============================================
@@ -21,9 +25,9 @@ showResponsePage($data);
 function getRequestedPage() {
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") {
-    $requestedPage = testInput(getPostVar('page', 'home')); }
+    $requestedPage = testInput(getPostValue('page', 'home')); }
   else if ($requestType == "GET") {
-    $requestedPage = testInput(getUrlVar('page', 'home')); }
+    $requestedPage = testInput(getUrlValue('page', 'home')); }
   return $requestedPage;
 }
 
@@ -31,111 +35,61 @@ function validateRequest($page) {
   $data = array('page' => $page);
   $requestType = $_SERVER["REQUEST_METHOD"];
   if ($requestType == "POST") {
-    //==============================
-    // Validate login page
-    //==============================
-    if ($data['page'] == "login") {
-      /* JH: Onderstaande 5 regels moeten in login.php in een functie validateLoginForm() */
-      $data['email'] = testInput(getPostVar('email'));
-      $data['password'] = testInput(getPostVar('password'));
-      empty($data['email']) ? $data['emailError'] = "Email address required" : $data['emailError'] = "";
-      empty($data['password']) ? $data['passwordError'] = "Password required" : $data['passwordError'] = "";
-      $data = validateLogin($data);
-      if($data['valid']) { // set session variables name and email, redirect to homepage
-        /* JH TIP: Laat alle interactie met $_SESSION lopen via 1 php file, bijv. session_manager.php met functies als: loginUser($name, $email), isUserLoggedIn(), getLoggedInUserName(), logoutUser() etc */
-        $_SESSION['user_name'] = $data['name'];
-        $_SESSION['user'] = $data['email'];
-        $data['page'] = "home";
-      }
-      else {
-        $data['newLogin'] = false;
-      }
-    } // end POST login
-    //==============================
-    // Validate register page
-    //==============================
-    else if ($page == "register") {
-      /* JH: Onderstaande 9 regels zouden in een functie validateRegisterForm() in register.php moeten komen */
-      $data['name'] = testInput(getPostVar('name'));
-      $data['email'] = testInput(getPostVar('email'));
-      $data['password'] = testInput(getPostVar('password'));
-      $data['passwordRepeat'] = testInput(getPostVar('passwordRepeat'));
-      empty($data['name']) ? $data['nameError'] = "Name required" : $data['nameError'] = "";
-      empty($data['email']) ? $data['emailError'] = "Email address required" : $data['emailError'] = "";
-      empty($data['password']) ? $data['passwordError'] = "Password required" : $data['passwordError'] = "";
-      empty($data['passwordRepeat']) ? $data['passwordRepeatError'] = "Please repeat password" : $data['passwordRepeatError'] = "";
-      $data = validateRegister($data);
-      if($data['valid']) { // store new user, show thanks + submitted info
-        storeUser($data['name'], $data['email'], $data['password']);
-        $data['newLogin'] = true;
-        $data['page'] = "login";
-      }
-      else {
-        $data['newRegister'] = false;
-      }
-    } // end POST register
-    //==============================
-    // Validate contact page
-    //==============================
-    else if ($page == "contact") {
-      /* Onderstaande 6 regels zouden in de validateContactForm() in contact.php moeten komen */
-      $data['name'] = testInput(getPostVar('name'));
-      $data['email'] = testInput(getPostVar('email'));
-      $data['message'] = testInput(getPostVar('message'));
-      empty($data['name']) ? $data['nameError'] = "Name required" : $data['nameError'] = "";
-      empty($data['email']) ? $data['emailError'] = "Email address required" : $data['emailError'] = "";
-      empty($data['message']) ? $data['messageError'] = "Please type your message" : $data['messageError'] = "";
-      $data = validateContactForm($data);
-      if ($data['valid']) { // show thanks message + submitted info
-        $data['page'] = "thanks";
-      }
-      else {
-        $data['newContactForm'] = false;
-      }
-    }
+    switch ($data['page']) {
+      case "login":
+        $data = validateLoginForm($data);
+        if($data['valid']) {
+          loginUser($data['name'], $data['email']);
+          $data['page'] = "home";
+        }
+      break;
+      //==============================
+      // Validate register page
+      //==============================
+      case "register":
+        /* JH: Onderstaande 9 regels zouden in een functie validateRegisterForm() in register.php moeten komen */
+        $data['name'] = testInput(getPostValue('name'));
+        $data['email'] = testInput(getPostValue('email'));
+        $data['password'] = testInput(getPostValue('password'));
+        $data['passwordRepeat'] = testInput(getPostValue('passwordRepeat'));
+        empty($data['name']) ? $data['nameError'] = "Name required" : $data['nameError'] = "";
+        empty($data['email']) ? $data['emailError'] = "Email address required" : $data['emailError'] = "";
+        empty($data['password']) ? $data['passwordError'] = "Password required" : $data['passwordError'] = "";
+        empty($data['passwordRepeat']) ? $data['passwordRepeatError'] = "Please repeat password" : $data['passwordRepeatError'] = "";
+        $data = validateRegister($data);
+        if($data['valid']) { // store new user, show thanks + submitted info
+          storeUser($data['name'], $data['email'], $data['password']);
+          $data['newLogin'] = true;
+          $data['page'] = "login";
+        }
+      break;
+      //==============================
+      // Validate contact page
+      //==============================
+      case "contact":
+        /* Onderstaande 6 regels zouden in de validateContactForm() in contact.php moeten komen */
+        $data['name'] = testInput(getPostValue('name'));
+        $data['email'] = testInput(getPostValue('email'));
+        $data['message'] = testInput(getPostValue('message'));
+        empty($data['name']) ? $data['nameError'] = "Name required" : $data['nameError'] = "";
+        empty($data['email']) ? $data['emailError'] = "Email address required" : $data['emailError'] = "";
+        empty($data['message']) ? $data['messageError'] = "Please type your message" : $data['messageError'] = "";
+        $data = validateContactForm($data);
+        if ($data['valid']) {
+          $data['page'] = "contact_thanks";
+        }
+      break;
+    } // end switch
   } // end if POST
-  //==============================
-  // Do GET stuff
-  //==============================
   else if ($requestType == "GET") {
-    /* JH: Maak hier ook een switch-case van */
-    if ($data['page'] == "login") {
-      /* JH: Maak van onderstaande 6 regels een functie of gebruik getArrayValue */
-      $data['email'] = "";
-      $data['password'] = "";
-      $data['newLogin'] = true;
-      $data['emailError'] = "";
-      $data['passwordError'] = "";
-      $data['emailError'] = "";
-      $data['passwordError'] = "";
-    }
-    else if ($data['page'] == "register") {
-      $data['name'] = "";
-      $data['email'] = "";
-      $data['password'] = "";
-      $data['passwordRepeat'] = "";
-      $data['newRegister'] = true;
-      $data['nameError'] = "";
-      $data['emailError'] = "";
-      $data['passwordError'] = "";
-      $data['passwordRepeatError'] = "";
-    }
-    else if ($data['page'] == "contact") {
-      $data['name'] = "";
-      $data['email'] = "";
-      $data['message'] = "";
-      $data['newContactForm'] = true;
-      $data['nameError'] = "";
-      $data['emailError'] = "";
-      $data['messageError'] = "";
-    }
-    else if ($data['page'] == "logout") {
-      session_unset();
-      session_destroy();
-      $data['page'] = "home";
+    switch ($data['page']) {
+      case "logout":
+        logoutUser();
+        $data['page'] = "home";
+        break;
     }
   } // end if GET
-  return $data;
+  return $data; // end validateRequest()
 }
 
 function showResponsePage($data) {
@@ -166,7 +120,6 @@ function showMainContent($data) {
       showAboutContent();
       break;
     case 'contact':
-      include './pages/contact.php';
       showContactContent($data);
       break;
     case 'thanks':
@@ -183,11 +136,9 @@ function showMainContent($data) {
       }
       break;
     case 'login':
-      include './pages/login.php';
       showLoginContent($data);
       break;
     case 'register':
-      include './pages/register.php';
       showRegisterContent($data);
       break;
     default:
@@ -197,17 +148,17 @@ function showMainContent($data) {
   showMainBodyEnd();
 }
 
-function getPostVar($key, $default='') {
+function getPostValue($key, $default='') {
   $value = filter_input(INPUT_POST, $key);
   return isset($value) ? $value : $default;
 }
 
-function getUrlVar($key, $default='') {
+function getUrlValue($key, $default='') {
   $value = filter_input(INPUT_GET, $key);
   return isset($value) ? $value : $default;
 }
 
-function getArrayVar($array, $key, $default='') {
+function getArrayValue($array, $key, $default='') {
   return isset($array[$key]) ? $array[$key] : $default;
 }
 
