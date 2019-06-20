@@ -7,7 +7,7 @@ function showFormStart($page) {
       <!-- displays error messages above form input fields if applicable -->
         <p class="errorMessage"></p>
       <form method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">
-        <input class ="'. $page . '" type="hidden" name="page" value="' . $page . '"> <!-- to redirect back to contact page instead of home -->
+        <input class ="'. $page . '" type="hidden" name="page" value="' . $page . '"> <!-- to redirect back to current page instead of home -->
   ';
 }
 

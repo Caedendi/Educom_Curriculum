@@ -5,14 +5,6 @@ function showSqlContent($data) {
   ';
 
 
-  echo "<br><br><br>";
-  $link = connectToDatabase();
-  foreach ($link as $key => $value) {
-    echo "$key => $value" . "<br>";
-  }
-  print_r($link);
-
-  echo "<br><br><br>";
 
   $userData = findUserByEmailSql("hoi@hoi.nl");
 
@@ -22,7 +14,17 @@ function showSqlContent($data) {
       echo "$key => $value" . "<br>";
     }
   } else {
-    echo "[hoi2] userData is empty: ". gettype($userData);
+    echo "userData is empty. Type = ". gettype($userData);
+  }
+
+  echo '<br>';
+  $testresult = authenticateUserLogin("hoi@hoi.nl", "hoi");
+  if ($testresult) {
+    foreach ($testresult as $key => $value) {
+      echo "$key => $value" . "<br>";
+    }
+  } else {
+    echo "userData is empty. Type = ". gettype($testresult);
   }
 }
 ?>
