@@ -27,9 +27,12 @@ function connectToDatabase() {
 //
 // rewritten findUserByEmail() method that searches the database
 function findUserByEmailSql($email) {
-  $userData = ""; /* JH: = NULL */
+  $userData = NULL;
   $link = connectToDatabase();
   if (empty($link)) {
+    //===================
+    // TO DO: try/catch
+    //===================
     echo '[hoi1] connection failed';
     return $userData;
   }
