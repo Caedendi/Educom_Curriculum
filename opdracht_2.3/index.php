@@ -43,23 +43,10 @@ function validateRequest($page) {
           $data['page'] = "home";
         }
       break;
-      //==============================
-      // Validate register page
-      //==============================
       case "register":
-        /* JH: Onderstaande 9 regels zouden in een functie validateRegisterForm() in register.php moeten komen */
-        $data['name'] = testInput(getPostValue('name'));
-        $data['email'] = testInput(getPostValue('email'));
-        $data['password'] = testInput(getPostValue('password'));
-        $data['passwordRepeat'] = testInput(getPostValue('passwordRepeat'));
-        empty($data['name']) ? $data['nameError'] = "Name required" : $data['nameError'] = "";
-        empty($data['email']) ? $data['emailError'] = "Email address required" : $data['emailError'] = "";
-        empty($data['password']) ? $data['passwordError'] = "Password required" : $data['passwordError'] = "";
-        empty($data['passwordRepeat']) ? $data['passwordRepeatError'] = "Please repeat password" : $data['passwordRepeatError'] = "";
-        $data = validateRegister($data);
+        $data = validateRegisterForm($data);
         if($data['valid']) { // store new user, show thanks + submitted info
           storeUser($data['name'], $data['email'], $data['password']);
-          $data['newLogin'] = true;
           $data['page'] = "login";
         }
       break;
