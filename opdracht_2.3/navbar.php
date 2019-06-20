@@ -35,6 +35,9 @@ function showMenuItem($linkParameter, $buttonLabel, $navButtonClass, $page) {
       if ($page == $linkParameter) { echo 'class="active" '; }
       echo 'href="index.php?page=' . $linkParameter . '">' . $buttonLabel . '</a></li>
   ';
-  /* JH: TIP de width in de navButtonClass gaat je later nog in de problemen geven, beter om de brouwser die te laten bepalen en hier alleen een class toevoegen voor de buttons die rechts moeten worden uitgelijnd */
+  /* JH: TIP de width in de navButtonClass gaat je later nog in de problemen geven,
+        beter om de brouwser die te laten bepalen en hier alleen een class toevoegen
+        voor de buttons die rechts moeten worden uitgelijnd */
+  // nog niet naar gekeken
 }
 ?>
