@@ -38,23 +38,38 @@ function validateRequest($page) {
   if ($requestType == "POST") {
     switch ($data['page']) {
       case "login":
-        $data = validateLoginForm($data);
-        if($data['valid']) { // login user, show home page
-          loginUser($data['name'], $data['email']);
-          $data['page'] = "home";
+        try {
+          $data = validateLoginForm($data);
+          if($data['valid']) { // login user, show home page
+            loginUser($data['name'], $data['email']);
+            $data['page'] = "home";
+          }
+        }
+        catch(Exception $e) {
+          echo 'Message: ' . $e->getMessage();
         }
       break;
       case "register":
-        $data = validateRegisterForm($data);
-        if($data['valid']) { // store new user, show login page
-          storeUser($data['name'], $data['email'], $data['password']);
-          $data['page'] = "login";
+        try {
+          $data = validateRegisterForm($data);
+          if($data['valid']) { // store new user, show login page
+            storeUser($data['name'], $data['email'], $data['password']);
+            $data['page'] = "login";
+          }
+        }
+        catch(Exception $e) {
+          echo 'Message: ' . $e->getMessage();
         }
       break;
       case "contact":
-        $data = validateContactForm($data);
-        if ($data['valid']) {
-          $data['page'] = "contact_thanks";
+        try {
+          $data = validateContactForm($data);
+          if ($data['valid']) {
+            $data['page'] = "contact_thanks";
+          }
+        }
+        catch(Exception $e) {
+          echo 'Message: ' . $e->getMessage();
         }
       break;
     } // end switch POST

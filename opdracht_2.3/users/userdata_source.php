@@ -1,16 +1,12 @@
 <?php
 function connectToDatabase() {
-
-  // TO DO: TRY CATCH
-
   $server = "localhost";
   $username = "educom1";
-  $password = "monitor";
+  $password = "monitor1";
   $database = "educom";
   $link = mysqli_connect($server, $username, $password, $database);
   if (!$link) {
-    echo "<br>";
-    echo "Error: Unable to connect to MySQL." . "<br>";
+    throw new Exception("Unable to connect to database");
     echo "Debugging errno: " . mysqli_connect_errno() . "<br>";
     echo "Debugging error: " . mysqli_connect_error() . "<br>";
     return $link;
@@ -22,16 +18,21 @@ function connectToDatabase() {
 
 function findUserByEmailSql($email) {
   $userData = NULL;
-  $link = connectToDatabase();
-  $sql = '
-    SELECT *
-    FROM users
-    WHERE email="'. $email . '"
-  ';
-  $result = mysqli_query($link, $sql);
-  $userData = mysqli_fetch_assoc($result);
-  mysqli_close($link);
-  return $userData;
+  try {
+    $link = connectToDatabase();
+    $sql = '
+      SELECT *
+      FROM users
+      WHERE email="'. $email . '"
+    ';
+    $result = mysqli_query($link, $sql);
+    $userData = mysqli_fetch_assoc($result);
+    mysqli_close($link);
+    return $userData;
+  }
+  catch(Exception $e) {
+    echo 'Message: ' . $e->getMessage();
+  }
 }
 
 function saveUserToDatabase($name, $email, $password) {

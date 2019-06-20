@@ -21,13 +21,18 @@ function validateLoginForm($data) {
     empty($data['password']) ? $data['passwordError'] = "Password required" : $data['passwordError'] = "";
   }
   else {
-    $result = authenticateUserLogin($data['email'], $data['password']);
-    if ($result) {
-      $data['valid'] = $result['valid'];
-      $data['name'] = $result['name'];
+    try {
+      $result = authenticateUserLogin($data['email'], $data['password']);
+      if ($result) {
+        $data['valid'] = $result['valid'];
+        $data['name'] = $result['name'];
+      }
+      else {
+        $data['emailError'] = "Incorrect email and/or password";
+      }
     }
-    else {
-      $data['emailError'] = "Incorrect email and/or password";
+    catch(Exception $e) {
+      echo 'Message: ' . $e->getMessage();
     }
   }
   return $data;
