@@ -2,6 +2,7 @@
 //==============================================
 // INCLUDES
 //==============================================
+include 'custom_exceptions.php';
 include 'debug_config.php';
 include 'functions.php';
 include 'html.php';
@@ -133,6 +134,10 @@ function showMainContent($data) {
       break;
     case 'register':
       showRegisterContent($data);
+      break;
+    case 'technical_error':
+      include './pages/technical_error.php';
+      showTechnicalErrorContent();
       break;
     default:
       echo "Page [".$data['page']."] not found.";

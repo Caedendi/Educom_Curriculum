@@ -6,10 +6,9 @@ function connectToDatabase() {
   $database = "educom";
   $link = mysqli_connect($server, $username, $password, $database);
   if (!$link) {
-    throw new Exception("Unable to connect to database");
+    throw new DatabaseConnectionException("Unable to connect to database");
     echo "Debugging errno: " . mysqli_connect_errno() . "<br>";
     echo "Debugging error: " . mysqli_connect_error() . "<br>";
-    return $link;
   }
   else echo "Verbonden" . "<br>";
   echo "Host information: " . mysqli_get_host_info($link) . "<br>";
@@ -27,11 +26,14 @@ function findUserByEmailSql($email) {
     ';
     $result = mysqli_query($link, $sql);
     $userData = mysqli_fetch_assoc($result);
-    mysqli_close($link);
-    return $userData;
   }
   catch(Exception $e) {
     echo 'Message: ' . $e->getMessage();
+    throw $e;
+  }
+  finally {
+    mysqli_close($link);
+    return $userData;
   }
 }
 
