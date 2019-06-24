@@ -59,8 +59,9 @@ function validateRequest($page) {
             $data['page'] = "login";
           }
         }
-        catch(Exception $e) {
-          echo 'Message: ' . $e->getMessage();
+        catch(DatabaseConnectionException $e) {
+          $data['page'] = "technical_error";
+          // echo 'Message: ' . $e->getMessage();
         }
       break;
       case "contact":

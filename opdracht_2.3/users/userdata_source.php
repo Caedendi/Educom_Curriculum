@@ -10,8 +10,8 @@ function connectToDatabase() {
     // echo "Debugging errno: " . mysqli_connect_errno() . "<br>";
     // echo "Debugging error: " . mysqli_connect_error() . "<br>";
   }
-  else echo "Verbonden" . "<br>";
-  echo "Host information: " . mysqli_get_host_info($link) . "<br>";
+  // else echo "Verbonden" . "<br>";
+  // echo "Host information: " . mysqli_get_host_info($link) . "<br>";
   return $link;
 }
 
@@ -34,18 +34,22 @@ function findUserByEmailSql($email) {
 }
 
 function saveUserToDatabase($name, $email, $password) {
-  $link = connectToDatabase();
-  $sql = '
-    INSERT INTO users (email, password, name)
-    VALUES ("'.$email.'", "'.$password.'", "'.$name.'")
-  ';
-  if (mysqli_query($link, $sql)) {
-    // echo "GEREGISTREERD IN DATABASE YO<br>";
+  try {
+    $link = connectToDatabase();
+    $sql = '
+      INSERT INTO users (email, password, name)
+      VALUES ("'.$email.'", "'.$password.'", "'.$name.'")
+    ';
+    if (mysqli_query($link, $sql)) {
+      // echo "Geregistreerd in database<br>";
+    }
+    else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($link);
+    }
   }
-  else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($link);
+  finally {
+    mysqli_close($link);
   }
-  mysqli_close($link);
 }
 
 //==============================
