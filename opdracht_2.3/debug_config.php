@@ -1,5 +1,5 @@
 <?php
-$DEBUG = true;
+$DEBUG = false;
 
 if ($DEBUG) {
   define("DEBUG_TEST_PAGE", true);
