@@ -1,7 +1,5 @@
 to do:
 
-try/catch wanneer verbinding database niet lukt (zie foto bord uitleg)
-
 verwerken feedback 2.2:
 doc style comments boven functies (zie userdata_management.php)
 

@@ -65,14 +65,9 @@ function validateRequest($page) {
         }
       break;
       case "contact":
-        try {
-          $data = validateContactForm($data);
-          if ($data['valid']) {
-            $data['page'] = "contact_thanks";
-          }
-        }
-        catch(Exception $e) {
-          echo 'Message: ' . $e->getMessage();
+        $data = validateContactForm($data);
+        if ($data['valid']) {
+          $data['page'] = "contact_thanks";
         }
       break;
     } // end switch POST
