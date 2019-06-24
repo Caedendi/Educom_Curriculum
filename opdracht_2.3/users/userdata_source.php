@@ -2,13 +2,13 @@
 function connectToDatabase() {
   $server = "localhost";
   $username = "educom1";
-  $password = "monitor1";
+  $password = "monitor";
   $database = "educom";
   $link = mysqli_connect($server, $username, $password, $database);
   if (!$link) {
     throw new DatabaseConnectionException("Unable to connect to database");
-    echo "Debugging errno: " . mysqli_connect_errno() . "<br>";
-    echo "Debugging error: " . mysqli_connect_error() . "<br>";
+    // echo "Debugging errno: " . mysqli_connect_errno() . "<br>";
+    // echo "Debugging error: " . mysqli_connect_error() . "<br>";
   }
   else echo "Verbonden" . "<br>";
   echo "Host information: " . mysqli_get_host_info($link) . "<br>";
@@ -26,14 +26,10 @@ function findUserByEmailSql($email) {
     ';
     $result = mysqli_query($link, $sql);
     $userData = mysqli_fetch_assoc($result);
-  }
-  catch(Exception $e) {
-    echo 'Message: ' . $e->getMessage();
-    throw $e;
+    return $userData;
   }
   finally {
     mysqli_close($link);
-    return $userData;
   }
 }
 

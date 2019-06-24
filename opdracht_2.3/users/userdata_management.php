@@ -13,20 +13,15 @@
  // * both input fields are filled
  // * emails and passwords match
 function authenticateUserLogin($email, $password) {
-  try {
-    $searchResult = findUserByEmailSql($email);
-    if (empty($searchResult) || ($searchResult['password'] != $password)) {
-      return NULL;
-    }
-    else if ($searchResult['email'] == $email
-          && $searchResult['password'] == $password) {
-      return array('name' => $searchResult['name'], 'valid' => true);
-    }
-    else return NULL;
+  $searchResult = findUserByEmailSql($email);
+  if (empty($searchResult) || ($searchResult['password'] != $password)) {
+    return NULL;
   }
-  catch(Exception $e) {
-    echo 'Message: ' . $e->getMessage();
+  else if ($searchResult['email'] == $email
+        && $searchResult['password'] == $password) {
+    return array('name' => $searchResult['name'], 'valid' => true);
   }
+  else return NULL;
 }
 
 function storeUser($name, $email, $password) {

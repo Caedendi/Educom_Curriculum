@@ -31,8 +31,9 @@ function validateLoginForm($data) {
         $data['emailError'] = "Incorrect email and/or password";
       }
     }
-    catch(Exception $e) {
-      echo 'Message: ' . $e->getMessage();
+    catch(DatabaseConnectionException $e) {
+      // echo 'Message: ' . $e->getMessage();
+      throw $e;
     }
   }
   return $data;
