@@ -20,7 +20,4 @@ function testInput($value) {
   $value = htmlspecialchars($value);
   return $value;
 }
-
-//implement mysqli_real_escape_string() in post values
-
 ?>

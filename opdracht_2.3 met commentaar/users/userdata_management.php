@@ -19,6 +19,7 @@ function authenticateUserLogin($email, $password) {
   }
   else if ($searchResult['email'] == $email
         && $searchResult['password'] == $password) {
+    /* JH: Deze if is overbodig, je hebt immers alleen de user met het betreffende email adres en het password is al gecontroleerd om overeen te komen */
     return array('name' => $searchResult['name'], 'valid' => true);
   }
   else return NULL;

@@ -1,5 +1,5 @@
 <?php
-function showHtmlStart() {
+function showStartHtml() {
   echo '
   <!DOCTYPE html>
     <html>
@@ -9,7 +9,7 @@ function showHtmlStart() {
 function showHeadSection() {
   echo '
   <head>
-    <title>Opdracht 3.1.php</title>
+    <title>Opdracht 2.3.php</title>
     <link rel="stylesheet" type="text/css" href="./css/FirstExternalSheet.css">
   </head>
   ';
@@ -23,22 +23,21 @@ function showBodyStart() {
 
 function showHeader($page) {
   echo '
-    <header>
-      <h1>'. ucfirst($page) . '</h1>
-    </header>
+    <h1 class="header">'. ucfirst($page) . '</h1>
   ';
 }
 
-function showMainContentStart() {
+function showMainBodyStart() {
   echo '
     <div class="mainBody">
   ';
 }
 
-function showMainContentEnd() {
+function showMainBodyEnd() {
   echo '
     </div> ' /* mainBody */ . '
   ';
+  /* JH: Wat doet die comment in deze string, deze wordt niet naar de brouwser gestuurd hoor */
 }
 
 function showBodyEnd() {
@@ -61,12 +60,5 @@ function showHtmlEnd() {
   echo '
     </html>
   ';
-}
-
-function showUnderConstruction() {
-    echo '
-      <h2 style="color:black;font-weight:bold;text-align:center;">Under construction</h2>
-      <p>' . LOREM_IPSUM . '</p>
-    ';
 }
 ?>

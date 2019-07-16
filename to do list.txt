@@ -1,6 +1,22 @@
 to do:
 
 verwerken feedback 2.2:
-doc style comments boven functies (zie userdata_management.php)
+* doc style comments boven functies (zie userdata_management.php)
 
-include_once implementeren
+verwerken feedback 2.3:
+* login.php: ongebruikte exceptie catch
+* custom_exceptions definiëren
+* htmlspecialchars() en mysqli_real_escape_string() toepassen
+
+implementeer deleteUserFromDatabase() in userdate_source.php
+
+sanitize echoes with htmlspecialchars();
+https://stackoverflow.com/questions/129677/how-can-i-sanitize-user-input-with-php
+
+Werken aan 3.1:
+* shopping cart
+  ** knop afrekenen herpositioneren + totaalprijs
+  ** vouchercode veld maken en positioneren
+
+
+afbeeldingen veranderen naar _small _medium in webshop en detail menus

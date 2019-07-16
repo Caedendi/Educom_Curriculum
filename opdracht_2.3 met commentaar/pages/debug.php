@@ -1,4 +1,5 @@
 <?php
+  /* JH: ALs je dit soort debug wil doen, is het beter om een losse PHP pagina te maken (iets als userdata_source_test.php) die geen gebruik maakt van de index.php als ingang */
 function showSqlContent($data) {
   echo '
     <p>DEBUG TEST PAGE</p>

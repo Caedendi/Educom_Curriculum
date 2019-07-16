@@ -1,0 +1,180 @@
+.detailsField { /* copied from formfield */
+   border-radius: 10px;
+   background-color: lightgray;
+   padding: 25px;
+   margin: 0px 25px;
+ }
+
+ /*
+  * productnaam: boven kader
+  */
+ .detailsField p.name {
+   float: left;
+   width: 50%;
+   color: OrangeRed;
+   padding: 0px 0px 0px 25px;
+   font-size: 30px;
+   font-weight: bold;
+ }
+
+ .detailsField p.price {
+   float: right;
+   width: 50%;
+   text-align: right;
+   display: inline-block;
+   color: Green;
+   padding: 0px 25px 0px 0px;
+   font-size: 30px;
+   font-weight: bold;
+   /* clear: both; */
+ }
+
+ /*
+  * item consists of a field called detailsItem
+  * that field is divided into another 3 fields:
+  * - detailsItemImage (left, enlarged)
+  * - detailsItemPrice (right, pricing/cart actions)
+  * - detailsItemInfo (beneath, description)
+  */
+
+/*
+ * in kader:
+ * links: afbeelding vergroot
+ * rechts: productinfo prijs, add to cart
+ * onder: omschrijving
+ */
+.detailsField .detailsItem {
+  background-color: white;
+  width: 100%;
+  display: inline-block;
+  /* margin: 20px, 0px; */
+  overflow: hidden;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 10px;
+}
+
+.detailsField .detailsItem .horizontalWrapper {
+  display: inline-block;
+  float: left;
+  width: 100%;
+}
+
+.detailsField .detailsItem .horizontalWrapper .detailsItemImage {
+  display: inline-block;
+  float: left;
+  padding: 15px;
+  width: 40%;
+}
+
+.detailsField .detailsItem .horizontalWrapper .detailsItemInfo {
+  display: inline-block;
+  float: left;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  width: 60%;
+  /* top: 0;
+  bottom: 0; */
+}
+
+.detailsField .detailsItem .detailsItemPrice {
+  display: block;
+  float: left;
+  /* margin-left: auto;
+  margin-right: auto; */
+  width: 40%;
+  /* vertical-align: bottom; */
+  /* top: 0;
+  bottom: 0; */
+}
+
+/*
+ * field 1: image (left)
+ */
+.detailsField .detailsItemImage img {
+  display: inline-block;
+  float: left;
+  max-width: 100%;
+  /*
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%; */
+}
+
+/*
+ * field 2: pricing and cart info (right)
+ */
+ /*
+.detailsField .detailsItemPrice p.price {
+  float: right;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  color: Green;
+  font-size: 36px;
+  font-weight: bold;
+  clear: both;
+}
+*/
+
+.detailsField .detailsItemPrice label.amount {
+  display: block;
+  float: left;
+  text-align: right;
+  width: 25%;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  color: orange;
+  font-size: 14px;
+}
+
+.detailsField .detailsItemPrice input.amount {
+  display: block;
+  float: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 60px;
+
+}
+
+.detailsField .detailsItemPrice input[type=submit] {
+  display: inline-block;
+  float: right;
+  padding: 10px;
+  margin: 0px;
+  /* border: 0px; */
+  width: 50%;
+}
+
+/*
+ * field 3: description (beneath)
+ */
+.detailsField .detailsItemInfo h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: OrangeRed;
+}
+
+.detailsField .detailsItemInfo p.description {
+  float: left;
+  font-size: 14px;
+  color: gray;
+}
+
+.detailsField .detailsItemInfo p.descriptionMore {
+  float: left;
+  font-size: 14px;
+  color: gray;
+}
+
+/*
+ * extra: extends field over whole webshop section
+ */
+ .detailsField:after {
+   content: "";
+   display: table;
+   clear: left;
+ }

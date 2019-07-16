@@ -18,6 +18,7 @@ function getLoggedInUserName() {
     return NULL;
   }
 }
+/* JH TIP: Maak ook een functie getLoggedInUserFirstName() om te gebruiken in het menu */
 
 function getLoggedInUserEmail() {
   if (isUserLoggedIn()) {

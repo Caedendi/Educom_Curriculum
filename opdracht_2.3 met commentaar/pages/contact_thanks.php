@@ -1,5 +1,5 @@
 <?php
-function showContact_ThanksContent($data) {
+function showThanksContent($data) {
   echo '
     <!-- Shows all entered input if input is correct -->
     <p class="thanksMessage">Bedankt voor uw bericht. Er zal zo spoedig mogelijk contact met u worden opgenomen.<br><br></p>
