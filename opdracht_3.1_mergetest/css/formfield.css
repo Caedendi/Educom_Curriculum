@@ -1,0 +1,70 @@
+.formField, .loginField, .registerField {
+  border-radius: 10px;
+  background-color: lightgray;
+  padding: 25px;
+  /* margin: 0px 25px; */
+}
+
+/* alters message " * Required field" */
+.formField p.required, .loginField p.required, .registerField p.required {
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0px 0px 20px 5px;
+}
+
+/* alters eventual error messages displayed above form */
+p.errorMessage {
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.formRow {
+  margin: 5px 0px;
+}
+
+.formRow label {
+  display: inline-block;
+  float: left;
+  width: 15%;
+}
+
+.formRow input, .formRow textarea {
+  float: left;
+}
+
+/* colors asterisks next to form input fields */
+span.required {
+  padding: 5px 0px 0px 10px;
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+input.contact, textarea.contact {
+  width: 400px;
+}
+
+input.login, input.register {
+  width: 250px;
+}
+
+input[type=submit] {
+  width: auto;
+  margin: 0% 15%;
+  float: left;
+}
+
+/* extends field over whole formfield section */
+.formRow:after {
+  content: "";
+  display: table;
+  clear: left;
+}
+
+/* section below formfield that shows submitted values and thanks message */
+p.thanksMessage {
+  color: black;
+  font-size: 18px;
+}
