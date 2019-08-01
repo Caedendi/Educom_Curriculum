@@ -1,0 +1,204 @@
+.cartField { /* copied from formfield */
+   border-radius: 10px;
+   background-color: lightgray;
+   padding: 25px;
+   margin: 0px 25px;
+ }
+
+.cartField .cartItem,
+.cartField .totalField,
+.cartField .voucherField {
+  background-color: white;
+  display: block;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0px 0px 5px 0px;
+}
+
+.cartField .cartItem {
+  width: 100%;
+}
+
+/* .voucherField, .totalField {
+  display: inline;
+} */
+
+/* .cartField .voucherField {
+  width: 50%;
+  float: left;
+} */
+
+.cartField .totalField {
+  width: 40%;
+  top: 0;
+  bottom: 0;
+  /* display: inline; */
+  /* float: right;
+  clear: right; */
+
+}
+
+.totalField .totalContents {
+  padding: 15px;
+}
+
+.totalField p.total {
+  color: Green;
+  font-weight: bold;
+}
+
+/* .cartField .voucherField  .voucherInput {
+  display: inline-block;
+  float: left;
+  padding: 15px;
+
+} */
+
+.cartField .cartItem .cartItemImage {
+  display: inline-block;
+  float: left;
+  padding: 15px;
+  width: 15%;
+}
+
+.cartField .cartItem .cartItemAmount {
+  display: inline-block;
+  float: left;
+  padding: 15px;
+  width: 65%;
+}
+
+.cartField .cartItem .cartItemPrice {
+  display: inline-block;
+  float: right;
+  padding: 15px;
+  width: 20%;
+  top: 0;
+  bottom: 0; /* align whole section to bottom of item */
+}
+
+/*
+ * field 1: image
+ */
+.cartField .cartItemImage img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+
+/*
+ * field 2: item info
+ */
+ .cartField .cartItemAmount a.name p {
+   float: right;
+   width: 100%;
+   color: OrangeRed;
+   font-size: 20px;
+   font-weight: bold;
+ }
+
+.cartField .cartItemAmount label.amount {
+  display: block;
+  float: left;
+  text-align: left;
+  width: 15%;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  /* color: OrangeRed; */
+  font-size: 18px;
+  /* font-weight: bold; */
+}
+
+.cartField .cartItemAmount input.amount {
+  display: block;
+  float: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 60px;
+  height: 41px;
+  text-align: center;
+}
+
+.cartField .voucherField input.voucher {
+  display: block;
+  float: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  height: 41px;
+  /* width: 60px; */
+}
+
+
+/* .cartField .cartItemAmount input[type=submit],
+.cartField .voucherField input[type=submit],
+.cartField .totalField input[type=submit], */
+.cartField input[type=submit] {
+  display: inline-block;
+  float: left;
+  padding: 10px;
+  margin: 0px;
+  /* border: 0px; */
+  /* width: 18%; */
+}
+
+.cartField #empty {
+  /* , .cartField #order { */
+  float: right;
+}
+
+
+
+ /*
+  * field 3: pricing
+  */
+ .cartField .cartItemPrice p.price {
+   float: right;
+   width: 100%;
+   text-align: center;
+   display: inline-block;
+   color: Green;
+   font-size: 20px;
+   font-weight: bold;
+   /* clear: both; */
+ }
+
+ /* .cartField .cartItemPrice label.amount {
+   display: block;
+   float: left;
+   text-align: right;
+   width: 50%;
+   padding-top: 10px;
+   padding-bottom: 20px;
+   padding-right: 20px;
+   color: orange;
+   font-size: 14px;
+ } */
+
+ .cartField .cartItemPrice input.amount {
+   display: block;
+   float: left;
+   padding-top: 8px;
+   padding-bottom: 8px;
+   width: 60px;
+
+ }
+
+ .cartField .cartItemPrice input[type=submit] {
+   display: inline-block;
+   float: right;
+   padding: 10px;
+   margin: 0px;
+   /* border: 0px; */
+   width: 100%;
+ }
+
+ /* extends field over whole cart section */
+ .cartField:after {
+   content: "";
+   display: table;
+   clear: left;
+ }
