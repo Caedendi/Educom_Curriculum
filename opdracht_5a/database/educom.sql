@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 01, 2019 at 08:02 AM
+-- Generation Time: Jul 16, 2019 at 05:37 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.1.30
 
@@ -44,17 +44,7 @@ INSERT INTO `orders` (`id`, `user_id`, `date_ordered`, `date_modified`, `status`
 (10, 4, '2019-07-12 13:43:48', '2019-07-12 13:43:48', 'new'),
 (11, 4, '2019-07-12 13:46:59', '2019-07-12 13:46:59', 'new'),
 (12, 4, '2019-07-12 14:07:07', '2019-07-12 14:07:07', 'new'),
-(13, 4, '2019-07-16 09:26:58', '2019-07-16 09:26:58', 'new'),
-(14, 4, '2019-07-17 22:47:43', '2019-07-17 22:47:43', 'new'),
-(15, 4, '2019-07-29 18:03:16', '2019-07-29 18:03:16', 'new'),
-(16, 4, '2019-07-29 18:04:58', '2019-07-29 18:04:58', 'new'),
-(17, 4, '2019-07-29 18:07:42', '2019-07-29 18:07:42', 'new'),
-(18, 4, '2019-07-29 18:08:48', '2019-07-29 18:08:48', 'new'),
-(19, 4, '2019-07-29 18:09:46', '2019-07-29 18:09:46', 'new'),
-(20, 4, '2019-07-29 18:14:52', '2019-07-29 18:14:52', 'new'),
-(21, 4, '2019-07-29 18:15:37', '2019-07-29 18:15:37', 'new'),
-(22, 4, '2019-07-29 18:18:05', '2019-07-29 18:18:05', 'new'),
-(23, 4, '2019-07-29 18:27:56', '2019-07-29 18:27:56', 'new');
+(13, 4, '2019-07-16 09:26:58', '2019-07-16 09:26:58', 'new');
 
 -- --------------------------------------------------------
 
@@ -82,34 +72,7 @@ INSERT INTO `orders_products` (`id`, `order_id`, `product_id`, `quantity`, `pric
 (5, 11, 2, 8, '0.15'),
 (6, 12, 1, 1, '0.09'),
 (7, 13, 2, 23, '0.15'),
-(8, 13, 3, 24, '12.85'),
-(9, 14, 2, 15, '0.15'),
-(10, 14, 3, 23, '12.85'),
-(11, 15, 1, 3, '0.09'),
-(12, 15, 2, 2, '0.15'),
-(13, 16, 1, 3, '0.09'),
-(14, 16, 2, 2, '0.15'),
-(15, 17, 1, 1, '0.09'),
-(16, 17, 2, 1, '0.15'),
-(17, 17, 3, 1, '12.85'),
-(18, 18, 1, 2, '0.09'),
-(19, 18, 2, 2, '0.15'),
-(20, 18, 3, 2, '12.85'),
-(21, 19, 1, 3, '0.09'),
-(22, 19, 2, 3, '0.15'),
-(23, 19, 3, 3, '12.85'),
-(24, 20, 1, 4, '0.09'),
-(25, 20, 2, 4, '0.15'),
-(26, 20, 3, 4, '12.85'),
-(27, 21, 1, 5, '0.09'),
-(28, 21, 2, 5, '0.15'),
-(29, 21, 3, 5, '12.85'),
-(30, 22, 1, 6, '0.09'),
-(31, 22, 2, 6, '0.15'),
-(32, 22, 3, 6, '12.85'),
-(33, 23, 1, 7, '0.09'),
-(34, 23, 2, 7, '0.15'),
-(35, 23, 3, 7, '12.85');
+(8, 13, 3, 24, '12.85');
 
 -- --------------------------------------------------------
 
@@ -133,7 +96,7 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `name`, `price`, `image`, `summary`, `description`) VALUES
 (1, 'Paperclip', '0.09', 'paperclip.jpg', 'Een alledaags kantoorartikel om meerdere vellen papier bijeen te houden.', 'Buig de paperclip open, schuif het papier er tussen en buig de paperclip vervolgens weer bijeen. Werkt goed in combinatie met een kleine hoeveelheid papier. Voor grotere hoeveelheden wordt echter aangeraden een nietje te gebruiken.'),
 (2, 'Strip nietjes', '0.15', 'nietjes.jpg', 'Voor het permanent vastschieten van uw vellen papier. Werkt het beste in combinatie met een nietmachine.', 'Wanneer een paperclip niet voldoende is om uw papier bijeen te houden, schieten nietjes graag te hulp. Doordat nietjes zich rechtstreeks door het papier heen bevestigen, geeft dit een sterkere verbinding dan de gemiddelde paperclip. Veroorzaakt echter wel minimale blijvende schade aan het papier.'),
-(3, 'Nietmachine', '12.85', 'nietmachine.jpg', 'Elk bij elkaar horende stapel papieren heeft een nietmachine nodig.', 'De nietmachine, in combinatie met een rits nietjes, verbindt pagina\'s permanent aan elkaar door het nietje door het papier te schieten en de pootjes om te buigen. Niets houdt deze connectie nu nog tegen!');
+(3, 'Nietmachine', '12.85', 'nietmachine.jpg', 'Elk bij elkaar horend stapel papieren heeft een nietmachine nodig.', 'De nietmachine, in combinatie met een rits nietjes, verbindt pagina\'s permanent aan elkaar door het nietje door het papier te schieten en de pootjes om te buigen. Niets houdt deze connectie nu nog tegen!');
 
 -- --------------------------------------------------------
 
@@ -160,9 +123,7 @@ INSERT INTO `users` (`id`, `email`, `password`, `name`) VALUES
 (6, 'hoi4@hoi.nl', 'hoi4', 'hoi4 hoi44'),
 (7, 'hoi5@hoi.nl', 'hoi', 'hoi5 hoi55'),
 (8, 'hoi6@hoi.nl', 'hoi', 'HOOOI6 McHooi6'),
-(9, 'hoi7@hoi.nl', 'hoi', 'awfawefesdf'),
-(10, 'bartcommandeur23@gmail.com', 'adminroot123', 'Bart Commandeur'),
-(11, 'nerd123@hotmail.com', 'efef', 'efef');
+(9, 'hoi7@hoi.nl', 'hoi', 'awfawefesdf');
 
 --
 -- Indexes for dumped tables
@@ -205,13 +166,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `orders_products`
 --
 ALTER TABLE `orders_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -223,7 +184,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

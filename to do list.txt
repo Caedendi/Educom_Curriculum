@@ -4,4 +4,3 @@ to do:
 - implementeer deleteUserFromDatabase() in userdate_source.php
 - vouchercode veld maken en positioneren
 - alle input opschonen met testInput en mysqli_real_escape_string()
-- test pages maken
