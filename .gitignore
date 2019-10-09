@@ -1,1 +1,9 @@
 .tags*
+
+# ignore java class output files
+opdracht_5b/out/
+
+# ignore IntelliJ Idea files & folders
+*/.idea/
+*/out/
+*.iml

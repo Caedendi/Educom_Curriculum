@@ -1,3 +1,19 @@
+========== ========== ==========
+||            Java            ||
+========== ========== ==========
+
+
+- JFrame view implementeren
+- padding zeroes: gebruik string.format
+- error class maken en toepassen
+- throw errors in model (verify password als id invalid is)
+
+
+========== ========== ==========
+||          website           ||
+========== ========== ==========
+
+
 to do:
 
 - doc style comments boven functies (zie userdata_management.php)
