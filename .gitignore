@@ -1,9 +1,12 @@
 .tags*
 
-# ignore java class output files
-opdracht_5b/out/
 
-# ignore IntelliJ Idea files & folders
-*/.idea/
+
+# ignore java class output files
 */out/
+
+# ignore Intellij Idea files & folders
+*/.idea/
+*.xml
+
 *.iml
