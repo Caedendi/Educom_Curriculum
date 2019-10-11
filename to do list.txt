@@ -3,10 +3,11 @@
 ========== ========== ==========
 
 
-- JFrame view implementeren
 - padding zeroes: gebruik string.format
-- error class maken en toepassen
-- throw errors in model (verify password als id invalid is)
+- *BUG*: /paste van code/functie in inputveld JFrameView geeft een exception
+- *BUG*: invoer van een hele grote string resizes input velden in JFrameView
+- JOptionView: password cancel knop wijzigen van exit naar ID input zonder blacklisten
+- *VRAAG*: is het door event-driven nu niet spaghetti code in ConsoleView en JOptionView?
 
 
 ========== ========== ==========
