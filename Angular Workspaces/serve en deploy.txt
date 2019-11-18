@@ -1,0 +1,25 @@
+========== ==========
+Live update tijdens werken:
+========== ==========
+open cmd in workspace
+commando: ng serve
+open browser op localhost:4200
+
+
+========== ========== ========== 
+deploy op apache server:
+========== ========== ========== 
+open cmd in workspace
+commando: ng build --prod
+copy/paste [workspace_naam] folder uit [workspace]/dist naar htdocs/whatevs
+wijzig base href in index.html in deployed folder:
+
+wijzig
+<base href="/" />
+
+naar
+<base href="/[pad in htdocs naar website folder]" />
+
+al is dit het pad naar de website folder:
+C:\Bitnami\wampstack-7.3.10-0\apache2\htdocs\Educom_Curriculum\ng-tutorial
+wijzig base href dan naar /Educom_Curriculum/ng-tutorial/
