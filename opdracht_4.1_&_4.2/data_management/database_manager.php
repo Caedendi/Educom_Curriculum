@@ -4,7 +4,7 @@ abstract class DatabaseManager {
     $server = "localhost";
     $username = "educom1";
     $password = "monitor";
-    $database = "educom";
+    $database = "bartcommandeur_webshop";
     $link = new mysqli($server, $username, $password, $database);
     if ($link->connect_errno) {
       throw new DatabaseConnectionException("Unable to connect to database:" . PHP_EOL . mysqli_connect_errno() . ": " . mysqli_connect_error() . PHP_EOL . PHP_EOL);

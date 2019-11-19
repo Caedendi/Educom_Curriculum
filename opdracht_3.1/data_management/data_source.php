@@ -3,7 +3,7 @@ function connectToDatabase() {
   $server = "localhost";
   $username = "educom1";
   $password = "monitor";
-  $database = "educom";
+  $database = "bartcommandeur_webshop";
   $link = mysqli_connect($server, $username, $password, $database);
   if (!$link) {
     throw new DatabaseConnectionException("Unable to connect to database:" . PHP_EOL . mysqli_connect_errno() . ": " . mysqli_connect_error() . PHP_EOL . PHP_EOL);

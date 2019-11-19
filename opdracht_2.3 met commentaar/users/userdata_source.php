@@ -3,7 +3,7 @@ function connectToDatabase() {
   $server = "localhost";
   $username = "educom1";
   $password = "monitor";
-  $database = "educom";
+  $database = "bartcommandeur_webshop";
   /* JH TIP: Ik zie in de database dat je id kolom maar 5 decimalen is, dit is wel weinig, dan kan je maar 99999 users kwijt, beter om er een int(11) van te maken. */
 
   $link = mysqli_connect($server, $username, $password, $database);
