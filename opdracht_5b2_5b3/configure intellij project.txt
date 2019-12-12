@@ -1,0 +1,28 @@
+file --> project structure (CTRL+ALT+SHIFT+S)
+select project sdk
+project compiler output:
+C:\Bitnami\wampstack-7.3.11-0\apache2\htdocs\Educom_Curriculum\opdracht_5b2_5b3\out
+
+modules:
+tab sources, verwijder alle blauwe/groene rechts
+klik op src/main/java en markeer als "Sources" (blauw)
+klik op srs/test/java en markeer als "Tests" (groen)
+
+tab paths: inherit
+
+---
+
+rechtsboven in editor: voeg configuration toe
+templates/application
+
+select main class -- nu.educom.bartcommandeur._5b2_5b3.MISix2
+select classpath module -- opdracht_5b2_5b3
+
+voeg argumenten toe en verander naam:
+Name: MISix2.Console
+Main class: nu.educom.bartcommandeur._5b2_5b3.MISix2
+Program arguments: console
+Program arguments: joption
+Program arguments: jframe
+
+druk op + linksboven voor nieuwe template

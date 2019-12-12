@@ -1,0 +1,282 @@
+Symfony v4.3.8
+WAMP Stack v7.3.11-0 (fresh install)
+PHP v7.3.11
+Atom 1.41.0 x64
+Windows 7 Ultimate SP1
+Firefox Developer 71.0b11 (64-bit)
+
++---------- ---------- ----------
+|   Coding Standards
++---------- ---------- ----------
+
+De notatie is niet geheel volgens de Symfony 4.4 coding standards, met nadruk op
+de annotations in de voorbeelden. De juiste conventie is:
+
+/**
+ * @[Annotation]
+ */
+class ClassName
+{
+    const variabele = 1;
+
+    /**
+     * @Route("/", name="routename")
+     */
+    public function index()
+    {
+        // index functies
+    }
+}
+
+zie: https://symfony.com/doc/current/contributing/code/standards.html
+
+Het is ook mogelijk dit te automatiseren met php-cs-fixer, wat ook gelinkt staat
+op de bovenstaande pagina:
+https://cs.symfony.com/
+
+Om dit op Windows via Composer te installeren en gebruiken, moeten de volgende
+stappen ondernomen worden:
+
+Voer dit commando uit in cmd:
+    composer global require friendsofphp/php-cs-fixer
+
+voeg Composer toe aan je Path:
+    C:\Users\[[[USERNAME]]]\AppData\Roaming\Composer\vendor\bin
+
+Voer dit commando uit om je code te fixen met de tool (dit kan enkele minuten
+duren):
+    php-cs-fixer fix pad/naar/je/symfony/project/
+
+Atom en PhpStorm hebben ook plugins voor deze tool.
+
++---------- ---------- ----------
+|    TOC
++---------- ---------- ----------
+
+02: ontbrekend vraagteken
+"[...] en hoe werkt het nu precies."
+
+05: ontbrekend vraagteken
+"Hoe gebruik ik Twig en templates."
+
+CASE: ontbrekende punt
+"[...] in Symfony 4"
+
++---------- ---------- ----------
+|    00: Introductie
++---------- ---------- ----------
+
+p5: taalfout
+"[...] stilstaan met de verschillen tussen 3 en 4" --> stilstaan bij
+
+p7: typfout
+"Symfony is [...] waarmee er een aan de hand van een bepaalde structuur een [...]"
+--> waarmee, aan de hand van een bepaalde structuur, een [...]
+
+p7 M++VC: typfout
+"modifceren" --> modificeren
+
++---------- ---------- ----------
+|    01: Getting Started...
++---------- ---------- ----------
+
+p9 punt 2: typfout
+"[...] omgevingsvariabelen van het de computer [...]" --> van de computer
+
+p9 punt 2: typfout?
+"[...] of je (=de?) juiste versie van php beschikbaar is."
+
+p9 punt 2: inconsistentie
+"PHP" wordt zowel in hoofdletters als kleine letters getypt op deze pagina.
+
+p11: inconsistentie
+"Composer" wordt hier zonder hoofdletter geschreven, waar dit eerder met hoofdletter was.
+
+p11: onnodige spatie
+"installatie varianten" --> installatievarianten
+
+++++++++++ ++++++++++
+p11: onduidelijkheid
+het wordt niet duidelijk genoemd in welke directory het commando in de afbeelding
+(composer create-project symfony/website-skeleton sf4-website) moet worden uitgevoerd.
+
+Misschien fijn om even te vermelden dat dit commando in de console moet worden uitgevoerd
+wanneer je met de console in de directory zit waar je de projectmap wilt aanmaken.
+In mijn geval (Windows 7 console):
+
+cd C:/Bitnami/wampstack-7.3.11-0/apache2/htdocs/Educom/Symfony/
+composer create-project symfony/website-skeleton sf4-website
+
+OF
+
+(in Windows Explorer): shift+click in de directory waar je de projectmap wilt aanmaken --> open command window here
+composer create-project symfony/website-skeleton sf4-website
+
+Er wordt namelijk niet eerder vermeld dat enige kennis van de command line nodig is,
+of welke stappen een leek zou moeten doorlopen.
+
+Overigens misschien ook nuttig om te vermelden of composer-commando's in de
+command line in een bepaalde map uitgevoerd moeten worden, of dat dit universeel kan.
+++++++++++ ++++++++++
+
+p11: update
+"Je ziet dat composer een goeie 94 packages installeert [...]"
+dit waren er bij mij ondertussen 101 of 103 (100+).
+
+p12: leesbaarheid
+De opsomming van mappen zou wat leesbaarder gepresenteerd kunnen worden, bv dmv opsommingspunten.
+Daarnaast missen enkele regels een punt (/bin/, /templates/)
+
+p15: ontbrekende punt
+Alinea 1 eindigt niet met een punt.
+
+p17: typfout
+laatste alinea: "[...] en deze in andere config-file op deze manier aanroepen [...]"
+
++---------- ---------- ----------
+|    02: Controllers
++---------- ---------- ----------
+
+p25 alinea 1: typfout
+"zorg er wel voor dat je de root-directory van je project staat"
+--> zorg er wel voor dat je *in*
+
+** negeer het onderstaande. Na de name bij de route annotation boven de index
+** functie te verwijderen, op te slaan, testen, en daarna weer terug toe te
+** voegen en op te slaan, werkt het wel zoals het boek het omschrijft. misschien
+** een inconsistentie in Symfony of in Atom met annotations.
+++++++++++ ++++++++++
+p33 einde: incorrect?
+het wijzigen van @route("/homepage") boven de klasse zorgt er niet voor dat
+/sf4-web/public/ belandt op de homepage, maar op de landing page van symfony.
+Om op de homepage te komen, moet je nog steeds naar /public/homepage navigeren.
+Als je boven de index functie @Route("/", name="homepage") wijzigt naar
+@Route("/"), dan navigeert /sf4-web/public/ wel naar de HomepageController
+pagina, maar de tekst geeft de indruk dat @Route("/", name="homepage") later
+nodig is voor het template.
+++++++++++ ++++++++++
+** einde negeer
+
+++++++++++ ++++++++++
+p35: incorrecte routes
+Het boek geeft aan dat de blogcontroller klasse geen route moet hebben, de index
+de route /blog/ met naam=blog_list en de show-functie de route /show/{id}.
+Dit leidt ertoe dat er 2 routes zijn naar de blog controller:
+- /blog/ --- leidt naar blog_list, index functie
+- /show/2 --- leidt naar blog_show, show functie met vardump van 2.
+
+Het voorbeeld zegt te navigeren naar /blog/show/2, wat geen correcte route is.
+Dus óf /blog/show/2 moet gewijzigd worden naar /show/2...
+óf de klasse moet gelijk een route naar /blog/ krijgen, zodat zowel index als
+show achter de /blog/ route staan. Dit is in de afbeelding op pagina 43
+overigens wel plots het geval.
++++++++++ ++++++++++
+
+p39: typfout
+het haakje achter config/services.yaml zou aan het einde van de regel, voor de
+punt moeten staan.
+
+p39: ontbrekende include
+Code in afbeelding mist de include voor Request. De include voor Response (die
+er al staat) is ook nodig:
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+p41: typfout
+alinea 1 regel 5, hoofdletter voor "[...] 2 functies. index [...]"
+
+++++++++++ +++++++++++
+p41/43: onduidelijk/inconsistent
+De afbeelding laat de functies list() en show() zien, met bijpassende name
+blog_list en blog_show. De tekst spreekt daarvoor en daarna over de index()-
+functie ipv de list()-functie. Dit leidt op pagina 35 alinea 1 ook al tot
+verwarring: waarom deze benaming voor de index()-functie?
+Vervolgens op pagina 43 is de functie in de afbeelding weer gewijzigd naar
+index. In de show()-functie op pagina 43 verdwijnt plots de logger-
+functionaliteit en wijzigt de benaming van de parameter van $id naar $slug
+zonder uitleg.
+++++++++++ +++++++++++
+
++---------- ---------- ----------
+|    03: Entities
++---------- ---------- ----------
+
+++++++++++ +++++++++++
+p61: ontbrekende stappen voor uitvoeren migratie
+
+Er wordt niet verteld dat, om een entity te migreren, je eerst Symfony moet
+configureren om met de juiste database in MySQL te verbinden. Ook moet er eerst
+een nieuwe database aangemaakt worden voordat de entities (tabellen) toegevoegd
+(gemigreerd) kunnen worden aan een database.
+
+Ik gebruik MySQL in WAMP Stack v7.3.11-0 en kreeg deze errors:
+
+    In AbstractMySQLDriver.php line 106:
+
+      An exception occurred in driver: SQLSTATE[HY000] [2054] The server requeste
+      d authentication method unknown to the client
+
+    In PDOConnection.php line 31:
+
+      SQLSTATE[HY000] [2054] The server requested authentication method unknown t
+      o the client
+
+    In PDOConnection.php line 27:
+
+      SQLSTATE[HY000] [2054] The server requested authentication method unknown t
+      o the client
+
+    In PDOConnection.php line 27:
+
+      PDO::__construct(): The server requested authentication method unknown to t
+      he client [caching_sha2_password]
+
+Ik heb dit opgelost door de volgende stappen op te nemen:
+    1 ga in een browser naar phpmyadmin
+    2 maak een nieuwe database aan
+    3 open het .env bestand van het symfony project
+    4 wijzig in dit bestand regel 28:
+        DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7
+        vervang db_user met root
+        vervang db_password met [opgegeven wachtwoord tijdens wamp installatie]
+        vervang db_name met de naam v/d database uit stap 2
+    5 save file, voer migration commando uit. Success.
+
+++++++++++ +++++++++++
+
+p53: "is strikt theoretisch een klasse die een opeen naar een tabel in de
+      database verwijst."
+
+p53: "Lavarel" --> Laravel
+
+p63: inconsistentie/onduidelijkheid
+de property name "poppodium" komt niet overeen met de property name (podium_id)
+in het gegevensmodel op pagina 53. Er zijn hier twee problemen:
+    1 In het gegevensmodel op pagina 53 zou dit poppodium_id of poppodium
+      moeten zijn.
+    2 Er wordt niet vermeld dat de foreign key property "poppodium" automatisch
+      een "_id"-suffix krijgt, omdat het een foreign key is. Dit wordt pas aan
+      het einde van pagina 65 genoemd.
+    III een optreden kan meerdere artiesten in het voorprogramma hebben en een
+        artiest kan voor meerdere opredens het voorprogramma zijn. Dus dit zou
+        dan een many-to-many relatie moeten zijn ipv many-to-one.
+
+p65: typfout
+"[...] alle optredens voordat podium [...]" --> voor dat
+
+p65: typfout
+GETTERS & SETTERS: "De underscores verwijen [...]" --> verdwijnen
+
++---------- ---------- ----------
+|    04: Repositories
++---------- ---------- ----------
+
+p67: typfout
+"Zodoende vormen ze eingenljk [...]" --> eigenlijk
+
+p75: typfout
+"Op regel 22 [...]" + "[...] en op regel 23 [...]"
+--> regel 32 en 33.
+
+p77: spelfout
+"bepaald" --> bepaalt

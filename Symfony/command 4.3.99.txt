@@ -1,0 +1,1 @@
+composer create-project symfony/website-skeleton sf4-web "4.3.99"

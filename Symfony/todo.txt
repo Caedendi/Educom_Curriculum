@@ -1,0 +1,4 @@
+- spel- en taalfouten vergelijken nieuwe versie
+
+- p97 Opdracht: Maak een controller die zowel JSON als XML als formaat accepteert [...].
+  zie p45

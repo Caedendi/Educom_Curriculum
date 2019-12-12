@@ -1,0 +1,18 @@
+
+------------------------------------------------------------------------------------------------------------------------
+to rename a ManyToMany relation table (table1_table2 to table3):
+------------------------------------------------------------------------------------------------------------------------
+rename the newly generated table1_table2 table in phpmyadmin under Operations to table3.
+
+add 
+     * @ORM\JoinTable(name="join_table_name")
+to the property value join_table_name of the first entity in the name.
+
+for instance, if the generated table is named table1_table2 and you want to rename it to table3, then add 
+     * @ORM\JoinTable(name="table3") 
+to the entity table1.php in the annotation above 
+     private $table3;
+
+search the project repositories and entities and change all occurences of table1_table2 to table3.
+------------------------------------------------------------------------------------------------------------------------
+

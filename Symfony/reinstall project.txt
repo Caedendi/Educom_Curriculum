@@ -1,0 +1,36 @@
+------------------------------------------------------------------------------------------------------------------------
+backup old files
+------------------------------------------------------------------------------------------------------------------------
+go to /project_folder/src/
+backup /controller/, /entity/, /migrations/ and /repository/
+go to project_folder/ and backup /templates/ folder.
+optional: backup .env file
+
+go to database in phpmyadmin
+------------------------------------------------------------------------------------------------------------------------
+
+run commands in folder where you want the new project folder to be generated:
+
+shift+right click --> open command window here
+
+composer create-project symfony/website-skeleton my_project_name "4.3.99"
+cd my_project_name
+composer require symfony/apache-pack
+php bin/console make:controller HomepageController
+
+go to phpmyadmin and create a new database
+
+open /new_project_folder/.env
+change db_user and db_password to your sql/phpmyadmin username/password
+change db_name to the database name in phpmyadmin
+
+move database migration file backups to /project_folder/src/Migrations
+move backups into new project folder:
+- repository
+- entity 
+- controller
+- migrations
+- templates
+
+EITHER import backed up sql database file(s) (recommended)
+OR run command php bin/console doctrine:migrations:migrate

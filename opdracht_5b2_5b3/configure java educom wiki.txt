@@ -1,0 +1,73 @@
+Categorie:Case 5b: Java development
+
+Leerdoel: Het leren van een strongly typed taal als Java & swing.
+Inhoud
+
+    1 Basis regels
+    2 Compileren vanaf de commandline
+    3 Uitvoeren vanaf de commandline
+    4 Hulpbronnen
+
+Basis regels
+
+    Download een IDE: Eclipse of InteliJ.
+    Plaats 1 class per file, en noem de file hetzelfde als de class + '.java'
+
+        (uitzondering zijn private inner classes met minder dan 4 regels, deze staan in dezelfde file als de hoofd class)
+
+    Plaats de source files in een folder src/main/java/ en de test source files in src/test/java/
+        Maak binnen deze files een folder structuur aan op basis van het package, de package is een wereldwijd uniek id, en is meestal je webadres achterstevoren dus: nu/educom/wiki
+        Zet daarbinnen de naam van je applicatie en belangrijke onderwerpen in sub-folders daarvan
+
+            De complete folder structuur ziet er dan uit als: src/main/java/nu/educom/wiki/myfirstapplication/controllers/
+            In iedere .java file in deze folder staat dan package nu.educom.wiki.myfirstapplication.controllers
+
+        Zet in de IDE de source-folders correct
+            Eclipse:
+
+                Rechts-klik op het project, kies "Build Path" => "Configure Build Path".
+                Verwijder alles in tabblad 'source'
+                Voeg src/main/java/ en src/test/java/ toe.
+
+                Indien je de code al hebt gerund pas dan eventueel je run configuratie aan: Menuoptie "Run" => "Run configuraties..." => "Java Applicatie" => "MainClass" en zorg dat het package begint met "nu.educom.wiki ..."
+            IntelliJ:
+
+                Menuoptie: "File" => "Project structure" => "Modules".
+                Verwijder alle "Source Folders" (blauw) (en "Test Source Folders" (groen)) rechts in het tabblad "sources".
+                Voeg src/main/java/ toe als Source (blauw) en src/test/java/ als Test Source (groen)
+
+                Indien je de code al hebt gerund pas dan eventueel je run configuratie aan: Menuoptie "Run" => "Edit configuraties..." => "Application" => "MainClass" en zorg dat het package begint met "nu.educom.wiki ..."
+    Maak waar mogelijk gebruik van interfaces zoals List, Map etc.
+
+Compileren vanaf de commandline
+
+    Ga naar de root van je project
+
+        javac -d bin src/main/java/nu/educom/wiki/myfirstapplication/controllers/*.java src/main/java/nu/educom/wiki/myfirstapplication/*.java
+
+            optioneel kan je nog libraries toevoegen met -cp /lib/hibernate.jar;/lib/junit.jar
+
+        dit genereert een class files in de bin folder. Bijv: /bin/nu/educom/wiki/myfirstapplication/controllers/SomeController.class
+
+Uitvoeren vanaf de commandline
+
+    Ga naar de root van je project
+
+        java -cp bin nu.educom.wiki.myfirstapplication.MainClass (let op 'punten' geen 'slashes')
+
+Hulpbronnen
+
+    W3Schools JAVA
+    Leer Java in 20 minuten
+    Oracle Documentation
+
+Pagina’s in categorie "Case 5b: Java development"
+
+Deze categorie bevat de volgende 4 pagina’s, van in totaal 4.
+O
+
+    Opdracht 5b.1: Java Basics, Commandline & Scanner
+    Opdracht 5b.2: Swing application, JOptionPane
+    Opdracht 5b.3: Swing application, JFrame
+    Opdracht 5b.4: JDBC koppeling
+

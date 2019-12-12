@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 25, 2019 at 07:46 AM
+-- Generation Time: Nov 28, 2019 at 02:23 AM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -93,7 +93,9 @@ CREATE TABLE `optreden` (
 
 INSERT INTO `optreden` (`id`, `poppodium_id`, `artiest_id`, `omschrijving`, `datum`, `prijs`, `ticket_url`, `afbeelding_url`) VALUES
 (1, 1, 6, 'Op zaterdag 30 mei 2020 keert de Poolse blackened death metal band Behemoth terug naar Utrecht voor weer een van hun beroemde theatrale shows.\r\n\r\nTer support niemand minder dan The Black Dahlia Murder en Bloodbath.', '2020-05-30 19:00:00', '35.00', NULL, NULL),
-(3, 1, 2, 'Optreden van Metallica met in het voorprogramma AC/DC en Aerosmith.', '2020-06-01 19:00:00', '70.00', '', '');
+(3, 1, 2, 'Optreden van Metallica met in het voorprogramma AC/DC en Aerosmith.', '2020-06-01 19:00:00', '70.00', '', ''),
+(4, 1, 2, 'Optreden van Metallica met in het voorprogramma AC/DC en Aerosmith.', '2020-06-01 19:00:00', '70.00', '', ''),
+(5, 1, 2, 'Optreden van Metallica met in het voorprogramma AC/DC en Aerosmith.', '2020-06-01 19:00:00', '70.00', '', '');
 
 -- --------------------------------------------------------
 
@@ -144,7 +146,11 @@ CREATE TABLE `voorprogramma` (
 
 INSERT INTO `voorprogramma` (`optreden_id`, `artiest_id`) VALUES
 (3, 1),
-(3, 4);
+(3, 4),
+(4, 1),
+(4, 4),
+(5, 1),
+(5, 4);
 
 --
 -- Indexes for dumped tables
@@ -200,7 +206,7 @@ ALTER TABLE `artiest`
 -- AUTO_INCREMENT for table `optreden`
 --
 ALTER TABLE `optreden`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `poppodium`
