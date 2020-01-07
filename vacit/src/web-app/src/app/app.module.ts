@@ -29,6 +29,7 @@ import { ProfileComponent } from './components/pages/profile/profile.component';
 import { DetailsComponent } from './components/pages/details/details.component';
 import { ApplicationsComponent } from './components/pages/applications/applications.component';
 import { JobsComponent } from './components/pages/jobs/jobs.component';
+import { NavbarTestComponent } from './components/header/navbar-test/navbar-test.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { JobsComponent } from './components/pages/jobs/jobs.component';
     DetailsComponent,
     ApplicationsComponent,
     JobsComponent,
+    NavbarTestComponent,
   ],
   imports: [
     BrowserModule,
