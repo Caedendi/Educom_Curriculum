@@ -45,19 +45,23 @@
 @import "variables.scss";
 @import "assets/fonts/fonts.css";
 
+.roboto-c {
+  font-family: "Roboto Condensed", "Open Sans MS", serif; }
+
+.bebas-neue {
+  font-family: "Bebas Neue", "Open Sans MS", serif; }
+
+p {
+  font-family: "Roboto Condensed", "Open Sans MS", serif;
+  }
+
 html, body {
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 body {
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column; }
 
 .content {
-  min-height: calc(100vh - #{$header-height + $footer-height});
-}
-
-.footer {
-}
+  min-height: calc(100vh - #{$header-height + $footer-height}); }

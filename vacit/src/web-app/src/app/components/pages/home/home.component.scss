@@ -1,5 +1,15 @@
+@import "../../../../variables";
+
 #home {
+  background-color: $vacit-orange;
   display: flex;
   flex-direction: row;
+}
 
+app-banner {
+  padding: 50px;
+}
+
+app-recents {
+  flex-grow: 1;
 }

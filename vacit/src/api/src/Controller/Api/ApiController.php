@@ -144,6 +144,85 @@ class ApiController extends AbstractFOSRestController
     }
 
     /**
+     * @Rest\get("/recents")
+     * @param Request $request
+     * @return View
+     */
+    public function getRecents(Request $request): View
+    {
+        $data = [
+            [
+                "id" => 0001,
+                "title" => "Applicatiebeheerder",
+                "level" => "Junior",
+                "company" => "DSM",
+                "location" => "Sittard",
+                "postDate" => "22 october 2018",
+                "summary" => "Als applicatiebeheerder ben je verantwoordelijk voor het uitrollen en beheren van onze maatwerk-applicaties.",
+                "description" => "asdfl;kjael;kjasd;lakjesr;lkjasdg;lkar;lkasdg;lasdg;ljarweg;ljk"
+            ], [
+                "id" => 0002,
+                "title" => "Applicatiebeheerder",
+                "level" => "Medior",
+                "company" => "DSM",
+                "location" => "Sittard",
+                "postDate" => "22 october 2018",
+                "summary" => "Als applicatiebeheerder ben je verantwoordelijk voor het uitrollen en beheren van onze maatwerk-applicaties.",
+                "description" => "asdfl;kjael;kjasd;lakjesr;lkjasdg;lkar;lkasdg;lasdg;ljarweg;ljk"
+            ], [
+                "id" => 0003,
+                "title" => "Applicatiebeheerder",
+                "level" => "Senior",
+                "company" => "DSM",
+                "location" => "Sittard",
+                "postDate" => "22 october 2018",
+                "summary" => "Als applicatiebeheerder ben je verantwoordelijk voor het uitrollen en beheren van onze maatwerk-applicaties.",
+                "description" => "asdfl;kjael;kjasd;lakjesr;lkjasdg;lkar;lkasdg;lasdg;ljarweg;ljk"
+            ], [
+                "id" => 0004,
+                "title" => "Applicatiebeheerder",
+                "level" => "Senior",
+                "company" => "DSM",
+                "location" => "Sittard",
+                "postDate" => "22 october 2018",
+                "summary" => "Als applicatiebeheerder ben je verantwoordelijk voor het uitrollen en beheren van onze maatwerk-applicaties.",
+                "description" => "asdfl;kjael;kjasd;lakjesr;lkjasdg;lkar;lkasdg;lasdg;ljarweg;ljk"
+            ], [
+                "id" => 0005,
+                "title" => "Applicatiebeheerder",
+                "level" => "Senior",
+                "company" => "DSM",
+                "location" => "Sittard",
+                "postDate" => "22 october 2018",
+                "summary" => "Als applicatiebeheerder ben je verantwoordelijk voor het uitrollen en beheren van onze maatwerk-applicaties.",
+                "description" => "asdfl;kjael;kjasd;lakjesr;lkjasdg;lkar;lkasdg;lasdg;ljarweg;ljk"
+            ]
+        ];
+
+        return (View::create($data, Response::HTTP_OK));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+     * ouwe troep
+     */
+
+    /**
      * @Rest\Get("/item/{id}")
      * @param Request $request
      * @return View

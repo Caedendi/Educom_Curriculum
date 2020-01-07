@@ -1,0 +1,101 @@
+@import "../../../variables";
+@import "../../../math";
+// using http://jtauber.github.io/articles/css-hexagon.html
+
+$recents-thumb-height: 60;
+
+// hexagon
+$hex-t: $recents-thumb-height;
+$hex-h: floor(sqrt( (1/4)*pow($hex-t, 2) )) * 1px;
+$hex-w: floor((sqrt(3)/2) * $hex-t) * 1px;
+
+#recents-title {
+  color: white;
+}
+
+#recents a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+#recents-container {
+  display: flex;
+  align-items: center;
+
+  padding: 25px;
+}
+
+#recents-title {
+  padding-left: 125px;
+}
+
+#recents-thumb {
+  display: flex;
+}
+
+#hexagon-left {
+  float: left;
+  border-right: $hex-h solid $vacit-gray;
+  border-top: $hex-w solid transparent;
+  border-bottom: $hex-w solid transparent;
+}
+
+#hexagon-middle {
+  float: left;
+  width: $hex-h * 2;
+  height: $hex-w * 2;
+  background-color: $vacit-gray;
+
+  display: flex;
+  align-items: center;
+}
+
+#hexagon-right {
+  float: left;
+  border-left: $hex-h solid $vacit-gray;
+  border-top: $hex-w solid transparent;
+  border-bottom: $hex-w solid transparent;
+}
+
+#recents-thumb-img {
+  width: $recents-thumb-height * 1px;
+  filter: invert(100%);
+}
+
+#recents-content {
+  padding-left: 25px;
+  padding-right: 25px;
+
+  flex-grow: 1;
+}
+
+#recents-content-date {
+  font-size: 10px;
+  margin: 0;
+}
+
+#recents-content-title {
+  color: white;
+  margin: 0;
+}
+
+#recents-content-summary {
+  margin: 0;
+  font-size: 14px;
+  font-style: italic;
+}
+
+#recents-arrow {
+  //padding-left: 50px;
+  //padding-right: 50px;
+}
+
+#recents-arrow-img {
+  height: 70px;
+  filter: invert(100%);
+}
