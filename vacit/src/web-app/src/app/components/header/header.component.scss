@@ -1,0 +1,30 @@
+@import "../../../variables";
+
+header {
+  height: $header-height;
+}
+
+.header-body {
+  color: white;
+  background-color: #333333;
+  padding: 10px;
+
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+}
+
+app-navbar {
+  flex: 1;
+  margin-top: auto;
+}
+
+.header-body-logo img {
+  width: 250px;
+}
+
+app-header-deco {
+  position: relative;
+  width: 100%;
+  z-index: -1;
+}
