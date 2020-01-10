@@ -144,7 +144,7 @@ class ApiController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\get("/recents")
+     * @Rest\Get("/recents")
      * @param Request $request
      * @return View
      */
