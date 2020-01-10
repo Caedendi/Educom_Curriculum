@@ -1,0 +1,9 @@
+@import "../variables.scss";
+
+//app-header, app-footer {
+//  box-sizing: border-box;
+//}
+
+.content {
+  min-height: calc(100vh - #{$header-height + $footer-height}); }
+  //min-height: calc(100vh - #{footer-height}); }

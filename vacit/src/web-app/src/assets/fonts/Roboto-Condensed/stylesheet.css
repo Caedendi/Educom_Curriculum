@@ -3,7 +3,7 @@
 
 
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: "Roboto Condensed", "Open Sans MS", serif;
     src: url('roboto-condensed-webfont.woff2') format('woff2'),
          url('roboto-condensed-webfont.woff') format('woff');
     font-weight: normal;
