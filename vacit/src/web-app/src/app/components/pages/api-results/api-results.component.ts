@@ -10,7 +10,6 @@ import { PeopleService } from '../../../people.service';
 })
 export class ApiResultsComponent implements OnInit {
   users: User[];
-  peopleApi$: User[];
   peopleLocal$: User[];
 
   constructor(
@@ -28,9 +27,6 @@ export class ApiResultsComponent implements OnInit {
   }
 
   getPeople(): void {
-    this.peopleService.getPeopleApi()
-      .subscribe(data => this.peopleApi$ = data);
-
     this.peopleService.getPeopleLocal()
       .subscribe(data => this.peopleLocal$ = data);
   }
