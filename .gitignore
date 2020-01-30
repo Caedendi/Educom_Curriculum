@@ -9,3 +9,5 @@
 *.iml
 
 */ng-tutorial_backup/
+
+**/node_modules/
